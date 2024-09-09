@@ -7210,7 +7210,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("night_price", this.night_price ? this.night_price.replace(",", ".") : null);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
-      formData.append("packing_size", this.packing_size ? this.packing_size.replace(",", ".") : null);
+      formData.append("packing_size", this.packing_size);
+      alert(this.packing_size);
 
       // Append file (mediaFile should be set in handleFileUpload)
       if (this.mediaFile) {
@@ -15396,14 +15397,14 @@ var render = function render() {
         height: "100%",
         "align-items": "start !important"
       }
-    }, [_c("div", {
+    }, [menu_item.image != null ? _c("div", {
       staticClass: "drinks-food-list__text-container"
     }, [_c("img", {
       staticClass: "admin-menu-item-image",
       attrs: {
         src: "/images_dynamic/menu_items/" + menu_item.image
       }
-    })]), _vm._v(" "), _c("div", {
+    })]) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "drinks-food-list__text-container"
     }, [_c("h4", {
       staticClass: "drinks-food-list__title"
@@ -21951,12 +21952,12 @@ var render = function render() {
       attrs: {
         href: "#"
       }
-    }, [_c("img", {
+    }, [menu_item.image != null ? _c("img", {
       staticClass: "item__picture",
       attrs: {
         src: "images_dynamic/menu_items/" + menu_item.image
       }
-    }), _vm._v(" "), _c("div", {
+    }) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "item__text-container"
     }, [_c("h4", {
       staticClass: "item__title"

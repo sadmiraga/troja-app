@@ -84,7 +84,7 @@
                             class="item" 
                             href="#">
 
-                             <img class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
+                             <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
                             <div class="item__text-container">
                                 <h4 class="item__title">{{ menu_item.name }}</h4>
                                 <div class="item__description">

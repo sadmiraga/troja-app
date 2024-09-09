@@ -118,7 +118,7 @@
               style="justify-content: space-between;height: auto !important;align-items:start !important;height:100%;">
 
               <!-- image -->
-               <div class="drinks-food-list__text-container">
+               <div v-if="menu_item.image != null" class="drinks-food-list__text-container">
                   <img :src="'/images_dynamic/menu_items/' + menu_item.image"  class="admin-menu-item-image">
                   
                </div>

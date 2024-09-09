@@ -176,9 +176,7 @@ class menuItemsController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
         $night_price = $request->input('night_price');
-        $packing_size = $request->input('packing_size');
 
         $menu_item = new MenuItem();
         $menu_item->name = $request->input('name');
@@ -186,16 +184,13 @@ class menuItemsController extends Controller
         $menu_item->description = $request->input('description');
         $menu_item->category_id = $request->input('category_id');
         $menu_item->price = $request->input('price');
+        $menu_item->packing_size = $request->input('packing_size');
 
         //night price
         if ($night_price = ! null && $night_price != "null") {
             $menu_item->night_price = $request->input('night_price');
         }
-
-        //packing size 
-        if ($packing_size = ! null && $packing_size != "null") {
-            $menu_item->packing_size = $packing_size;
-        }
+        
 
         $image = $request->file('media');
         if ($request->hasFile('media')) {
@@ -207,7 +202,7 @@ class menuItemsController extends Controller
 
             //OPTIMIZE image.
             
-            
+            /*
             $original_image_path = public_path('images_dynamic/menu_items/' . $imageName);
             $image = Image::make($original_image_path);
             $image->resize(800, null, function ($constraint) {
@@ -215,6 +210,7 @@ class menuItemsController extends Controller
             });
             $image->encode('webp', 75);
             $image->save($original_image_path);
+            */
             
             
         }
@@ -222,6 +218,7 @@ class menuItemsController extends Controller
         //add allergens
 
         $menu_item->save();
+        dd($menu_item);
 
         return response('success');
     }
