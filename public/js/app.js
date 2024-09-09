@@ -7211,7 +7211,6 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
       formData.append("packing_size", this.packing_size);
-      alert(this.packing_size);
 
       // Append file (mediaFile should be set in handleFileUpload)
       if (this.mediaFile) {

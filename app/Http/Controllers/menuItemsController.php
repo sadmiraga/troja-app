@@ -202,7 +202,7 @@ class menuItemsController extends Controller
 
             //OPTIMIZE image.
             
-            /*
+            
             $original_image_path = public_path('images_dynamic/menu_items/' . $imageName);
             $image = Image::make($original_image_path);
             $image->resize(800, null, function ($constraint) {
@@ -210,7 +210,6 @@ class menuItemsController extends Controller
             });
             $image->encode('webp', 75);
             $image->save($original_image_path);
-            */
             
             
         }
