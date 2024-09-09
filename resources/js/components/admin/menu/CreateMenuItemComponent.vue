@@ -1,0 +1,253 @@
+<template>
+    <div class="drinks-food-edit__container">
+
+        <!-- PRODUCT INFO-->
+        <div v-if="step == 1" id="step-1" style="height:fit-content;">
+            
+            <div class="drinks-food-create-edit__form-container">
+                <!-- FOOD OR DRINK -->
+                <div class="category-create-edit__dropdown-container">
+                    <select
+                        v-model="localType"
+                        @change="changeType"
+                        name="category"
+                        id="category"
+                        class="category-create-edit__dropdown"
+                    >
+                        <option value="choose">Izberi tip izdelka</option>
+                        <option value="food">Hrana</option>
+                        <option value="drink">Pijača</option>
+                    </select>
+                    <svg
+                        width="14"
+                        height="8"
+                        viewBox="0 0 14 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="category-create-edit__dropdown-arrow"
+                    >
+                        <path
+                            d="M2 0L7 5L12 0L14 1L7 8L0 1L2 0Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </div>
+
+                <!-- NAME -->
+                <input
+                    type="text"
+                    class="drinks-food-create-edit__input"
+                    placeholder="Ime izdelka"
+                    v-model="name"
+                />
+
+                <!-- PRICE -->
+                <div class="drinks-food-create-edit__input-with-symbol-container">
+                    <input
+                        type="number"
+                        class="drinks-food-create-edit__input-with-symbol"
+                        placeholder="Cena"
+                        v-model="price"
+                    />
+                    <div class="drinks-food-create-edit__input-symbol">€</div>
+                </div>
+
+                <!-- NIGHT PRICE -->
+                <div class="drinks-food-create-edit__input-with-symbol-container">
+                    <input
+                        type="number"
+                        class="drinks-food-create-edit__input-with-symbol"
+                        placeholder="Nočna cena"
+                        v-model="night_price"
+                    />
+                    <div class="drinks-food-create-edit__input-symbol">€</div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <textarea
+                    name="description"
+                    id="description"
+                    cols="30"
+                    rows="10"
+                    class="drinks-food-create-edit__input drinks-food-create-edit__textarea"
+                    placeholder="Vnesi opis artikla"
+                    v-model="description"
+                ></textarea>
+
+                <!-- CATEGORY -->
+                <div>
+                    <div class="drinks-food-create-edit__input-label">
+                        <label for="category">Izberite kategorijo artikla</label>
+                    </div>
+                    <div class="drinks-food-create-edit__dropdown-container">
+                        <select
+                            name="category"
+                            id="category"
+                            class="drinks-food-create-edit__dropdown"
+                            v-model="category_id"
+                        >
+                            <option
+                                v-for="category in filteredCategories"
+                                :key="category.id"
+                                :value="category.id"
+                            >
+                                {{ category.categoryName }}
+                            </option>
+                        </select>
+                        <svg
+                            width="14"
+                            height="8"
+                            viewBox="0 0 14 8"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="drinks-food-create-edit__dropdown-arrow"
+                        >
+                            <path
+                                d="M2 0L7 5L12 0L14 1L7 8L0 1L2 0Z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- PACKING SIZE -->
+                <div v-if="showPackingSize" class="drinks-food-create-edit__volume-container">
+                    <div class="drinks-food-create-edit__input-with-symbol-container">
+                        <input
+                            type="number"
+                            class="drinks-food-create-edit__input-with-symbol"
+                            v-model="packing_size"
+                            placeholder="Vpišite velikost embelaže"
+                        />
+                        <div class="drinks-food-create-edit__input-symbol">l</div>
+                    </div>
+                </div>
+
+                <!-- FILE -->
+                <div class="form-group mb-5 row">
+                    <label class="form-label col-3 col-form-label">Media File</label>
+                    <div class="col">
+                        <input type="file" id="media" @change="handleFileUpload" accept="image/*, video/*" class="form-control" ref="media">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="drinks-food-create-edit__bottom-buttons">
+                <button v-on:click="create()">Dodaj izdelek</button>
+                <button
+                    v-on:click="goToAllergens"
+                    class="drinks-food-create-edit__add-allergens-button"
+                >
+                    Dodaj alergene
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<script>
+export default {
+  mounted() {
+    console.log("Component mounted.");
+
+    if (this.type == "food") {
+      this.categories = this.food_categories;
+    } else if (this.type == "drink") {
+      this.categories = this.drink_categories;
+    }
+
+    //allergens here.
+  },
+
+  props: ["food_categories", "drink_categories", "allergens", "type"],
+
+  data() {
+    return {
+      name: null,
+      price: null,
+      night_price: null,
+      description: null,
+      category_id: null,
+      packing_size: null,
+      step: 1,
+      localType: this.type, // Local copy of `type`
+      mediaFile: null,
+    };
+  },
+
+  watch: {
+    // Watch the prop `type` and update `localType`
+    type(newVal) {
+      this.localType = newVal;
+    },
+  },
+
+  computed: {
+    filteredCategories() {
+      if (this.localType === "food") {
+        return this.food_categories;
+      } else if (this.localType === "drink") {
+        return this.drink_categories;
+      } else {
+        return [];
+      }
+    },
+
+    showPackingSize() {
+      return this.localType === "drink"; // Dynamically show/hide packing size based on localType
+    }
+  },
+
+  methods: {
+    handleFileUpload(event) {
+      this.mediaFile = event.target.files[0]; // store the file
+    },
+
+    create() {
+      const formData = new FormData();
+
+      // Append other form data
+      formData.append("name", this.name);
+      formData.append("type", this.type);
+      formData.append("price", this.price.replace(",", "."));
+      formData.append(
+        "night_price",
+        this.night_price ? this.night_price.replace(",", ".") : null
+      );
+      formData.append("description", this.description);
+      formData.append("category_id", this.category_id);
+      formData.append(
+        "packing_size",
+        this.packing_size ? this.packing_size.replace(",", ".") : null
+      );
+
+      // Append file (mediaFile should be set in handleFileUpload)
+      if (this.mediaFile) {
+        formData.append("media", this.mediaFile);
+      }
+
+      const filter_url = `/menu_items/store`;
+      return new Promise((resolve) => {
+        window.axios
+          .post(filter_url, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Accept: "application/json",
+              "app-token": "U0xYT1VaV1RXU1ZUUkxDQjBRMzM3RDBEWUhHSVBG",
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            window.location.href = "/menu_items";
+            alert("SUCCESS ADDED");
+          })
+          .catch((error) => {
+            console.error("There was an error!", error);
+          });
+      });
+    },
+  },
+};
+</script>

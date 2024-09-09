@@ -1,0 +1,226 @@
+.banner {
+    width: 100%;
+    height: min(70vh - 97px, 903px);
+    background-image: url(/images/banner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+
+    @media screen and (min-width: 768px) {
+        height: min(110vh, 1000px);
+    }
+
+    .banner__transition {
+        background: linear-gradient(
+            180deg,
+            rgba(39, 39, 42, 0.3) 0%,
+            #27272a 44.79%
+        );
+        width: 100%;
+        height: 24%;
+        position: relative;
+        z-index: 2;
+        bottom: -2px;
+    }
+}
+
+.featured-food-list {
+    position: relative;
+    z-index: 3;
+    top: max(-17.4vh, -180px);
+    margin-bottom: max(-17.4vh, -180px);
+
+    @media screen and (min-width: 768px) {
+        top: max(-21.4vh, -200px);
+        margin-bottom: max(-21.4vh, -200px);
+    }
+
+    padding: 0 5vh 100px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7vw;
+    justify-content: center;
+    justify-items: center;
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .featured-food-list__item {
+        width: clamp(120px, 35vw, 400px);
+        height: auto;
+        -o-object-fit: cover;
+        object-fit: cover;
+
+        @media screen and (min-width: 1024px) {
+            width: clamp(150px, 15vw, 400px);
+        }
+    }
+}
+
+.--food-bg {
+    background-image: url(/images/paralax-food.png);
+}
+
+.--drinks-bg {
+    background-image: url(/images/paralax-drinks.png);
+}
+
+.featured-drinks-list {
+    padding: 15vh 5vh;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7vw;
+    justify-content: center;
+    justify-items: center;
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .featured-drinks-list__item {
+        width: clamp(120px, 35vw, 400px);
+        height: auto;
+        -o-object-fit: cover;
+        object-fit: cover;
+
+        @media screen and (min-width: 1024px) {
+            width: clamp(150px, 15vw, 400px);
+        }
+    }
+}
+
+.catering {
+    padding: 112px 5vh 4.375rem;
+
+    .catering__header {
+        text-align: center;
+        color: $primary;
+        font-size: clamp(1.5rem, 2.5vw, 2.625rem);
+        line-height: 1.8;
+    }
+
+    .catering__content {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @media screen and (min-width: 1024px) {
+            flex-direction: row;
+        }
+
+        .catering__images {
+            margin: 0 auto;
+            width: 70vw;
+            height: 60vw;
+            margin-bottom: 21vw;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .catering__image {
+                position: absolute;
+                height: auto;
+
+                &:nth-child(1) {
+                    width: 60%;
+                    top: 0;
+                    left: 0;
+                }
+
+                &:nth-child(2) {
+                    width: 65%;
+                    bottom: 0;
+                    transform: translateY(35%);
+                    right: 0;
+
+                    @media screen and (min-width: 1024px) {
+                        transform: translateY(-50%);
+                    }
+                }
+            }
+            @media screen and (min-width: 1024px) {
+                flex-grow: 1;
+                margin: 0;
+                min-width: clamp(276px, 40vw, 709px);
+                min-height: clamp(300px, 30vw, 769px);
+                max-height: 1060px;
+            }
+        }
+
+        .catering__text {
+            padding: 2rem;
+            color: $primary;
+            font-size: clamp(1rem, 2vw, 1.875rem);
+            line-height: 1.3;
+            text-align: center;
+
+            @media screen and (min-width: 1024px) {
+                text-align: left;
+                padding-right: 15vw;
+                margin-top: 10vh;
+            }
+        }
+    }
+
+    .catering__button-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+
+        .catering__button {
+            cursor: pointer;
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid $primary;
+            background: $dark;
+            padding: 1rem 2.5rem;
+            color: $primary;
+            font-family: "Secular One", sans-serif;
+            font-weight: 400;
+            font-size: clamp(0.75rem, 2.5vw, 2rem);
+            text-transform: uppercase;
+
+            @media screen and (min-width: 1024px) {
+                min-width: clamp(350px, 30vw, 459px);
+                padding: 0.75rem 2.5rem;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            margin-top: -7vw;
+        }
+    }
+}
+
+.visit-us {
+    margin-top: 12.5rem;
+
+    .visit-us__heading {
+        color: $primary;
+        font-size: 2.5rem;
+        text-align: center;
+        font-weight: 800;
+    }
+
+    .visit-us__map {
+        margin-top: 5rem;
+        width: 100%;
+        height: clamp(300px, 40vw, 485px);
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

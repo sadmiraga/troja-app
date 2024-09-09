@@ -1,0 +1,53 @@
+.list-header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.stocktaking-row{
+    .category__title-container{
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.stocktaking-row:hover{
+    cursor: pointer;
+}
+
+.stocktaking-row-pasive{
+    opacity: 0.5;
+}
+
+//popup 
+.popup-message {
+    position: fixed;
+    bottom: -100px;  /* Initially position it just outside the view at the bottom */
+    left: 50%;  /* Center it horizontally */
+    transform: translateX(-50%);  /* Adjust for its own width to truly center */
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    transition: bottom 0.3s ease-out;  /* This will make it slide up smoothly */
+}
+.popup-message.active {
+    bottom: 20px;  /* When active, position it 20px from the bottom */
+}
+
+
+.error-popup{
+    max-width: 50%;
+    background: #791C1C;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+
+    .popup-content{
+        word-break: break-all;
+    }
+}

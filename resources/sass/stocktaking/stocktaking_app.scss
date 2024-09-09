@@ -1,0 +1,199 @@
+//4 button update 
+@media only screen and (max-width:900px){
+    .double-button-col{
+        margin-top: 1rem !important;
+        button{
+            margin-bottom: 0px !important;
+            margin-left: 1rem !important;
+        }
+    }
+}
+
+
+@media only screen and (max-width:900px){
+    .double-button-col{
+        button{
+            margin-bottom: 1rem !important;
+        }
+    }
+    .stocktaking-card .double-button-col{
+        button{
+            margin-bottom: 0px !important;
+        }
+    }
+}
+
+@media only screen and (max-width:763px){
+    .stocktaking-card .double-button-col{
+        button{
+            margin-bottom: 1rem !important;
+        }
+    }
+}
+
+
+
+//old code 
+.stocktaking-card{
+    background-color: #F9F9F9;
+    width: 100%;
+    border-radius: 16px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    height: fit-content;
+
+
+    .header{
+        background-color: $primary;
+        color: white;
+        width: 100%;
+        text-align: center;
+        border-radius: 16px 16px 0px 0px;
+        font-size: 16px;
+        padding: 7px;
+        font-weight: 600;
+        height: fit-content;
+    }
+
+
+    .card-input-row{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding-right: 16px;
+        padding-left: 16px;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    .card-input-col{
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-evenly;
+    }
+
+    .submit-button{
+        border-radius: 16px;
+        background-color: $primary;
+        padding: 5px 28px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        box-shadow: none !important;
+        border:none;
+    }
+
+    .input-wrapper{
+        width: 30%;
+    }
+
+    .input-disclaimer{
+        font-weight: 400;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        text-align: center;
+        color: #0E0E0E;
+    }
+
+    //input number css 
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    input[type="number"] {
+    -moz-appearance: textfield;
+    }
+
+    input[type="number"]:focus-visible {
+        outline: none; /* Remove the default browser outline */
+        border-color: #1C6979;
+        box-shadow: 0 0 0 2px #1C6979; /* Add a shadow to give it a more pronounced focus effect, if desired */
+        border-radius: 16px;
+    }
+}
+
+@media only screen and (max-width:900px){
+    .stocktaking-card .card-input-row{
+        justify-content: center;
+    }
+}
+
+
+.plus-button, .minus-button{
+    background: none;
+    border: none;
+    padding-bottom: 5px;
+}
+
+.card-input-value{
+    font-size: 22px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    border: none;
+    background: transparent;
+}
+
+.bottom-button-container{
+    height:fit-content !important;
+    button{
+        position: fixed;
+        bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 52.5rem;
+        bottom: 0px;
+        border-radius: 16px 16px 0px 0px !important;
+        border-top: 1px solid white !important;
+        border-right: 1px solid white !important;
+        border-left: 1px solid white !important;
+    }
+}
+
+
+.cancel-button{
+    position: relative !important;
+    border: 1px solid white;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+
+
+
+//stocktaking archive
+.stocktaking-col{
+    width: 20%;
+    text-align: right !important;
+}
+
+.col-name{
+    width: 40% !important;
+    text-align: left !important;
+}
+
+.stocktaking-heading .p-info{
+    width: 20%;
+    text-align: right !important;
+}
+
+.stocktaking-heading .info-name{
+    width: 40%;
+    text-align: left !important;
+}
+
+.bottom-button-container{
+    height: calc(60vh - 60px - 2rem) !important;
+    grid-template-rows: unset !important;
+}
+

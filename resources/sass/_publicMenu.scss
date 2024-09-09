@@ -1,0 +1,113 @@
+//fixes code 
+.allergens-container{
+    background: #27272a;
+    color: #cbbfa2;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    
+    p{
+        width: auto !important;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+
+//old code
+.types-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media screen and (min-width: 900px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .type {
+        .type-title {
+            color: $tertiary;
+            font-weight: 700;
+        }
+        .items-list {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+
+            @media (min-width: 1024px) {
+                -moz-column-gap: 1rem;
+                column-gap: 1rem;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .item {
+                min-height: 7rem;
+                box-sizing: border-box;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding-bottom: 0.5rem;
+                //border-bottom: 1px solid $accent-opacity;
+                border-bottom: 1px solid #000000;
+                margin-top: 0.5rem;
+                text-decoration: none;
+                cursor: pointer;
+
+                .item__text-container {
+                    padding: 1rem;
+                    width: 100%;
+
+                    .item__title {
+                        margin: 0;
+                        color: #B79238;
+                        font-size: 1rem;
+                        line-height: 1.2188rem;
+                        font-weight: 700;
+                    }
+
+                    color: $dark;
+                    line-height: 0.8381rem;
+
+                    .item__description {
+                        margin-top: 0.4375rem;
+                        font-size: 0.875rem;
+                        line-height: 1.0669rem;
+                        color: #FFFFFF;
+                    }
+
+                    .item__size-price-container {
+                        margin-top: 0.5rem;
+                        font-size: 1rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        color: white !important;
+                        font-weight: 700;
+
+                        .item__price {
+                            font-size: 1rem;
+                            line-height: 1.2188rem;
+                            color: $tertiary;
+                            font-weight: 700;
+                            @media (min-width: 768px) {
+                                font-size: 1.25rem;
+                                line-height: 1.5156rem;
+                            }
+                        }
+                    }
+                }
+
+                .item__picture {
+                    height: 100%;
+                    width: 200px;
+                    border-radius: 8px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

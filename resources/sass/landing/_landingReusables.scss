@@ -1,0 +1,162 @@
+.secular {
+    font-family: "Secular One", sans-serif;
+}
+.ruda {
+    font-family: "Ruda", sans-serif;
+}
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+.dm-sans {
+    font-family: "DM Sans", sans-serif;
+}
+
+.paralax {
+    width: 100%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    .paralax__overlay {
+        width: 100%;
+        height: 100%;
+        background: rgba(39, 39, 42, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.btn-menu {
+    cursor: pointer;
+    max-width: 100%;
+    border-radius: 30px;
+    border: 1px solid $primary;
+    background: $dark;
+    padding: 1rem 2.5rem;
+    color: $primary;
+    font-family: "Secular One", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+
+    @media screen and (min-width: 768px) {
+        min-width: clamp(350px, 30vw, 459px);
+        padding: 1.3125rem 2.5rem;
+    }
+}
+
+.events {
+    margin-top: 4.25rem;
+
+    .events__header {
+        color: $primary;
+        text-align: center;
+        font-family: Secular One;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+    .swiper-container {
+        margin-top: 3.25rem;
+        width: 100%;
+        padding: 0 clamp(0.5rem, 3vw, 6.625rem);
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+
+        .swiper-arrow {
+            cursor: pointer;
+            border-radius: 300px;
+            background-color: $secondary;
+            min-width: clamp(35px, 15vw, 115px);
+            height: clamp(15px, 10vw, 75px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: clamp(1rem, 4vw, 2.1875rem);
+                height: clamp(1rem, 4vw, 2.1875rem);
+            }
+        }
+
+        .event-swiper {
+            width: 100%;
+            height: clamp(200px, 30vw, 293px);
+
+            .swiper-slide {
+                border-radius: 8px;
+                border: 1px solid $primary;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+
+                .events__event-image {
+                    width: 100%;
+                    height: 70%;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+
+                .events__event-text {
+                    width: 100%;
+                    height: 100%;
+                    padding: clamp(0.5rem, 1vw, 1rem);
+                    color: $primary;
+                    font-size: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    .events__event-title {
+                        width: 100%;
+                    }
+
+                    .events__event-info {
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: clamp(0.75rem, 1vw, 1rem);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.transition-reverse {
+    background: linear-gradient(0deg, rgba(39, 39, 42, 0.3) 0%, #27272a 89.58%);
+
+    width: 100%;
+    height: 10rem;
+    position: relative;
+    z-index: 2;
+    top: -2px;
+}
+
+.reservation-btn {
+    min-width: clamp(250px, 25vw, 655px);
+    cursor: pointer;
+    border: 1px solid $primary;
+    border-radius: 20px;
+    padding: 1.9375rem 2rem;
+    padding: clamp(0.95rem, 1vw, 1.9375rem) clamp(1.8rem, 1.5vw, 2rem);
+    background-color: $dark;
+    text-transform: uppercase;
+    color: $primary;
+    text-align: center;
+    font-size: clamp(1.5rem, 1vw, 1.75rem);
+}
+
+button,
+.terramona__btn,
+.swiper-arrow {
+    scale: 1;
+    transition: scale 0.2s;
+}
+
+button:hover,
+.terramona__btn:hover,
+.swiper-arrow:hover {
+    scale: 1.04;
+    transition: scale 0.2s;
+}

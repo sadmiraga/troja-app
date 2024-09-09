@@ -1,0 +1,304 @@
+{
+    
+    "#### GLOBAL TRANSLATIONS ": "#### GLOBAL TRANSLATIONS ",
+    "No":"No",
+    "Create account":"Create account",
+    "Yes":"Yes",
+    "Date":"Date",
+    "Time":"Time",
+    "Location":"Location",
+    "Name":"Name",
+    "Restaurant":"Restaurant",
+    "Bar":"Bar",
+    "Wellcome":"Wellcome",
+    "Email":"Email",
+    "Password":"Password",
+    "Confirm password":"Confirm password",
+    "Did you forger your password?":"Did you forger your password?",
+    "Product":"Product",
+    "Type":"Type",
+    "Measured":"Measured",
+    "opened":"opened",
+    "Cancel":"Cancel",
+    "Description":"Description",
+    "Error occured":"Error occured",
+
+
+    "You have unsaved changes are you sure you want to exit?":"You have unsaved changes are you sure you want to exit?",
+    "You unlinked products from locations and left the same name.This is not allowed.":"You unlinked products from locations and left the same name.This is not allowed.",
+    "If product is weightable you must enter product packing weight.":"If product is weightable you must enter product packing weight.",
+
+
+
+    "#### NOTIFICATION messages ": "#### NOTIFICATION messages ",
+
+
+    "#### NOTIFICATION CATEGORIES ": "#### NOTIFICATION CATEGORIES ",
+    "Choose category type":"Choose category type",
+    "Choose locations":"Choose locations",
+    "You sucessfully created new category":"You sucessfully created new category",
+    "Delete from: (locations)":"Delete from: (locations)",
+    "Choose locations to delete category from":"Choose locations to delete category from",
+    "Confirm":"Confirm",
+    "You successfully deleted category.":"You successfully deleted category.",
+    "Update on locations:":"Update on locations:",
+    "You cant change category type just for one category, without changing name":"You can't change category type just for one category, without changing name.",
+    "You already have category with that name in selected location.":"You already have category with that name in selected location.",
+
+
+
+    "#### notifications PRODUCTS ": "#### notifications PRODUCTS ",
+    "Add product to locations:":"Add product to locations:",
+    "Enter packing weight for product.":"Enter packing weight for product.",
+    "You successfully created new product":"You successfully created new product",
+
+    
+
+    
+    "Categories":"Categories",
+    "Products":"Products",
+    "Logout":"Logout",
+    "Users":"Users",
+    "Deliveries":"Deliveries",
+    "My stocktakings":"My stocktakings",
+    "Set location":"Set location",
+    "Dashboard":"Dashboard",
+    "Employees":"Employees",
+    "Employee":"Employee",
+    "Edit Employee":"Edit Employee",
+
+    "#### CREATE PRODUCT ": "#### CREATE PRODUCT ",
+    "Create Product":"Create Product",
+    "Enter product name":"Enter product name",
+    "Enter product description":"Enter product description",
+    "Choose location":"Choose location",
+    "Choose storage":"Choose storage",
+    "Choose category":"Choose category",
+    "Choose enum":"Choose enum",
+    "Enum":"Enum",
+    "Product is weightable":"Product is weightable",
+    "Enter packing weight":"Enter packing weight",
+    "Enter packing size":"Enter packing size",
+    "Piece":"Piece",
+    "Pieces":"Pieces",
+    "Liter":"Liter",
+    "Liters":"Liters",
+    "Gram":"Gram",
+    "Grams":"Grams",
+    "Kilograms":"Kilograms",
+    "Stocktaking":"Stocktaking",
+    
+
+    "#### STOCKTAKING ": "#### STOCKTAKING ",
+    "Unfinished stocktaking":"Unfinished stocktaking",
+    "Choose stocktaking method":"Choose stocktaking method",
+    "Stocktaking archive":"Stocktaking archive",
+    "Delivery":"Delivery",
+    "Create Category":"Create Category",
+    "Enter category name":"Enter category name",
+
+    "Food or drink ?":"Food or drink ?",
+    "food":"food",
+    "drink":"drink",
+    "All locations":"All locations",
+    "Locations":"locations",
+    
+
+
+    "#### DASHBOARD ": "#### DASHBOARD ",
+    "Start stocktaking":"Start stocktaking",
+    "'Stocktakings archive":"'Stocktakings archive",
+    "New delivery":"New delivery",
+    "Change location":"Change location",
+    "Add product":"Add product",
+    "Hello":"Hello",
+
+
+
+    "#### UNFINISHED STOCKTAKING ": "#### UNFINISHED STOCKTAKING ",
+    "Unfinished stocktaking text":"You have unfinished stocktaking from your previous Login. Choose some of these options.",
+    "Are you sure you want to delete unfinished stocktaking?":"Are you sure you want to delete unfinished stocktaking?",
+    "Are you sure you want to save unfinished stocktaking?":"Are you sure you want to save unfinished stocktaking?",
+    "Continue stocktaking":"Continue stocktaking",
+    "Continue confirmation":"Continue confirmation",
+    "Delete":"Delete",
+    "Save":"Save",
+    "Edit":"Edit",
+
+
+
+    "#### CATEGORIES ": "#### CATEGORIES ",
+    "Search categories":"Search categories",
+    "Are you sure you want to delete this category?":"Are you sure you want to delete this category?",
+    "This will result deleting":"This will result deleting",
+    "categories in different locations":"categories in different locations",
+    "Edit on all locations":"Edit on all locations",
+    "Edit Category":"Edit Category",
+    
+
+
+
+    "#### USERS ": "#### USERS ",
+    "Search by users":"Search by users",
+    "Are you sure you want to delete this user?":"Are you sure you want to delete this user?",
+    "Deleting this user will result deleting all the work he has done here (stocktaking and develieries)":"Deleting this user will result deleting all the work he has done here (stocktaking and develieries)",
+
+    "Invite user":"Invite user",
+    "Enter email":"Enter email",
+    "Choose user type":"Choose user type",
+
+    "Manage products":"Manage products",
+    "Manage deliveries":"Manage deliveries",
+    "Manage stocktaking":"Manage stocktaking",
+    "Manage stocktaking archive":"Manage stocktaking archive",
+    "Manage users":"Manage users",
+    "Manage categories":"Manage categories",
+
+
+    "You dont have access to this page":"You dont have access to this page",
+    "Go back to dashboard":"Go back to dashboard",
+    "Invite":"Invite",
+
+    "Invitation for registration":"Invitation for registration",
+    "You are invited from company":"You are invited from company",
+    "Click bellow to claim account":"Click bellow to claim account",
+    "Claim account":"Claim account",
+
+    "Edit User":"Edit User",
+    "User with this email is already invited for registration":"User with this email is already invited for registration",
+    "Choose user type before inviting user":"Choose user type before inviting user",
+    "You successfully invite for registration to":"You successfully invite for registration to",
+
+
+    "Search deliveries":"Search deliveries",
+    "Search products":"Search products",
+    "Start delivery":"Start delivery",
+
+    "Unfinished Delivery":"Unfinished Delivery",
+    "You have Unfinished delivery at location":"You have Unfinished delivery at location",
+    "Continue Delivery":"Continue Delivery",
+
+
+    "####STOCKTAKINGS ": "####STOCKTAKINGS ",
+
+    "Start new stocktaking":"Start new stocktaking",
+    "You can't edit this stocktaking":"You can't edit this stocktaking",
+    "Search stocktaking":"Search stocktaking",
+    "Weighted":"Weighted",
+    "Stock":"Stock",
+    "Are you sure you want to delete this stocktaking?":"Are you sure you want to delete this stocktaking?",
+    "Added products":"Added products",
+    "Stocktaking weight":"Weight",
+    "Complete Delivery":"Complete Delivery",
+    "Are you sure you want to update this stocktaking?":"Are you sure you want to update this stocktaking?",
+    "Are you sure you want to update this delivery?":"Are you sure you want to update this delivery?",
+    "Click here to continue unfinished stocktaking":"Click here to continue unfinished stocktaking",
+    "Complete stocktaking":"Complete stocktaking",
+    "Scale":"Scale",
+    "Paper scale":"Paper scale",
+    "You can't inspect this stocktaking.":"You can't inspect this stocktaking.",
+    "Are you sure you want to delete this product":"Are you sure you want to delete this product?",
+    "products in different locations.":"products in different locations.",
+    "Create your account":"Create your account",
+    "You can't edit or inspect this delivery.":"You can't edit or inspect this delivery.",
+    "Are you sure you want to cancel stocktaking?":"Are you sure you want to cancel stocktaking?",
+    "This will result deleting stocktaking and all data inside it.":"This will result deleting stocktaking and all data inside it.",
+    "You successfully canceled stocktaking.":"You successfully canceled stocktaking.",
+
+    "You already have product with that name in selected location":"You already have product with that name in selected location",
+    "what_is_enum":"Enum is product type. This will affect stocktaking value.",
+    "You successfully updated products":"You successfully updated product",
+
+
+    "You successfully added quantity of product to stocktakong You can add more more quantity for this product under added products":"You successfully added quantity of product to stocktakong. You can add more more quantity for this product under added products",
+    "You successfully added resto for of the product to stocktaking. You can add more under added products":"You successfully added resto for of the product to stocktaking. You can add more under added products.",
+    "Packing weight is greater than inputed weight That cant be possible":"Packing weight is greater than inputed weight. That cant be possible.",
+    "You successfully added quantity for product to stocktaking":"You successfully added quantity for product to stocktaking.",
+    "You successfully added resto to stocktaking":"You successfully added resto to stocktaking.",
+    "You successfully added liters to stocktaking":"You successfully added liters to stocktaking",
+    
+
+    "Needing":"Needing",
+    "Create needing list":"Create needing list",
+    "Needing list":"Needing list",
+    "Are you sure you want to cancel creation of needing list":"Are you sure you want to cancel creation of needing list?",
+    "This will result deleting needing list and all data inside it.":"This will result deleting needing list and all data inside it.",
+
+    "You successfully canceled needing":"You successfully canceled needing",
+    "Unfinished needing list":"Unfinished needing list",
+    "Start Date":"Start Date",
+    "Start Time":"Start Time",
+    "You didnt complete needing list on your last login. Please choose some of offered options":"You didnt complete needing list on your last login. Please choose some of offered options.",
+    "Storage":"Storage",
+    "Are you sure you want to delete unfinished needing list?":"Are you sure you want to delete unfinished needing list?",
+    "Continue needing list":"Continue needing list",
+    "Support ticket":"Support ticket",
+    "Enter page name where problem occured":"Enter page name where problem occured",
+    "Describe your problem":"Describe your problem",
+    "Send support ticket":"Send support ticket",
+    "You successfully submited support ticket. We will resolve the problem and contact you ass soon as possible.":"You successfully submited support ticket. We will resolve the problem and contact you ass soon as possible.",
+
+    "Are you sure you want to save unfinsihed deivery?":"Are you sure you want to save unfinsihed delivery?",
+    "We recommend at least previewing data in delivery and then completing it.":"We recommend at least previewing data in delivery and then completing it.",
+    "Are you sure you want to delete unfinsihed delivery?":"Are you sure you want to delete unfinsihed delivery?",
+    "This will result deleting delivery and all data inside of it.":"This will result deleting delivery and all data inside of it.",
+
+    "Search needing lists":"Search needing lists",
+    "View":"View",
+
+    "Needing list is not completed yet":"Needing list is not completed yet.",
+
+    "Are you sure you want to edit needing list?":"Are you sure you want to edit needing list?",
+    "Other users will not be able to preview this needing list while you edit it.":"Other users will not be able to preview this needing list while you edit it.",
+    "Are you sure you want to delete needing list?":"Are you sure you want to delete needing list?",
+    "This will result in losing all products noted to needing list will lost.":"This will result in losing all products noted to needing list will lost.",
+    "Are you sure you want to confirm shipping of this needing list?":"Are you sure you want to confirm shipping of this needing list?",
+    "confirm_needing_list_explanation":"This will create new delivery.Confirm the amount of the ordered products. If you got products that are not inside the list. Add them under the products tab.",
+    "Confirmation in progress":"Confirmation in progress",
+    "Confirmed":"Confirmed",
+    "Needing value":"Needing value",
+    "Save Needing list":"Save Needing list",
+    "You successfully saved needing list":"You successfully saved needing list",
+    "You successfully added products value to needing list. You can update it under needing list tab.":"You successfully added products value to needing list. You can update it under needing list tab.",
+    "You successfully updated needing list.":"You successfully updated needing list.",
+    "Are you sure you want to cancel delivery":"Are you sure you want to cancel delivery",
+    "This will result deleting delivery and all data inside it":"This will result deleting delivery and all data inside it",
+    "Needing products list":"Needing products list",
+    "No added products":"No added products",
+    "Save delivery":"Save delivery",
+    "You successfully updated delivery list":"You successfully updated delivery list",
+    "You successfully added product data to delivery list. You can update this under the added products tab.":"You successfully added product data to delivery list. You can update this under the added products tab.",
+    "You successfully canceled delivery.":"You successfully canceled delivery.",
+    "Needing list shipping confirmation.":"Needing list shipping confirmation.",
+    "Storage is already choosen inside needing list.":"Storage is already choosen inside needing list.",
+    "Storage for this delivery is":"Storage for this delivery is",
+    "Are you sure you wanto to delete this delivery?":"Are you sure you wanto to delete this delivery?",
+    "Delivery is not completed yet":"Delivery is not completed yet.",
+    "You successfully deleted delivery.":"You successfully deleted delivery.",
+    "You cant edit this delivery":"You cant edit this delivery",
+
+    "Manage needing lists":"Manage needing lists",
+    "First name and Last Name":"First name and Last Name",
+    "No access":"No access",
+    "Help":"Help",
+
+    "Cash register":"Cash register",
+    "Compare":"Compare",
+    "Application Stock":"Application Stock",
+    "Cash Register Stock":"Cash Register Stock",
+    "Difference":"Difference",
+    "Enter product price":"Enter product price",
+    "Product price":"Product price",
+    "Price":"Price",
+    "Import Delivery":"Import Delivery"
+
+    
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,293 @@
+{
+    
+  "#### GLOBAL TRANSLATIONS ": "#### GLOBAL TRANSLATIONS ",
+  "No":"Nein",
+  "Create account":"Benutzerkonto erstellen",
+  "Yes":"Ja",
+  "Date":"Datum",
+  "Time":"Zeit",
+  "Location":"Standort",
+  "Name":"Name",
+  "Restaurant":"Restaurant",
+  "Bar":"Bar",
+  "Wellcome":"Willkommen",
+  "Email":"Email",
+  "Password":"Passwort",
+  "Confirm password":"Bestätige das Passwort",
+  "Did you forger your password?":"Haben Sie Ihr Passwort vergessen?",
+  "Product":"Produkt",
+  "Type":"Typ",
+  "Measured":"Gemessen",
+  "opened":"geöffnet",
+  "Cancel":"Stornieren",
+  "Description":"Beschreibung",
+  "Error occured":"Ein Fehler ist aufgetreten",
+
+
+  "You have unsaved changes are you sure you want to exit?":"Sie haben nicht gespeicherte Änderungen. Möchten Sie den Vorgang wirklich beenden?",
+  "You unlinked products from locations and left the same name.This is not allowed.":"Sie haben die Verknüpfung von Produkten mit Standorten aufgehoben und denselben Namen beibehalten. Dies ist nicht zulässig.",
+  "If product is weightable you must enter product packing weight.":"Wenn das Produkt gewichtbar ist, müssen Sie das Verpackungsgewicht des Produkts eingeben.",
+
+
+
+  "#### NOTIFICATION messages ": "#### NOTIFICATION messages ",
+
+
+  "#### NOTIFICATION CATEGORIES ": "#### NOTIFICATION CATEGORIES ",
+  "Choose category type":"Wählen Sie den Kategorietyp",
+  "Choose locations":"Wählen Sie Standorte aus",
+  "You sucessfully created new category":"Sie haben erfolgreich eine neue Kategorie erstellt",
+  "Delete from: (locations)":"Löschen von: (Standorte)",
+  "Choose locations to delete category from":"Wählen Sie Orte aus, aus denen die Kategorie gelöscht werden soll",
+  "Confirm":"Bestätigen",
+  "You successfully deleted category.":"Sie haben die Kategorie erfolgreich gelöscht.",
+  "Update on locations:":"Update zu den Standorten:",
+  "You cant change category type just for one category, without changing name":"Sie können den Kategorietyp nicht nur für eine Kategorie ändern, ohne den Namen zu ändern.",
+  "You already have category with that name in selected location.":"Sie haben bereits eine Kategorie mit diesem Namen am ausgewählten Ort.",
+
+
+
+  "#### notifications PRODUCTS ": "#### notifications PRODUCTS ",
+  "Add product to locations:":"Produkt zu Standorten hinzufügen:",
+  "Enter packing weight for product.":"Geben Sie das Verpackungsgewicht für das Produkt ein.",
+  "You successfully created new product":"Sie haben erfolgreich ein neues Produkt erstellt",
+
+  
+  "Categories":"Kategorien",
+  "Products":"Produkte",
+  "Logout":"Ausloggen",
+  "Users":"Benutzer",
+  "Deliveries":"Lieferungen",
+  "My stocktakings":"Meine Bestandsaufnahme",
+  "Set location":"Ort festlegen",
+  "Dashboard":"Armaturenbrett",
+  "Employees":"Mitarbeiter",
+  "Employee":"Mitarbeiter",
+  "Edit Employee":"Mitarbeiter bearbeiten",
+
+  "#### CREATE PRODUCT ": "#### CREATE PRODUCT ",
+  "Create Product":"Produkt erstellen",
+  "Enter product name":"Geben Sie den Produktnamen ein",
+  "Enter product description":"Geben Sie eine Produktbeschreibung ein",
+  "Choose location":"Ort wählen",
+  "Choose storage":"Wählen Sie Speicher",
+  "Choose category":"Kategorie auswählen",
+  "Choose enum":"Wählen Sie Enumeration",
+  "Enum":"Aufzählung",
+  "Product is weightable":"Produkt dient zur Beschwerung",
+  "Enter packing weight":"Geben Sie das Verpackungsgewicht ein",
+  "Enter packing size":"Geben Sie die Verpackungsgröße ein",
+  "Piece":"Stück",
+  "Pieces":"Stücke",
+  "Liter":"Liter",
+  "Liters":"Liters",
+  "Gram":"Gramm",
+  "Grams":"Grams",
+  "Kilograms":"Kilogramm",
+  "Stocktaking":"Bestandsaufnahme",
+  
+
+  "#### STOCKTAKING ": "#### STOCKTAKING ",
+  "Unfinished stocktaking":"Unvollendete Bestandsaufnahme",
+  "Choose stocktaking method":"Wählen Sie die Inventurmethode",
+  "Stocktaking archive":"Inventurarchiv",
+  "Delivery":"Lieferung",
+  "Create Category":"Kategorie erstellen",
+  "Enter category name":"Geben Sie den Kategorienamen ein",
+
+  "Food or drink ?":"Essen oder Trinken?",
+  "food":"Essen",
+  "drink":"trinken",
+  "All locations":"Alle Standorte",
+  "Locations":"Standorte",
+  
+
+
+  "#### DASHBOARD ": "#### DASHBOARD ",
+  "Start stocktaking":"Beginnen Sie mit der Bestandsaufnahme",
+  "Stocktakings archive":"Inventurarchiv",
+  "New delivery":"Neue Lieferung",
+  "Change location":"Den Ort wechseln",
+  "Add product":"Produkt hinzufügen",
+  "Hello":"Hallo",
+
+
+
+  "#### UNFINISHED STOCKTAKING ": "#### UNFINISHED STOCKTAKING ",
+  "Unfinished stocktaking text":"Sie haben die Bestandsaufnahme Ihres vorherigen Logins noch nicht abgeschlossen. Wählen Sie einige dieser Optionen.",
+  "Are you sure you want to delete unfinished stocktaking?":"Sind Sie sicher, dass Sie die nicht abgeschlossene Inventur löschen möchten?",
+  "Are you sure you want to save unfinished stocktaking?":"Sind Sie sicher, dass Sie die nicht abgeschlossene Inventur speichern möchten?",
+  "Continue stocktaking":"Machen Sie mit der Bestandsaufnahme weiter",
+  "Continue confirmation":"Bestätigung fortsetzen",
+  "Delete":"Löschen",
+  "Save":"Speichern",
+  "Edit":"Bearbeiten",
+
+
+
+  "#### CATEGORIES ": "#### CATEGORIES ",
+  "Search categories":"Kategorien durchsuchen",
+  "Are you sure you want to delete this category?":"Sind Sie sicher, dass Sie diese Kategorie löschen möchten?",
+  "This will result deleting":"Dies führt zum Löschen",
+  "categories in different locations":"Kategorien an verschiedenen Orten",
+  "Edit on all locations":"An allen Standorten bearbeiten",
+  "Edit Category":"Kategorie bearbeiten",
+  
+
+
+
+  "#### USERS ": "#### USERS ",
+  "Search by users":"Suche nach Benutzern",
+  "Are you sure you want to delete this user?":"Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+  "Deleting this user will result deleting all the work he has done here (stocktaking and develieries)":"Durch das Löschen dieses Benutzers werden alle Arbeiten gelöscht, die er hier durchgeführt hat (Inventur und Entwicklung).",
+
+  "Invite user":"Benutzer einladen",
+  "Enter email":"Email eingeben",
+  "Choose user type":"Wählen Sie den Benutzertyp",
+
+  "Manage products":"Produkte verwalten",
+  "Manage deliveries":"Lieferungen verwalten",
+  "Manage stocktaking":"Verwalten Sie die Bestandsaufnahme",
+  "Manage stocktaking archive":"Inventurarchiv verwalten",
+  "Manage users":"Benutzer verwalten",
+  "Manage categories":"Kategorien verwalten",
+
+
+  "You dont have access to this page":"Sie haben keinen Zugriff auf diese Seite",
+  "Go back to dashboard":"Gehen Sie zurück zum Dashboard",
+  "Invite":"Einladen",
+
+  "Invitation for registration":"Einladung zur Registrierung",
+  "You are invited from company":"Sie sind von der Firma eingeladen",
+  "Click bellow to claim account":"Klicken Sie unten, um Ihr Konto zu beanspruchen",
+  "Claim account":"Anspruchskonto",
+
+  "Edit User":"Benutzer bearbeiten",
+  "User with this email is already invited for registration":"Der Benutzer mit dieser E-Mail-Adresse ist bereits zur Registrierung eingeladen",
+  "Choose user type before inviting user":"Wählen Sie den Benutzertyp, bevor Sie den Benutzer einladen",
+  "You successfully invite for registration to":"Sie laden erfolgreich zur Registrierung ein",
+
+
+  "Search deliveries":"Lieferungen suchen",
+  "Search products":"Produktsuche",
+  "Start delivery":"Beginnen Sie mit der Lieferung",
+
+  "Unfinished Delivery":"Unvollendete Lieferung",
+  "You have Unfinished delivery at location":"Sie haben eine unvollendete Lieferung am Standort",
+  "Continue Delivery":"Lieferung fortsetzen",
+
+
+  "####STOCKTAKINGS ": "####STOCKTAKINGS ",
+
+  "Start new stocktaking":"Starten Sie eine neue Bestandsaufnahme",
+  "You can't edit this stocktaking":"Sie können diese Bestandsaufnahme nicht bearbeiten",
+  "Search stocktaking":"Suchen Sie nach Inventuren",
+  "Weighted":"Gewichtet",
+  "Stock":"Lagerwert",
+  "Are you sure you want to delete this stocktaking?":"Sind Sie sicher, dass Sie diese Bestandsaufnahme löschen möchten?",
+  "Added products":"Hinzugefügte Produkte",
+  "Stocktaking weight":"Gewicht",
+  "Complete Delivery":"Komplette Lieferung",
+  "Are you sure you want to update this stocktaking?":"Sind Sie sicher, dass Sie diese Bestandsaufnahme aktualisieren möchten?",
+  "Are you sure you want to update this delivery?":"Sind Sie sicher, dass Sie diese Lieferung aktualisieren möchten?",
+  "Click here to continue unfinished stocktaking":"Klicken Sie hier, um mit der unvollendeten Bestandsaufnahme fortzufahren",
+  "Complete stocktaking":"Komplette Bestandsaufnahme",
+  "Scale":"Skala",
+  "Paper scale":"Papierwaage",
+  "You can't inspect this stocktaking.":"Sie können diese Bestandsaufnahme nicht einsehen.",
+  "Are you sure you want to delete this product":"Sind Sie sicher, dass Sie dieses Produkt löschen möchten?",
+  "products in different locations.":"Produkte an verschiedenen Standorten.",
+  "Create your account":"Erstelle deinen Account",
+  "You can't edit or inspect this delivery.":"Sie können diese Lieferung nicht bearbeiten oder prüfen.",
+  "Are you sure you want to cancel stocktaking?":"Möchten Sie die Inventur wirklich abbrechen?",
+  "This will result deleting stocktaking and all data inside it.":"Dies hat zur Folge, dass die Bestandsaufnahme und alle darin enthaltenen Daten gelöscht werden.",
+  "You successfully canceled stocktaking.":"Sie haben die Inventur erfolgreich abgebrochen.",
+
+  "You already have product with that name in selected location":"Sie haben bereits ein Produkt mit diesem Namen am ausgewählten Standort",
+  "what_is_enum":"Enum ist der Produkttyp. Dies wirkt sich auf den Wert der Bestandsaufnahme aus.",
+  "You successfully updated products":"Sie haben das Produkt erfolgreich aktualisiert",
+
+
+  "You successfully added quantity of product to stocktakong You can add more more quantity for this product under added products":"Sie haben die Produktmenge erfolgreich zur Bestandsaufnahme hinzugefügt. Unter „Hinzugefügte Produkte“ können Sie weitere Mengen für dieses Produkt hinzufügen",
+  "You successfully added resto for of the product to stocktaking. You can add more under added products":"Sie haben die Wiederherstellung des Produkts erfolgreich zur Bestandsaufnahme hinzugefügt. Unter „Hinzugefügte Produkte“ können Sie weitere hinzufügen.",
+  "Packing weight is greater than inputed weight That cant be possible":"Das Verpackungsgewicht ist größer als das Eingangsgewicht. Das kann nicht möglich sein.",
+  "You successfully added quantity for product to stocktaking":"Sie haben die Menge für das Produkt erfolgreich zur Bestandsaufnahme hinzugefügt.",
+  "You successfully added resto to stocktaking":"Sie haben Resto erfolgreich zur Inventur hinzugefügt.",
+  "You successfully added liters to stocktaking":"Sie haben der Bestandsaufnahme erfolgreich Liter hinzugefügt",
+  
+
+  "Needing":"Brauchen",
+  "Create needing list":"Erstellen Sie eine Bedarfsliste",
+  "Needing list":"Liste mit Bedarf",
+  "Are you sure you want to cancel creation of needing list":"Sind Sie sicher, dass Sie die Erstellung der Bedarfsliste abbrechen möchten?",
+  "This will result deleting needing list and all data inside it.":"Dies führt dazu, dass die Bedarfsliste und alle darin enthaltenen Daten gelöscht werden.",
+
+  "You successfully canceled needing":"Sie haben die Erstellung der Bedarfsliste erfolgreich abgebrochen",
+  "Unfinished needing list":"Unvollendete Bedarfsliste",
+  "Start Date":"Startdatum",
+  "Start Time":"Startzeit",
+  "You didnt complete needing list on your last login. Please choose some of offered options":"Sie haben die Bedarfsliste bei Ihrer letzten Anmeldung nicht ausgefüllt. Bitte wählen Sie einige der angebotenen Optionen aus.",
+  "Storage":"Lagerung",
+  "Are you sure you want to delete unfinished needing list?":"Sind Sie sicher, dass Sie die unvollendete Bedarfsliste löschen möchten?",
+  "Continue needing list":"Erstellen Sie weiterhin eine Bedarfsliste",
+  "Support ticket":"Unterstüzungsticket",
+  "Enter page name where problem occured":"Geben Sie den Namen der Seite ein, auf der das Problem aufgetreten ist",
+  "Describe your problem":"Beschreiben Sie, was passiert ist.",
+  "Send support ticket":"Support-Ticket senden",
+  "You successfully submited support ticket. We will resolve the problem and contact you ass soon as possible.":"Sie haben das Support-Ticket erfolgreich eingereicht. Wir werden das Problem lösen und uns so schnell wie möglich mit Ihnen in Verbindung setzen.",
+
+  "Are you sure you want to save unfinsihed deivery?":"Sind Sie sicher, dass Sie die nicht abgeschlossene Lieferung speichern möchten?",
+  "We recommend at least previewing data in delivery and then completing it.":"Wir empfehlen, die Daten im Lieferzustand zumindest in der Vorschau anzusehen und anschließend zu vervollständigen.",
+  "Are you sure you want to delete unfinsihed delivery?":"Sind Sie sicher, dass Sie die nicht abgeschlossene Lieferung löschen möchten?",
+  "This will result deleting delivery and all data inside of it.":"Dies führt dazu, dass die Lieferung und alle darin enthaltenen Daten gelöscht werden.",
+
+  "Search needing lists":"Suchen Sie nach Bedarfslisten",
+  "View":"Sicht",
+
+  "Needing list is not completed yet":"Die Bedarfsliste ist noch nicht vollständig.",
+
+  "Are you sure you want to edit needing list?":"Sind Sie sicher, dass Sie die Bedarfsliste bearbeiten möchten?",
+  "Other users will not be able to preview this needing list while you edit it.":"Andere Benutzer können diese Bedarfsliste nicht in der Vorschau anzeigen, während Sie sie bearbeiten.",
+  "Are you sure you want to delete needing list?":"Sind Sie sicher, dass Sie die Bedarfsliste löschen möchten?",
+  "This will result in losing all products noted to needing list will lost.":"Dies führt zum Verlust aller in der Bedarfsliste aufgeführten Produkte.",
+  "Are you sure you want to confirm shipping of this needing list?":"Möchten Sie den Versand dieser Bedarfsliste wirklich bestätigen?",
+  "confirm_needing_list_explanation":"Dadurch wird eine neue Lieferung erstellt. Bestätigen Sie die Menge der bestellten Produkte. Wenn Sie Produkte haben, die nicht in der Liste enthalten sind. Fügen Sie sie unter der Registerkarte „Produkte“ hinzu.",
+  "Confirmation in progress":"Bestätigung läuft",
+  "Confirmed":"Bestätigt",
+  "Needing value":"Brauchen Wert",
+  "Save Needing list":"Bedarfsliste speichern",
+  "You successfully saved needing list":"Sie haben die Bedarfsliste erfolgreich gespeichert",
+  "You successfully added products value to needing list. You can update it under needing list tab.":"Sie haben den Produktwert erfolgreich zur Bedarfsliste hinzugefügt. Sie können es auf der Registerkarte „Bedarfsliste“ aktualisieren.",
+  "You successfully updated needing list.":"Sie haben die Bedarfsliste erfolgreich aktualisiert.",
+  "Are you sure you want to cancel delivery":"Sind Sie sicher, dass Sie die Lieferung stornieren möchten?",
+  "This will result deleting delivery and all data inside it":"Dies führt dazu, dass die Lieferung und alle darin enthaltenen Daten gelöscht werden",
+  "Needing products list":"Benötigte Produktliste",
+  "No added products":"Keine hinzugefügten Produkte",
+  "Save delivery":"Lieferung speichern",
+  "You successfully updated delivery list":"Sie haben die Lieferliste erfolgreich aktualisiert",
+  "You successfully added product data to delivery list. You can update this under the added products tab.":"Sie haben Produktdaten erfolgreich zur Lieferliste hinzugefügt. Sie können dies auf der Registerkarte „Hinzugefügte Produkte“ aktualisieren.",
+  "You successfully canceled delivery.":"Sie haben die Lieferung erfolgreich storniert.",
+  "Needing list shipping confirmation.":"Ich benötige eine Versandbestätigung für die Liste.",
+  "Storage is already choosen inside needing list.":"Der Speicher ist bereits in der Bedarfsliste ausgewählt.",
+  "Storage for this delivery is":"Der Lagerplatz für diese Lieferung beträgt",
+  "Are you sure you wanto to delete this delivery?":"Sind Sie sicher, dass Sie diese Lieferung löschen möchten?",
+  "Delivery is not completed yet":"Die Lieferung ist noch nicht abgeschlossen.",
+  "You successfully deleted delivery.":"Sie haben die Lieferung erfolgreich gelöscht.",
+  "You cant edit this delivery":"Sie können diese Lieferung nicht bearbeiten",
+
+  "Manage needing lists":"Verwalten Sie Bedarfslisten",
+  "First name and Last Name":"Vorname und Nachname",
+  "No access":"Kein Zugang",
+  "Help":"Helfen",
+
+  "Cash register":"Kasse",
+  "Compare":"Vergleichen",
+  "Application Stock":"Anwendungsbestand",
+  "Cash Register Stock":"Kassenbestand",
+  "Difference":"Unterschied",
+  "Enter product price":"Produktpreis eingeben",
+  "Product price":"Preis des Produkts",
+  "Price":"Preis",
+  "Import Delivery":"Lieferung importieren"
+
+}

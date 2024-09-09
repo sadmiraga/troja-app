@@ -1,0 +1,277 @@
+.catering-banner {
+    width: 100%;
+    height: min(70vh - 97px, 903px);
+    background-image: url(/images/paralax-catering.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+
+    @media screen and (min-width: 768px) {
+        height: min(110vh, 1000px);
+    }
+
+    .catering-banner__transition {
+        background: linear-gradient(
+            180deg,
+            rgba(39, 39, 42, 0.3) 0%,
+            #27272a 44.79%
+        );
+        width: 100%;
+        height: 34%;
+        position: relative;
+        z-index: 2;
+        bottom: -2px;
+
+        @media screen and (min-width: 768px) {
+            height: 24%;
+        }
+    }
+}
+
+.catering-header {
+    position: relative;
+    z-index: 3;
+    top: max(-17.4vh, -180px);
+    margin-bottom: max(-17.4vh, -180px);
+
+    @media screen and (min-width: 768px) {
+        top: max(-21.4vh, -200px);
+        margin-bottom: max(-21.4vh, -200px);
+    }
+
+    padding: 0 2rem;
+    width: 100%;
+
+    .catering-header__heading {
+        text-transform: uppercase;
+        margin: 0 auto;
+        text-align: center;
+        color: $primary;
+        font-size: clamp(3rem, 5vw, 4.375rem);
+        line-height: 1.45;
+        max-width: 30ch;
+    }
+}
+
+.catering-description {
+    padding-top: 4rem;
+    .catering-description__container {
+        margin: 0 auto;
+        width: 90vw;
+        display: flex;
+        gap: 2rem;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        color: $primary;
+        text-align: center;
+        font-size: clamp(1rem, 2.3vw, 2rem);
+        line-height: 1.45;
+
+        .catering-description__text {
+            p + p {
+                margin-top: 3.75rem;
+            }
+        }
+
+        .catering-description__image {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                max-width: 558px;
+                height: auto;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 80vw;
+            flex-direction: row;
+            gap: 4rem;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+
+            .catering-description__text {
+                width: 50%;
+                p + p {
+                    margin-top: 3.75rem;
+                }
+            }
+
+            .catering-description__image {
+                width: 50%;
+                img {
+                    width: 100%;
+                    max-width: 558px;
+                    height: auto;
+                }
+            }
+        }
+
+        &:nth-of-type(2) {
+            margin-top: clamp(5rem, 10vw, 10rem);
+            align-items: flex-start;
+
+            @media screen and (min-width: 1024px) {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+}
+
+.menus {
+    margin-top: clamp(7rem, 12vw, 10rem);
+    color: $primary;
+
+    .menus__heading-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .menus__heading-title {
+            text-transform: uppercase;
+            font-size: clamp(3rem, 5vw, 4.375rem);
+            line-height: 1.45;
+            text-align: center;
+        }
+    }
+
+    .menus__list {
+        margin-top: clamp(5rem, 10vw, 9rem);
+
+        .menus__menu {
+            margin: 0 auto;
+            max-width: 85vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            @media screen and (min-width: 768px) {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 4rem;
+            }
+
+            .menus__text {
+                width: 100%;
+
+                .menus__menu-heading {
+                    text-transform: uppercase;
+                    font-size: clamp(1.5rem, 4vw, 2.5rem);
+                    line-height: 1.45;
+                    text-align: center;
+
+                    @media screen and (min-width: 768px) {
+                        text-align: left;
+                    }
+                }
+
+                .menus__menu-content {
+                    margin-top: 2rem;
+                    font-size: clamp(1rem, 2.5vw, 1.2rem);
+
+                    list-style-type: disc;
+                    li {
+                        margin-left: 1.5rem;
+                    }
+
+                    li + li {
+                        margin-top: 1rem;
+                    }
+                }
+
+                .menus__menu-content + .menus__menu-heading {
+                    margin-top: 4rem;
+                }
+            }
+
+            .swiper-container {
+                width: clamp(300px, 30vw, 400px);
+                height: auto;
+
+                .menu-swiper {
+                    width: 100%;
+
+                    border-radius: 30px;
+                    .swiper-wrapper {
+                        .swiper-slide {
+                            overflow: hidden;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                -o-object-fit: cover;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                }
+
+                .menus__slider-arrows-container {
+                    margin-top: 0.5rem;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .swiper-arrow {
+                        cursor: pointer;
+                        border-radius: 300px;
+                        background-color: $secondary;
+                        min-width: clamp(35px, 15vw, 115px);
+                        height: clamp(30px, 5vw, 75px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        svg {
+                            width: clamp(1rem, 4vw, 2.1875rem);
+                            height: clamp(1rem, 4vw, 2.1875rem);
+                        }
+                    }
+                }
+            }
+        }
+
+        .menus__menu + .menus__menu {
+            margin-top: clamp(4rem, 7vw, 7rem);
+        }
+    }
+}
+
+.catering-reservation {
+    margin-top: 8rem;
+    width: 100%;
+    height: 100vh;
+    background-image: url(/images/reservation.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+
+    .catering-reservation__btn-container {
+        margin: -10rem auto 0;
+        width: 90%;
+        height: 90%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        @media screen and (min-width: 768px) {
+            justify-content: flex-end;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

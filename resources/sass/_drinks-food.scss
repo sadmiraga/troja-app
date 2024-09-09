@@ -1,0 +1,508 @@
+//products index page 
+@media only screen and (max-width: 350px){
+    .product-card{
+        display: block !important;
+        
+        .delete-button-container{
+            flex-direction: row;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 660px){
+    .products-list{
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
+
+
+//old code 
+.delete-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-direction: column;
+
+    button {
+        box-sizing: content-box;
+        border: none;
+        border-radius: 16px;
+        padding: 1rem 2rem;
+        background-color: $primary;
+        color: white;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1.0625rem;
+    }
+}
+
+.drinks-food-navbar {
+    margin-top: -17px;
+    margin-left: -1rem;
+    height: 56px;
+    width: calc(100% + 2rem);
+    padding: 0.5rem 1rem;
+    background-color: $primary;
+
+    .drinks-food-navbar__links {
+        @media screen and (min-width: 350px) {
+            max-width: 56.25rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        gap: 1.3125rem;
+        place-content: center;
+
+        .drinks-food-navbar__link {
+            width: 100%;
+            border-radius: 16px;
+            padding: 0.6563rem 1rem;
+            color: $accent;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+            transition: transform .2s;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        .drinks-food-navbar__link--active {
+            background-color: $secondary;
+        }
+    }
+}
+
+.drinks-food-index-container {
+    margin-top: 1rem;
+    height: calc(100% - 56px);
+
+    @media screen and (min-width: 350px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .drinks-food-list {
+        height: 100%;
+        width: 100%;
+        margin-top: 1rem;
+        display: grid;
+        gap: 1rem;
+        align-items: flex-start;
+
+        @media screen and (min-width: 550px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+.drinks-food-list__item {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 16px;
+    background-color: $accent;
+    display: flex;
+    gap: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .drinks-food-list__text-container {
+        padding: 1rem;
+
+        .drinks-food-list__title {
+            margin: 0;
+            color: $primary;
+            font-size: 1rem;
+            line-height: 1.2188rem;
+            font-weight: 700;
+        }
+
+        .drinks-food-list__category,
+        .drinks-food-list__size,
+        .drinks-food-list__price-label {
+            margin-top: 0.625rem;
+            color: #000000;
+            font-size: 0.6875rem;
+            line-height: 0.8381rem;
+        }
+
+        .drinks-food-list__category {
+            margin-top: 0.4375rem;
+        }
+
+        .drinks-food-list__price-label {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .drinks-food-list__price {
+            font-size: 0.875rem;
+            line-height: 1.0669rem;
+            color: #000000;
+        }
+    }
+
+    .--breakable {
+        word-break: break-word;
+    }
+
+    .drinks-food-list__delete-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem 1rem 1rem 0;
+
+        @media screen and (max-width: 350px) {
+            padding: 0 1rem 1rem 1rem;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 376px) and (max-width: 350px) {
+            justify-content: flex-start;
+        }
+
+        @media screen and (max-width: 350px) {
+            justify-content: space-evenly;
+        }
+
+        .drinks-food-list__delete-button {
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 2rem;
+            background-color: $primary;
+            color: $accent;
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1.0625rem;
+
+            @media screen and (max-width: 350px) {
+                width: 100%;
+            }
+        }
+    }
+
+    .drinks-food-list__picture {
+        height: 100%;
+        width: 100px;
+        border-radius: 8px;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+}
+
+.--weekly-flow {
+    @media screen and (max-width: 350px) {
+        flex-direction: column;
+    }
+}
+
+.--drink-item {
+    height: 126px;
+}
+
+.--food-item {
+    min-height: 103px;
+}
+
+.drinks-food-create__container {
+    min-height: calc(100vh - 60px - 2rem); // 60px header + 32px padding
+
+    display: grid;
+    grid-template-rows: -webkit-min-content 1fr;
+    grid-template-rows: min-content 1fr;
+
+    @media screen and (min-width: 350px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.drinks-food-create-edit__form-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    gap: 0.875rem;
+
+    .drinks-food-create-edit__input {
+        width: 100%;
+        height: 40px;
+        border-radius: 16px;
+        border: none;
+        padding: 0.7188rem 1rem;
+        background-color: $accent;
+        color: $dark;
+        font-size: 0.875rem;
+        line-height: 1.0625rem;
+    }
+
+    .drinks-food-create-edit__input-with-symbol-container {
+        display: flex;
+        position: relative;
+
+        .drinks-food-create-edit__input-with-symbol {
+            width: 100%;
+            height: 40px;
+            border-radius: 16px;
+            border: none;
+            padding: 0.7188rem 1rem;
+            background-color: $accent;
+            color: $dark;
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+        }
+
+        .drinks-food-create-edit__input-symbol {
+            position: absolute;
+            top: 0.7188rem;
+            right: 12px;
+            pointer-events: none;
+            display: block;
+            color: $primary;
+            font-weight: 700;
+            line-height: 1.0625rem;
+        }
+    }
+
+    .drinks-food-create-edit__textarea {
+        resize: none;
+        height: 8.25rem;
+    }
+
+    .drinks-food-create-edit__input-label,
+    .drinks-food-create-edit__weight-label {
+        margin-left: 1rem;
+        font-size: 0.6875rem;
+    }
+
+    .drinks-food-create-edit__weight-label {
+        margin-bottom: 0.3125rem;
+    }
+
+    .drinks-food-create-edit__dropdown-container {
+        margin-top: 0.5rem;
+        position: relative;
+
+        .drinks-food-create-edit__dropdown {
+            width: 100%;
+            height: 40px;
+            border-radius: 16px;
+            border: none;
+            padding: 0.625rem 1.1875rem 0.625rem 1rem;
+            background-color: $accent;
+            color: $dark;
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+
+            appearance: none;
+            /* for Firefox */
+            -moz-appearance: none;
+            /* for Chrome */
+            -webkit-appearance: none;
+
+            &::-ms-expand {
+                display: none;
+            }
+        }
+
+        .drinks-food-create-edit__dropdown-arrow {
+            position: absolute;
+            top: 1rem;
+            right: 12px;
+            pointer-events: none;
+            display: block;
+            color: $primary;
+        }
+    }
+
+    .drinks-food-create-edit__volume-container {
+        padding: 0.625rem 0;
+    }
+}
+
+.two-button-wrapper{
+    @media screen and (max-width: 350px) {
+        flex-direction: row !important;
+    }
+}
+
+.drinks-food-create-edit__bottom-buttons {
+    align-self: flex-end;
+    display: flex;
+    gap: 1.25rem;
+    width: 100%;
+
+    @media screen and (max-width: 350px) {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        border: none;
+        border-radius: 16px;
+        padding: 1rem 1rem;
+        background-color: $primary;
+        color: $accent;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1.0625rem;
+    }
+
+    .drinks-food-create-edit__photo-upload-container {
+        width: 100%;
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            margin-top: 0.5rem;
+            width: 100%;
+
+            .drinks-food-create-edit__photo-upload {
+                width: 100%;
+                border-radius: 16px;
+                background-color: $primary;
+                padding: 1rem;
+                border: none;
+                display: flex;
+                place-content: center;
+                gap: 0.625rem;
+                font-size: 0.875rem;
+                line-height: 1.0625rem;
+                font-weight: 700;
+                color: $accent;
+
+                cursor: pointer;
+
+                .drinks-food-create-edit__photo-upload-icon {
+                    color: $accent;
+                }
+            }
+        }
+    }
+
+    .drinks-food-create-edit__add-allergens-button {
+        align-self: flex-end;
+    }
+}
+
+.drinks-food-create-edit__bottom-button {
+    margin-top: 3rem;
+    align-self: flex-end;
+    box-sizing: content-box;
+    border: none;
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    background-color: $primary;
+    color: $accent;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.0625rem;
+}
+
+/* EDIT */
+.drinks-food-edit__container {
+    min-height: calc(100vh - 60px - 2rem); // 60px header + 32px padding
+
+    display: grid;
+    grid-template-rows: -webkit-min-content -webkit-min-content 1fr !important;
+    grid-template-rows: min-content min-content 1fr !important;
+
+    @media screen and (min-width: 350px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .drinks-food-create-edit__photo-container {
+        width: 100%;
+
+        &,
+        img {
+            border-radius: 8px;
+        }
+
+        img {
+            width: 100%;
+            height: 220px;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+
+    .--edit-form-margin {
+        margin-top: 1.5rem;
+    }
+}
+
+/* ALLERGENS */
+.drinks-food-allergens__container {
+    @media screen and (min-width: 350px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    display: grid;
+    min-height: calc(100vh - 60px - 2rem); // 60px header + 32px padding
+
+    grid-template-rows: -webkit-min-content 1fr;
+    grid-template-rows: min-content 1fr;
+
+    .drinks-food-allergens__list-container {
+        .drinks-food-allergens__allergen-container {
+            text-align: left;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li {
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+            color: $dark;
+        }
+
+        li + li {
+            margin-top: 0.875rem;
+        }
+    }
+
+    .drinks-food-allergens__bottom-buttons {
+        align-self: flex-end;
+        display: flex;
+        gap: 1.25rem;
+        width: 100%;
+
+        button {
+            width: 100%;
+            box-sizing: content-box;
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 1rem;
+            background-color: $primary;
+            color: $accent;
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1.0625rem;
+        }
+    }
+}

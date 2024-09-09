@@ -1,0 +1,48 @@
+.location-card{
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    padding-bottom: 0px;
+    background-position: center;
+
+    .location-footer{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        background: linear-gradient(334deg, rgba(221, 247, 255, 0.00) 2.6%, rgba(245, 245, 245, 0.40) 98.47%);
+        backdrop-filter: blur(5px);
+
+        .card-button-next{
+            border-radius: 12px 0px 10px 0px;
+            background: #1C6979;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .location-name{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            flex: 1 0 0;
+            overflow: hidden;
+            color: #FFF;
+            font-feature-settings: 'clig' off, 'liga' off;
+            text-overflow: ellipsis;
+            font-family: Montserrat;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin: 8px;
+        }
+
+
+    }
+}

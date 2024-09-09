@@ -1,0 +1,73 @@
+
+//new code
+
+//category name + category icon -> public menu 
+.category-item-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+
+    img {
+        width: 2rem;
+    }
+
+    .category-icon-name {
+        color: #C39F6D;
+        font-size: 18px;
+        font-weight: 400;
+        margin-left: 0.5rem;
+    }
+}
+
+.edit-button-container{
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+
+    button{
+        box-sizing: content-box;
+    border: none;
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    background-color: #27272a;
+    color: #cbbfa2;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.0625rem;
+    }
+}
+
+//old code
+.weekly-index-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    align-items: flex-start;
+
+    @media screen and (min-width: 900px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.weekly-list {
+    margin-top: 2.8125rem;
+    display: grid;
+    gap: 2.875rem;
+}
+
+.weekly-list__day {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    line-height: 1.2188rem;
+    padding: 0 0.5rem;
+}
+
+.weekly-list__food-list {
+    margin-top: 1.8125rem;
+    display: grid;
+    gap: 1rem;
+}

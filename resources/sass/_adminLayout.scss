@@ -1,0 +1,114 @@
+p,
+h3 {
+    margin: 0;
+}
+
+#sidebar {
+    position: fixed;
+    width: 13.75rem;
+    height: 100vh;
+    padding: 0.75rem 0.75rem 1rem 1.25rem;
+    border-bottom-right-radius: 9.375rem;
+    background-color: $primary;
+    color: $accent;
+    font-size: 0.875rem;
+    line-height: 1.0669rem;
+    .sidebar__close-button {
+        color: $accent;
+        height: 0.875rem;
+        width: 0.875rem;
+    }
+    .sidebar__container {
+        height: 100%;
+        padding-top: 1.6875rem;
+        padding-left: 1.0625rem;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li + li {
+                margin-top: 3rem;
+            }
+            li:first-of-type {
+                display: block;
+                p:first-of-type {
+                    font-weight: 700;
+                }
+            }
+            li {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                a {
+                    color: $accent;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                .sidebar__categories-icon {
+                    width: 1.5rem;
+                    height: 1.3125rem;
+                }
+                .sidebar__menu-icon {
+                    width: 1.5rem;
+                    height: 1.1381rem;
+                }
+                .sidebar__events-icon {
+                    width: 1.3931rem;
+                    height: 1.5rem;
+                }
+                .sidebar__logout-icon {
+                    width: 1.5rem;
+                    height: 1.2244rem;
+                }
+            }
+        }
+    }
+    overflow: hidden;
+    z-index: 10;
+    transform: translateX(-100%);
+
+    @media screen and (min-width: 1024px) {
+        width: 15.625rem;
+    }
+}
+
+#nav-admin {
+    height: 60px;
+    background-color: $primary;
+    padding: 1rem 1.125rem 1.375rem;
+    .title-container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    button {
+        position: absolute;
+        left: 0;
+    }
+    .open-sidebar-button {
+        color: #B79238;
+        width: 1.125rem;
+        height: 0.75rem;
+    }
+
+    h3 {
+        color: $accent;
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+#main-admin {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    height: 100%;
+    padding: 1rem;
+    background-color: $light;
+}

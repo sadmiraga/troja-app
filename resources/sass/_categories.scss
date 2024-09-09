@@ -1,0 +1,168 @@
+.multiselect__tags{
+    border-radius: 16px 16px 0px 0px !important;
+}
+
+
+.categories-index-container {
+    @media screen and (min-width: 900px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .categories-list {
+        margin-top: 1.0625rem;
+        display: grid;
+        gap: 1rem;
+
+        .category {
+            border-radius: 16px;
+            background-color: $accent;
+            padding: 0.5rem;
+            color: $primary;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1.0625rem;
+
+            .category__title-container {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+
+                padding: 0.7813rem 0.5rem;
+
+                .category__icon {
+                    svg {
+                        height: 1.5rem;
+                    }
+                }
+
+                .category__title {
+                    text-align: center;
+                }
+            }
+
+            .category__edit-button {
+                box-sizing: content-box;
+                border: none;
+                border-radius: 16px;
+                padding: 1rem 2rem;
+                background-color: $primary;
+                color: $accent;
+                font-size: 0.875rem;
+                font-weight: 700;
+                line-height: 1.0625rem;
+            }
+        }
+    }
+}
+
+//make classes GLOBAL !!! 
+.drinks-food-edit__container{ //here
+    .category-create-edit__dropdown-container {
+        position: relative;
+        .category-create-edit__dropdown {
+            width: 100%;
+            height: 40px;
+            border-radius: 16px;
+            border: none;
+            padding: 0.625rem 1.1875rem 0.625rem 1rem;
+            background-color: $accent;
+            color: $dark;
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+
+            appearance: none;
+            /* for Firefox */
+            -moz-appearance: none;
+            /* for Chrome */
+            -webkit-appearance: none;
+            &::-ms-expand {
+                display: none;
+            }
+        }
+        .category-create-edit__dropdown-arrow {
+            position: absolute;
+            top: 1rem;
+            right: 12px;
+            pointer-events: none;
+            display: block;
+            color: $primary;
+        }
+    }
+}
+
+.categories-create-edit-container {
+    height: calc(100vh - 60px - 2rem); // 60px header + 32px padding
+
+    @media screen and (min-width: 900px) {
+        max-width: 56.25rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    display: grid;
+    grid-template-rows: -webkit-min-content -webkit-min-content 1fr;
+    grid-template-rows: min-content min-content 1fr;
+    gap: 1rem;
+
+    .category-create-edit__input {
+        width: 100%;
+        height: 40px;
+        border-radius: 16px;
+        border: none;
+        padding: 0.7188rem 1rem;
+        background-color: $accent;
+        color: $dark;
+        font-size: 0.875rem;
+        line-height: 1.0625rem;
+    }
+
+    .category-create-edit__dropdown-container {
+        position: relative;
+        .category-create-edit__dropdown {
+            width: 100%;
+            height: 40px;
+            border-radius: 16px;
+            border: none;
+            padding: 0.625rem 1.1875rem 0.625rem 1rem;
+            background-color: $accent;
+            color: $dark;
+            font-size: 0.875rem;
+            line-height: 1.0625rem;
+
+            appearance: none;
+            /* for Firefox */
+            -moz-appearance: none;
+            /* for Chrome */
+            -webkit-appearance: none;
+            &::-ms-expand {
+                display: none;
+            }
+        }
+        .category-create-edit__dropdown-arrow {
+            position: absolute;
+            top: 1rem;
+            right: 12px;
+            pointer-events: none;
+            display: block;
+            color: $primary;
+        }
+    }
+
+    .category-create-edit__add-button {
+        align-self: flex-end;
+        box-sizing: content-box;
+        border: none;
+        border-radius: 16px;
+        padding: 1rem 2rem;
+        background-color: $primary;
+        color: $accent;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1.0625rem;
+    }
+}
