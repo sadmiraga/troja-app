@@ -217,7 +217,6 @@ class menuItemsController extends Controller
         //add allergens
 
         $menu_item->save();
-        dd($menu_item);
 
         return response('success');
     }
