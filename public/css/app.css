@@ -13440,7 +13440,8 @@ h3,
   min-height: calc(100vh - 99px);
   height: 100%;
   padding: 1rem;
-  background-color: #232323;
+  background-image: url("/images/menu_background.png");
+  background-size: cover;
 }
 @media screen and (min-width: 768px) {
   #main-public--menu {
@@ -13585,6 +13586,7 @@ h3,
   }
 }
 .types-list .type .items-list .item {
+  background-image: url("/images/small-bg.jpeg");
   min-height: 7rem;
   box-sizing: border-box;
   width: 100%;

@@ -111,7 +111,6 @@ class menuItemsController extends Controller
 
     public function update(Request $request){
 
-        //dd($request->all());
         
         $night_price = $request->input('night_price');
         $price = $request->input('price');
@@ -133,7 +132,7 @@ class menuItemsController extends Controller
 
         //packing size 
         if ($packing_size = ! null && $packing_size != "null") {
-            $menu_item->packing_size = $packing_size;
+            $menu_item->packing_size = doubleval($request->input('packing_size'));
         }
 
         $image = $request->file('media');
@@ -158,7 +157,7 @@ class menuItemsController extends Controller
 
             //OPTIMIZE image.
             
-            
+            /*
             $original_image_path = public_path('images_dynamic/menu_items/' . $imageName);
             $image = Image::make($original_image_path);
             $image->resize(800, null, function ($constraint) {
@@ -166,6 +165,7 @@ class menuItemsController extends Controller
             });
             $image->encode('webp', 75);
             $image->save($original_image_path);
+            */
         }
 
         $menu_item->save();
@@ -206,6 +206,7 @@ class menuItemsController extends Controller
 
             //OPTIMIZE image.
             
+            /*
             $original_image_path = public_path('images_dynamic/menu_items/' . $imageName);
             $image = Image::make($original_image_path);
             $image->resize(800, null, function ($constraint) {
@@ -213,6 +214,7 @@ class menuItemsController extends Controller
             });
             $image->encode('webp', 75);
             $image->save($original_image_path);
+            */
             
         }
 

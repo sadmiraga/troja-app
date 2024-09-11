@@ -212,10 +212,7 @@ export default {
       formData.append("name", this.name);
       formData.append("type", this.type);
       formData.append("price", this.price.replace(",", "."));
-      formData.append(
-        "night_price",
-        this.night_price ? this.night_price.replace(",", ".") : null
-      );
+      formData.append("night_price",this.night_price ? this.night_price.replace(",", ".") : null);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
       formData.append("packing_size",this.packing_size);
