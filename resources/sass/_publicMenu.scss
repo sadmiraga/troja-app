@@ -44,7 +44,11 @@
             }
 
             .item {
-                background-image: url('/images/small-bg.jpeg');
+                //background-image: url('/images/small-bg.jpeg');
+                padding-bottom: 0px;
+                background: #00000065;
+                border-radius: 12px;
+
                 min-height: 7rem;
                 box-sizing: border-box;
                 width: 100%;
@@ -106,7 +110,9 @@
                     width: 200px;
                     border-radius: 8px;
                     -o-object-fit: cover;
-                    object-fit: cover;
+                    //object-fit: cover; here
+                    object-fit: contain;
+                    -o-object-fit: contain;
                 }
             }
         }

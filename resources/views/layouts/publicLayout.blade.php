@@ -34,7 +34,7 @@
             </div>
             <div class="sidebar-content">
                 <div class="sidebar-logo-container">
-                    <a href="/" style="width:auto;text-decoration:none;">
+                    <a href="/meni" style="width:auto;text-decoration:none;">
                     <img src="images/sidebar-logo.png" alt="logo" class="sidebar-logo">
                     </a>
                 </div>

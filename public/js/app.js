@@ -21983,7 +21983,7 @@ var staticRenderFns = [function () {
       "text-decoration": "none"
     },
     attrs: {
-      href: "/"
+      href: "/meni"
     }
   }, [_c("img", {
     staticClass: "nav__logo--menu",
@@ -21992,8 +21992,7 @@ var staticRenderFns = [function () {
     },
     attrs: {
       src: "/images/logo.png",
-      alt: "logo",
-      href: "/"
+      alt: "logo"
     }
   })]);
 }, function () {

@@ -9,11 +9,11 @@
                     EN
                 </a>
 
-                <a href="/" style="width: auto; text-decoration: none">
+                <a href="/meni" style="width: auto; text-decoration: none">
                     <img
                         src="/images/logo.png"
                         alt="logo"
-                        href="/"
+                        
                         class="nav__logo--menu"
                         style="width: 170px;"
                     />

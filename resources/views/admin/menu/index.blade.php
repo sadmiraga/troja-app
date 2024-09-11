@@ -3,7 +3,7 @@
 @section('content')
 
 @push('title')
-Menu Items
+Meni / Ponudba
 @endpush
 
 <div id="app">

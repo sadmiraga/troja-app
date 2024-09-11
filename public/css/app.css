@@ -13586,7 +13586,9 @@ h3,
   }
 }
 .types-list .type .items-list .item {
-  background-image: url("/images/small-bg.jpeg");
+  padding-bottom: 0px;
+  background: rgba(0, 0, 0, 0.3960784314);
+  border-radius: 12px;
   min-height: 7rem;
   box-sizing: border-box;
   width: 100%;
@@ -13643,7 +13645,8 @@ h3,
   width: 200px;
   border-radius: 8px;
   -o-object-fit: cover;
-  object-fit: cover;
+  object-fit: contain;
+  -o-object-fit: contain;
 }
 
 .card-button-hover {
@@ -13762,6 +13765,10 @@ h3,
 .categories-container .categories .--active {
   background-color: #B79238 !important;
   border: none !important;
+}
+
+.drinks-food-navbar .drinks-food-navbar__links .drinks-food-navbar__link--active {
+  background-color: #B79238 !important;
 }
 
 .edit-product-banner-image {
