@@ -13647,7 +13647,7 @@ h3,
 .types-list .type .items-list .item .item__picture {
   height: 150px;
   max-height: 150px;
-  width: 150px;
+  width: 100% !important;
   max-width: 150px;
   border-radius: 8px;
   -o-object-fit: cover;
