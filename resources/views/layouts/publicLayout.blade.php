@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>FNX Café &amp; bistro - Odlično vzdušje in vrhunska ponudba</title>
+    <title>Troja</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
