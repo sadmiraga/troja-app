@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Allergen, Category, Food, Drink, DrinkAllergen, FoodAllergen, MenuItem};
+use App\Models\{Allergen, Category, Food, Drink, DrinkAllergen, FoodAllergen, MenuItem, MenuItemAllergen};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -17,13 +17,32 @@ class MenuController extends Controller
     public function index()
     {
         
+        
         $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position','asc')->get();
         $food_categories = Category::where('drink_or_food', 'food')->orderBy('position','asc')->get();
 
-        $menu_items = MenuItem::all();
+        //$menu_items = MenuItem::all();
 
+        //link allergens to MENU ITEMS
+        $menu_items = MenuItem::where('drink_or_food','!=', "")->get()->map(function ($menu_items) {
 
+            $allergens_value = "";
 
+            $menu_item_allergens = MenuItemAllergen::where('menu_item_id', $menu_items->id)->get(); // check here error
+
+            foreach ($menu_item_allergens as $menu_item_allergen) {
+
+                $allergen = Allergen::find($menu_item_allergen->allergen_id);
+                $allergens_value = $allergens_value . $allergen->shortcode . ", ";
+            }
+
+            //cut off last , 
+            $allergens_value = substr($allergens_value, 0, -2);
+
+            $menu_items->allergens = $allergens_value;
+            return $menu_items;
+        });
+        
 
         /*
         // link allergens to FOOD
@@ -43,7 +62,9 @@ class MenuController extends Controller
             $food->allergens = $allergens_value;
             return $food;
         });
+        */
 
+        /*
         //link allergens to DRINK
         $drinks = Drink::where('category_id', '!=', null)->get()->map(function ($drink) {
             $allergens_value = "";

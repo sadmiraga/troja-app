@@ -12682,6 +12682,10 @@ h3,
   line-height: 1.0625rem;
   color: #0e0e0e;
 }
+.drinks-food-allergens__container .drinks-food-allergens__list-container li:hover {
+  background: rgba(255, 255, 255, 0.3137254902);
+  border-radius: 12px;
+}
 .drinks-food-allergens__container .drinks-food-allergens__list-container li + li {
   margin-top: 0.875rem;
 }
@@ -13641,12 +13645,13 @@ h3,
   }
 }
 .types-list .type .items-list .item .item__picture {
-  height: 100%;
-  width: 200px;
+  height: 150px;
+  max-height: 150px;
+  width: 150px;
+  max-width: 150px;
   border-radius: 8px;
   -o-object-fit: cover;
-  object-fit: contain;
-  -o-object-fit: contain;
+  object-fit: cover;
 }
 
 .card-button-hover {
@@ -13749,6 +13754,10 @@ h3,
   margin: 8px;
 }
 
+.switch .slider.round:before {
+  background-color: lightgray;
+}
+
 .admin-menu-item-image {
   width: 150px;
   height: 150px;
@@ -13777,6 +13786,14 @@ h3,
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 12px;
+}
+
+.menu-item-image-part {
+  width: 20%;
+}
+
+.menu-item-text-part {
+  width: 70%;
 }
 
 html, body {

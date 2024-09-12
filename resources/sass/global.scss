@@ -1,3 +1,7 @@
+.switch .slider.round:before{
+    background-color: lightgray;
+}
+
 .admin-menu-item-image{
     width: 150px;
     height: 150px;
@@ -30,6 +34,17 @@
     object-fit: cover;
     border-radius: 12px;
 }
+
+.menu-item-image-part{
+    width: 20%;
+}
+
+.menu-item-text-part{
+    width: 70%;
+}
+
+
+//here
 
 
 html, body {

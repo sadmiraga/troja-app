@@ -7150,6 +7150,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
+    var _this = this;
     console.log("Component mounted.");
     if (this.type == "food") {
       this.categories = this.food_categories;
@@ -7157,12 +7158,21 @@ __webpack_require__.r(__webpack_exports__);
       this.categories = this.drink_categories;
     }
 
+    //create selected_allergens array
+    this.allergens.forEach(function (allergen) {
+      _this.selected_allergens.push({
+        id: allergen.id,
+        selected: false
+      });
+    });
+
     //allergens here.
   },
 
   props: ["food_categories", "drink_categories", "allergens", "type"],
   data: function data() {
     return {
+      selected_allergens: [],
       name: null,
       price: null,
       night_price: null,
@@ -7200,8 +7210,23 @@ __webpack_require__.r(__webpack_exports__);
     handleFileUpload: function handleFileUpload(event) {
       this.mediaFile = event.target.files[0]; // store the file
     },
+    goToStep: function goToStep(step) {
+      this.step = step;
+    },
+    switchAllergen: function switchAllergen(allergen_id, value) {
+      var allergen = this.selected_allergens.find(function (allergen) {
+        return allergen.id === allergen_id;
+      });
+
+      // Update its selected value
+      if (allergen) {
+        allergen.selected = value;
+      }
+    },
     create: function create() {
+      var _this2 = this;
       var formData = new FormData();
+      console.log(this.selected_allergens);
 
       // Append other form data
       formData.append("name", this.name);
@@ -7211,6 +7236,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
       formData.append("packing_size", this.packing_size);
+      formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
 
       // Append file (mediaFile should be set in handleFileUpload)
       if (this.mediaFile) {
@@ -7225,9 +7251,12 @@ __webpack_require__.r(__webpack_exports__);
             "app-token": "U0xYT1VaV1RXU1ZUUkxDQjBRMzM3RDBEWUhHSVBG"
           }
         }).then(function (response) {
-          console.log(response.data);
-          window.location.href = "/menu_items";
-          alert("SUCCESS ADDED");
+          if (response.data == "success") {
+            _this2.$toast.success("You successfully added new product on the Menu.");
+            setTimeout(function () {
+              window.location.href = "/menu_items";
+            }, 1500);
+          }
         })["catch"](function (error) {
           console.error("There was an error!", error);
         });
@@ -7251,6 +7280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
+    var _this = this;
     this.banner_image = window.location.origin + '/images_dynamic/menu_items/' + this.menu_item.image;
     this.name = this.menu_item.name;
     this.localType = this.menu_item.drink_or_food;
@@ -7259,8 +7289,31 @@ __webpack_require__.r(__webpack_exports__);
     this.description = this.menu_item.description;
     this.packing_size = this.menu_item.packing_size;
     this.category_id = this.menu_item.category_id;
+
+    //links allergens. 
+    //create selected_allergens array
+    this.allergens.forEach(function (allergen) {
+      var found = _this.db_selected_allergens.find(function (item) {
+        return item.allergen_id === allergen.id;
+      });
+
+      //allergen is selected
+      if (found != null) {
+        _this.selected_allergens.push({
+          id: allergen.id,
+          name: allergen.name,
+          selected: true
+        });
+      } else {
+        _this.selected_allergens.push({
+          id: allergen.id,
+          name: allergen.name,
+          selected: false
+        });
+      }
+    });
   },
-  props: ["menu_item", "food_categories", "drink_categories", "allergens"],
+  props: ["menu_item", "food_categories", "drink_categories", "allergens", "db_selected_allergens"],
   data: function data() {
     return {
       name: null,
@@ -7273,7 +7326,8 @@ __webpack_require__.r(__webpack_exports__);
       localType: this.type,
       // Local copy of `type`
       mediaFile: null,
-      banner_image: null
+      banner_image: null,
+      selected_allergens: []
     };
   },
   watch: {
@@ -7318,8 +7372,22 @@ __webpack_require__.r(__webpack_exports__);
         this.banner_image = fileUrl;
       }
     },
+    goToStep: function goToStep(step) {
+      this.step = step;
+    },
+    switchAllergen: function switchAllergen(allergen_id, value) {
+      var allergen = this.selected_allergens.find(function (allergen) {
+        return allergen.id === allergen_id;
+      });
+
+      // Update its selected value
+      if (allergen) {
+        allergen.selected = value;
+      }
+    },
     update: function update() {
       var formData = new FormData();
+      console.log(this.selected_allergens);
 
       // Append other form data
       formData.append("item_id", this.menu_item.id);
@@ -7330,6 +7398,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
       formData.append("packing_size", this.packing_size);
+      formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
 
       // Append file (mediaFile should be set in handleFileUpload)
       if (this.mediaFile) {
@@ -10222,6 +10291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
+    console.log(this.menu_items);
     var urlParams = new URLSearchParams(window.location.search);
     var page = Number(urlParams.get("page"));
 
@@ -14687,7 +14757,7 @@ var render = function render() {
       id: "category"
     },
     on: {
-      change: [function ($event) {
+      change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -14695,7 +14765,7 @@ var render = function render() {
           return val;
         });
         _vm.localType = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.changeType]
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -14895,7 +14965,7 @@ var render = function render() {
     staticClass: "form-group mb-5 row"
   }, [_c("label", {
     staticClass: "form-label col-3 col-form-label"
-  }, [_vm._v("Media File")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Product Image")]), _vm._v(" "), _c("div", {
     staticClass: "col"
   }, [_c("input", {
     ref: "media",
@@ -14919,9 +14989,54 @@ var render = function render() {
   }, [_vm._v("Dodaj izdelek")]), _vm._v(" "), _c("button", {
     staticClass: "drinks-food-create-edit__add-allergens-button",
     on: {
-      click: _vm.goToAllergens
+      click: function click($event) {
+        return _vm.goToStep(2);
+      }
     }
-  }, [_vm._v("\n                Dodaj alergene\n            ")])])]) : _vm._e()]);
+  }, [_vm._v("\n                Dodaj alergene\n            ")])])]) : _vm._e(), _vm._v(" "), _vm.step == 2 ? _c("div", {
+    attrs: {
+      id: "step-2"
+    }
+  }, [_c("div", {
+    staticClass: "drinks-food-allergens__container"
+  }, [_c("ol", {
+    staticClass: "drinks-food-allergens__list-container"
+  }, _vm._l(_vm.allergens, function (allergen) {
+    return _c("li", [_c("div", {
+      staticClass: "drinks-food-allergens__allergen-container"
+    }, [_c("div", {
+      staticClass: "drinks-food-allergens__allergen-name"
+    }, [_vm._v("\n                          " + _vm._s(allergen.shortcode) + " - " + _vm._s(allergen.name) + "\n                      ")]), _vm._v(" "), _c("div", {
+      staticClass: "drinks-food-allergens__allergen-switch"
+    }, [_c("label", {
+      staticClass: "switch"
+    }, [_c("input", {
+      attrs: {
+        type: "checkbox"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.switchAllergen(allergen.id, $event.target.checked);
+        }
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "slider round"
+    })])])])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "drinks-food-allergens__bottom-buttons"
+  }, [_c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.goToStep(1);
+      }
+    }
+  }, [_vm._v("Nazaj na podatke")]), _vm._v(" "), _c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.create();
+      }
+    }
+  }, [_vm._v("Dodaj izdelek")])])])]) : _vm._e()]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -14965,16 +15080,16 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "drinks-food-create-edit__form-container"
-  }, [_c("img", {
+  }, [_vm.menu_item.image != null ? _c("img", {
     staticClass: "edit-product-banner-image",
     attrs: {
       src: _vm.banner_image
     }
-  }), _vm._v(" "), _c("div", {
+  }) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "form-group mb-3 row"
   }, [_c("label", {
     staticClass: "form-label col-3 col-form-label"
-  }, [_vm._v("Media File")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Product Image")]), _vm._v(" "), _c("div", {
     staticClass: "col"
   }, [_c("input", {
     ref: "media",
@@ -15002,7 +15117,7 @@ var render = function render() {
       id: "category"
     },
     on: {
-      change: [function ($event) {
+      change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -15010,7 +15125,7 @@ var render = function render() {
           return val;
         });
         _vm.localType = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.changeType]
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -15217,9 +15332,57 @@ var render = function render() {
   }, [_vm._v("Shrani spremembe")]), _vm._v(" "), _c("button", {
     staticClass: "drinks-food-create-edit__add-allergens-button",
     on: {
-      click: _vm.goToAllergens
+      click: function click($event) {
+        return _vm.goToStep(2);
+      }
     }
-  }, [_vm._v("\n          Uredi alergene\n      ")])])]) : _vm._e()]);
+  }, [_vm._v("\n          Uredi alergene\n      ")])])]) : _vm._e(), _vm._v(" "), _vm.step == 2 ? _c("div", {
+    attrs: {
+      id: "step-2"
+    }
+  }, [_c("div", {
+    staticClass: "drinks-food-allergens__container"
+  }, [_c("ol", {
+    staticClass: "drinks-food-allergens__list-container"
+  }, _vm._l(_vm.selected_allergens, function (selected_allergen) {
+    return _c("li", [_c("div", {
+      staticClass: "drinks-food-allergens__allergen-container"
+    }, [_c("div", {
+      staticClass: "drinks-food-allergens__allergen-name"
+    }, [_vm._v("\n                        " + _vm._s(selected_allergen.name) + "\n                    ")]), _vm._v(" "), _c("div", {
+      staticClass: "drinks-food-allergens__allergen-switch"
+    }, [_c("label", {
+      staticClass: "switch"
+    }, [_c("input", {
+      attrs: {
+        type: "checkbox"
+      },
+      domProps: {
+        checked: selected_allergen.selected
+      },
+      on: {
+        change: function change($event) {
+          return _vm.switchAllergen(selected_allergen.id, $event.target.checked);
+        }
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "slider round"
+    })])])])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "drinks-food-allergens__bottom-buttons"
+  }, [_c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.goToStep(1);
+      }
+    }
+  }, [_vm._v("Nazaj na podatke")]), _vm._v(" "), _c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.update();
+      }
+    }
+  }, [_vm._v("Shrani")])])])]) : _vm._e()]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -15397,82 +15560,35 @@ var render = function render() {
         "align-items": "start !important"
       }
     }, [menu_item.image != null ? _c("div", {
-      staticClass: "drinks-food-list__text-container"
+      staticClass: "drinks-food-list__text-container menu-item-image-part"
     }, [_c("img", {
       staticClass: "admin-menu-item-image",
       attrs: {
         src: "/images_dynamic/menu_items/" + menu_item.image
       }
     })]) : _vm._e(), _vm._v(" "), _c("div", {
-      staticClass: "drinks-food-list__text-container"
+      staticClass: "drinks-food-list__text-container menu-item-text-part"
     }, [_c("h4", {
       staticClass: "drinks-food-list__title"
-    }, [_vm._v("\n                " + _vm._s(menu_item.name) + "\n              ")]), _vm._v(" "), _c("div", {
-      staticClass: "drinks-food-list__category",
-      staticStyle: {
-        "margin-top": "22px",
-        display: "flex",
-        "align-items": "center"
-      }
-    }, [menu_item.packing_size != null ? _c("span", {
+    }, [_vm._v("\n                " + _vm._s(menu_item.name) + "\n                "), menu_item.packing_size != null ? _c("span", {
       staticStyle: {
         "font-size": "14px",
         display: "flex",
         "align-items": "center"
       }
-    }, [_c("svg", {
-      staticClass: "packing-size-icon",
-      attrs: {
-        viewBox: "0 0 21 45",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg"
-      }
-    }, [_c("path", {
-      attrs: {
-        d: "M21 14.3511C21 14.1723 20.9268 10.1031 14.8585 8.76465V7.04293C15.8583 6.9429 16.6415 6.09475 16.6415 5.06621V1.98675C16.6415 0.891256 15.7528 0 14.6604 0H6.43868C5.34628 0 4.45755 0.891256 4.45755 1.98675V5.06621C4.45755 6.06018 5.18997 6.88359 6.14151 7.02813V8.74717C0.308264 9.96723 0 13.6052 0 14.3511V17.1476C0 18.0119 0.367005 18.8093 0.951934 19.3942C0.367005 19.9473 0 20.7014 0 21.5187V25.5477C0 26.3353 0.336496 27.0645 0.878533 27.6136C0.336496 28.1605 0 28.8865 0 29.6705V33.6997C0 34.5093 0.357198 35.2569 0.92816 35.8102C0.357198 36.3623 0 37.1083 0 37.9161V41.9453C0 43.6011 1.49239 45 3.25896 45H17.9193C19.6468 45 21 43.6581 21 41.9453V37.9161C21 37.1072 20.6725 36.3715 20.1401 35.8252C20.6749 35.2791 21 34.5337 21 33.6997V29.6705C21 28.8699 20.7007 28.1505 20.2034 27.6119C20.7007 27.0713 21 26.3502 21 25.5477V21.5187C21 20.6778 20.6663 19.9272 20.1186 19.3817C20.6636 18.8026 21 18.015 21 17.1476V14.3511ZM6.43868 1.98675H14.6604L14.6606 5.06621H6.43868V1.98675ZM19.0189 41.9452C19.0189 42.5639 18.5565 43.0131 17.9193 43.0131H3.25896C2.57824 43.0131 1.98113 42.5142 1.98113 41.9452V37.916C1.98113 37.3504 2.57824 36.8542 3.25896 36.8542H13.3726C13.9196 36.8542 14.3632 36.4094 14.3632 35.8608C14.3632 35.8441 14.3615 35.8278 14.3607 35.8112C14.3615 35.7946 14.3632 35.7783 14.3632 35.7615C14.3632 35.213 13.9196 34.7681 13.3726 34.7681H3.25896C2.57824 34.7681 1.98113 34.2689 1.98113 33.6996V29.6704C1.98113 29.1051 2.57824 28.6091 3.25896 28.6091H12.7783H12.9764C13.5234 28.6091 13.967 28.1643 13.967 27.6157C13.967 27.0672 13.5234 26.6224 12.9764 26.6224H12.7783H3.25896C2.59013 26.6224 1.98113 26.1101 1.98113 25.5476V21.5186C1.98113 20.9565 2.57824 20.4634 3.25896 20.4634H12.4811C13.0281 20.4634 13.4717 20.0186 13.4717 19.4701C13.4717 19.4533 13.47 19.437 13.4692 19.4204C13.47 19.4038 13.4717 19.3875 13.4717 19.3707C13.4717 18.8222 13.0281 18.3773 12.4811 18.3773H3.25896C2.59013 18.3773 1.98113 17.7913 1.98113 17.1475V14.351C1.98113 13.8552 2.2367 11.3422 7.28225 10.5579C7.80923 10.476 8.17316 9.99147 8.11363 9.46498C8.11898 9.42316 8.12264 9.38094 8.12264 9.33763V7.05296H12.8774V9.5364C12.8774 9.93733 13.1147 10.2819 13.4557 10.4388C13.5655 10.5107 13.691 10.562 13.8284 10.5858C18.9495 11.4727 19.0188 14.3224 19.0189 14.351V17.1475C19.0189 17.8256 18.5035 18.3773 17.8698 18.3773C17.3228 18.3773 16.8792 18.8222 16.8792 19.3707C16.8792 19.416 16.8833 19.4602 16.8892 19.5039C16.9071 20.0368 17.3423 20.4634 17.878 20.4634C18.5283 20.4634 19.0189 20.917 19.0189 21.5186V25.5476C19.0189 26.1503 18.5196 26.6224 17.8822 26.6224C17.3352 26.6224 16.8916 27.0672 16.8916 27.6157C16.8916 28.1643 17.3352 28.6091 17.8822 28.6091C17.885 28.6091 17.8877 28.6089 17.8906 28.6089C17.892 28.6089 17.8933 28.6091 17.8946 28.6091C18.5356 28.6091 19.0189 29.0654 19.0189 29.6704V33.6996C19.0189 34.2988 18.5196 34.7681 17.8822 34.7681C17.4135 34.7681 17.0217 35.0951 16.9189 35.5336C16.8831 35.6362 16.8627 35.746 16.8627 35.8608C16.8627 36.4094 17.3063 36.8542 17.8533 36.8542C18.5068 36.8542 19.0189 37.3206 19.0189 37.916V41.9452Z",
-        fill: "black"
-      }
-    })]), _vm._v("\n                      " + _vm._s(menu_item.packing_size) + " l\n                  ")]) : _vm._e(), _vm._v(" "), menu_item.packing_weight != null ? _c("span", {
+    }, [_vm._v("                                    \n                    " + _vm._s(menu_item.packing_size) + " l\n                ")]) : _vm._e(), _vm._v(" "), menu_item.packing_weight != null ? _c("span", {
       staticStyle: {
         "font-size": "14px",
         display: "flex",
         "align-items": "center",
         "margin-left": "30px"
       }
-    }, [_c("svg", {
-      staticClass: "packing-weight-icon",
-      attrs: {
-        width: "43",
-        height: "45",
-        viewBox: "0 0 43 45",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg"
-      }
-    }, [_c("path", {
-      attrs: {
-        "fill-rule": "evenodd",
-        "clip-rule": "evenodd",
-        d: "M6.86844 41.7153H36.3061C37.5851 41.7153 38.6413 40.7162 38.7122 39.4392L40.5864 5.70264C40.6632 4.32141 39.5638 3.15926 38.1804 3.15926H4.99426C3.61083 3.15926 2.51147 4.32141 2.58819 5.70264L4.46245 39.4392C4.53339 40.7162 5.58959 41.7153 6.86844 41.7153ZM36.3061 44.125C38.864 44.125 40.9763 42.1268 41.1182 39.5729L42.9924 5.83638C43.1459 3.07381 40.9471 0.749512 38.1804 0.749512H4.99426C2.22743 0.749512 0.0286876 3.0738 0.182165 5.83638L2.05641 39.5729C2.1983 42.1268 4.31061 44.125 6.86844 44.125H36.3061Z",
-        fill: "#333333"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        "fill-rule": "evenodd",
-        "clip-rule": "evenodd",
-        d: "M33.8716 14.492C32.6091 13.1503 31.1314 12.0205 29.4943 11.1517C27.143 9.90385 24.5296 9.23032 21.8679 9.18598C19.2064 9.14176 16.572 9.72806 14.1805 10.8969C12.5155 11.7107 11.0009 12.7907 9.69436 14.0897L15.2816 18.2929C15.2998 18.2988 15.3467 18.3079 15.4396 18.2994C15.6285 18.2824 15.8936 18.1957 16.1503 18.0219C16.5256 17.7677 16.9195 17.5395 17.3291 17.3393C18.7041 16.6673 20.2185 16.3303 21.7487 16.3557C23.2789 16.3811 24.7813 16.7684 26.1331 17.4858C26.5359 17.6995 26.9218 17.9407 27.2886 18.2073C27.5393 18.3895 27.8014 18.4851 27.9897 18.5082C28.0822 18.5197 28.1294 18.5122 28.1476 18.5069L33.8716 14.492ZM28.1569 18.503C28.1572 18.5033 28.1538 18.5051 28.1476 18.5069C28.1528 18.5039 28.1567 18.5027 28.1569 18.503ZM15.2726 18.2886C15.2728 18.2883 15.2764 18.2897 15.2816 18.2929C15.2755 18.2907 15.2722 18.2889 15.2726 18.2886ZM35.8666 13.1003C36.7607 14.0861 36.4867 15.6012 35.3971 16.3655L29.5266 20.4831C28.4371 21.2474 26.9484 20.9389 25.8719 20.1566C25.5963 19.9562 25.3062 19.775 25.0035 19.6144C23.9876 19.0752 22.8585 18.7843 21.7085 18.7651C20.5586 18.7459 19.4205 18.9993 18.3872 19.5043C18.0793 19.6548 17.7834 19.8262 17.5014 20.0173C16.3994 20.7635 14.9012 21.0222 13.8378 20.2222L8.10754 15.9114C7.044 15.1113 6.82049 13.5879 7.74692 12.6324C9.29531 11.0355 11.1129 9.71396 13.1224 8.73187C15.8556 7.39602 18.8662 6.72599 21.9081 6.77659C24.9499 6.8272 27.9367 7.59699 30.6239 9.02308C32.5995 10.0714 34.3721 11.4527 35.8666 13.1003Z",
-        fill: "#333333"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M25.4214 12.2823C25.8581 11.7803 26.6191 11.7272 27.1212 12.1639C27.6234 12.6007 27.6764 13.3617 27.2396 13.8637L23.9306 17.6686C23.4939 18.1707 22.7328 18.2237 22.2307 17.7871C21.7287 17.3503 21.6756 16.5893 22.1123 16.0872L25.4214 12.2823Z",
-        fill: "#333333"
-      }
-    })]), _vm._v("\n                      " + _vm._s(menu_item.packing_weight) + " g\n                  ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                  " + _vm._s(menu_item.packing_weight) + " g\n                ")]) : _vm._e()]), _vm._v(" "), _c("div", {
       staticClass: "drinks-food-list__category",
       staticStyle: {
         display: "flex",
         "align-items": "center",
-        "margin-top": "20px"
+        "margin-top": "12px"
       }
     }, [_c("svg", {
       staticClass: "sidebar__categories-icon",
@@ -15505,17 +15621,20 @@ var render = function render() {
       staticStyle: {
         "margin-right": "5px !important"
       }
-    }, [_vm._v("Price:")]), _vm._v(" "), _c("span", {
+    }, [_vm._v("Cena:")]), _vm._v(" "), _c("span", {
       staticClass: "fs-14"
     }, [_vm._v(_vm._s(menu_item.price) + "€")])]) : _vm._e(), _vm._v(" "), menu_item.night_price != null ? _c("div", [_c("span", {
       staticClass: "fs-14",
       staticStyle: {
         "margin-right": "5px !important"
       }
-    }, [_vm._v("Night Price:")]), _vm._v(" "), _c("span", {
+    }, [_vm._v("Nočna cena:")]), _vm._v(" "), _c("span", {
       staticClass: "fs-14"
     }, [_vm._v(_vm._s(menu_item.night_price) + "€")])]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
-      staticClass: "drinks-food-list__category mt-22"
+      staticClass: "drinks-food-list__category mt-22",
+      staticStyle: {
+        "margin-top": "12px !important"
+      }
     }, [_c("span", {
       staticClass: "fs-12"
     }, [_vm._v("Description:   " + _vm._s(menu_item.description))])])]), _vm._v(" "), _c("div", {
@@ -21962,7 +22081,13 @@ var render = function render() {
       staticClass: "item__title"
     }, [_vm._v(_vm._s(menu_item.name))]), _vm._v(" "), _c("div", {
       staticClass: "item__description"
-    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]), _vm._v(" "), _c("div", {
+      staticClass: "item__description",
+      staticStyle: {
+        "font-weight": "200",
+        "font-size": "12px"
+      }
+    }, [_c("span", [_vm._v("\n                                " + _vm._s(menu_item.allergens) + "\n                            ")])]), _vm._v(" "), _c("div", {
       staticClass: "item__size-price-container"
     }, [_c("div", {
       staticClass: "item__size"
@@ -21995,16 +22120,6 @@ var staticRenderFns = [function () {
       alt: "logo"
     }
   })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "item__description",
-    staticStyle: {
-      "font-weight": "200",
-      "font-size": "12px"
-    }
-  }, [_c("span", [_vm._v("\n                                LA, DE, SR\n                            ")])]);
 }];
 render._withStripped = true;
 

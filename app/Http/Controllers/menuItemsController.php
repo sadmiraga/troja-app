@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuItemAllergen;
 use Illuminate\Http\Request;
 use App\Models\{Category, Allergen, MenuItem};
 
@@ -71,7 +72,9 @@ class menuItemsController extends Controller
         $drink_categories = Category::where('drink_or_food', "drink")->get();
         $allergens = Allergen::all();
 
-        return view('admin.menu.edit',compact('menu_item','food_categories','drink_categories','allergens'));
+        $db_selected_allergens = MenuItemAllergen::where('menu_item_id', $menu_item->id)->get();
+
+        return view('admin.menu.edit',compact('menu_item','food_categories','drink_categories','allergens','db_selected_allergens'));
     }
 
     public function delete($menu_item_id){
@@ -169,12 +172,30 @@ class menuItemsController extends Controller
         }
 
         $menu_item->save();
+
+
+        MenuItemAllergen::where('menu_item_id', $menu_item->id)->delete();
+        
+        $selected_allergens = json_decode($request->input('selected_allergens'), true);
+
+        //add allergens 
+        foreach ($selected_allergens as $selected_allergen) {
+
+            if ($selected_allergen['selected'] == true) {
+                $menu_item_allergen = new MenuItemAllergen();
+                $menu_item_allergen->menu_item_id = $menu_item->id;
+                $menu_item_allergen->allergen_id = $selected_allergen['id'];
+                $menu_item_allergen->save();
+            }
+        }
+
         return response('success');
     }
 
 
     public function store(Request $request)
     {
+
 
         $night_price = $request->input('night_price');
         $packing_size = $request->input('packing_size');
@@ -205,7 +226,6 @@ class menuItemsController extends Controller
             $menu_item->image = $imageName;
 
             //OPTIMIZE image.
-            
             /*
             $original_image_path = public_path('images_dynamic/menu_items/' . $imageName);
             $image = Image::make($original_image_path);
@@ -215,12 +235,23 @@ class menuItemsController extends Controller
             $image->encode('webp', 75);
             $image->save($original_image_path);
             */
-            
         }
 
-        //add allergens
-
         $menu_item->save();
+
+        //Allergens.
+        $selected_allergens = json_decode($request->input('selected_allergens'), true);
+
+        //add allergens 
+        foreach ($selected_allergens as $selected_allergen) {
+
+            if ($selected_allergen['selected'] == true) {
+                $menu_item_allergen = new MenuItemAllergen();
+                $menu_item_allergen->menu_item_id = $menu_item->id;
+                $menu_item_allergen->allergen_id = $selected_allergen['id'];
+                $menu_item_allergen->save();
+            }
+        }
 
         return response('success');
     }

@@ -9,7 +9,6 @@
                 <div class="category-create-edit__dropdown-container">
                     <select
                         v-model="localType"
-                        @change="changeType"
                         name="category"
                         id="category"
                         class="category-create-edit__dropdown"
@@ -125,7 +124,7 @@
 
                 <!-- FILE -->
                 <div class="form-group mb-5 row">
-                    <label class="form-label col-3 col-form-label">Media File</label>
+                    <label class="form-label col-3 col-form-label">Product Image</label>
                     <div class="col">
                         <input type="file" id="media" @change="handleFileUpload" accept="image/*, video/*" class="form-control" ref="media">
                     </div>
@@ -136,13 +135,46 @@
             <div class="drinks-food-create-edit__bottom-buttons">
                 <button v-on:click="create()">Dodaj izdelek</button>
                 <button
-                    v-on:click="goToAllergens"
+                    v-on:click="goToStep(2)"
                     class="drinks-food-create-edit__add-allergens-button"
                 >
                     Dodaj alergene
                 </button>
             </div>
         </div>
+
+        <!-- ALLERGENS -->
+        <div v-if="step == 2" id="step-2">
+          <div class="drinks-food-allergens__container">
+              <ol class="drinks-food-allergens__list-container">
+                  <li v-for="allergen in allergens">
+                      <div class="drinks-food-allergens__allergen-container">
+                          <div class="drinks-food-allergens__allergen-name">
+                              {{ allergen.shortcode }} - {{ allergen.name }}
+                          </div>
+                          <div class="drinks-food-allergens__allergen-switch">
+                              <label class="switch">
+                                  <input
+                                      type="checkbox"
+                                      v-on:change="
+                                          switchAllergen(
+                                              allergen.id,
+                                              $event.target.checked
+                                          )
+                                      "
+                                  />
+                                  <div class="slider round" />
+                              </label>
+                          </div>
+                      </div>
+                  </li>
+              </ol>
+              <div class="drinks-food-allergens__bottom-buttons">
+                  <button v-on:click="goToStep(1)">Nazaj na podatke</button>
+                  <button v-on:click="create()">Dodaj izdelek</button>
+              </div>
+          </div>
+      </div>
     </div>
 </template>
 
@@ -158,6 +190,11 @@ export default {
       this.categories = this.drink_categories;
     }
 
+    //create selected_allergens array
+    this.allergens.forEach((allergen) => {
+      this.selected_allergens.push({ id: allergen.id, selected: false });
+    });
+
     //allergens here.
   },
 
@@ -165,6 +202,7 @@ export default {
 
   data() {
     return {
+      selected_allergens: [],
       name: null,
       price: null,
       night_price: null,
@@ -205,8 +243,25 @@ export default {
       this.mediaFile = event.target.files[0]; // store the file
     },
 
+    goToStep(step){
+      this.step = step;
+    },
+
+    switchAllergen(allergen_id, value) {
+      let allergen = this.selected_allergens.find(
+          (allergen) => allergen.id === allergen_id
+      );
+
+      // Update its selected value
+      if (allergen) {
+          allergen.selected = value;
+      }
+    },
+
     create() {
       const formData = new FormData();
+
+      console.log(this.selected_allergens);
 
       // Append other form data
       formData.append("name", this.name);
@@ -216,6 +271,7 @@ export default {
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
       formData.append("packing_size",this.packing_size);
+      formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
 
 
       // Append file (mediaFile should be set in handleFileUpload)
@@ -234,9 +290,15 @@ export default {
             },
           })
           .then((response) => {
-            console.log(response.data);
-            window.location.href = "/menu_items";
-            alert("SUCCESS ADDED");
+            
+            if(response.data == "success"){
+              this.$toast.success("You successfully added new product on the Menu.");
+              setTimeout(() => {
+                window.location.href = "/menu_items";
+              }, 1500);
+            }
+
+            
           })
           .catch((error) => {
             console.error("There was an error!", error);

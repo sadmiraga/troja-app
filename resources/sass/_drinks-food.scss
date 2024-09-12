@@ -481,6 +481,11 @@
             color: $dark;
         }
 
+        li:hover{
+            background: #FFFFFF50;
+            border-radius: 12px;
+        }
+
         li + li {
             margin-top: 0.875rem;
         }

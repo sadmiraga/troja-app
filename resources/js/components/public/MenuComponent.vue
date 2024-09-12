@@ -95,7 +95,7 @@
                                     style="font-weight: 200; font-size: 12px"
                                 >
                                 <span >
-                                    LA, DE, SR
+                                    {{menu_item.allergens}}
                                 </span>
                                 <!-- 
                                     <span v-if="product.allergens != ''">
@@ -134,6 +134,7 @@
 <script>
 export default {
     mounted() {
+        console.log(this.menu_items);
         const urlParams = new URLSearchParams(window.location.search);
         const page = Number(urlParams.get("page"));
 

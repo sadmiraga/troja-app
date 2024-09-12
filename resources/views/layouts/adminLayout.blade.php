@@ -83,7 +83,7 @@
                         <div>
                             <img src="images/icons/restaurant-menu.png" style="width: 30px;">
                         </div>
-                        <div><a href="/menu_items">Meni / Ponudba</a></div>
+                        <div><a href="/menu_items">Menu</a></div>
                     </li>
 
                     <!-- PRODUCTS -->
