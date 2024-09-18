@@ -19,6 +19,7 @@ Route::get('/', function () {
     return redirect()->route('onboarding');
 });
 
+Route::get('/rate-us', [App\Http\Controllers\feedbackController::class, 'public'])->name('rate-us');
 
 
 Route::get('/admin', [App\Http\Controllers\public\rootController::class, 'admin'])->name('admin');
@@ -28,6 +29,14 @@ Route::group(['middleware' => 'locale'], function () {
     Route::group(['middleware' => 'AdminMiddleware'], function () {
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+        //Settings
+        Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+            Route::get('/', [App\Http\Controllers\admin\settingsController::class, 'index'])->name('index');
+        });
+
     
         //USERS
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {

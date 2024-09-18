@@ -102,6 +102,9 @@ Vue.component('unfinished-delivery-component', require('./components/admin/deliv
 Vue.component('import-delivery-component', require('./components/admin/delivery/ImportDeliveryComponent.vue').default);
 
 
+//REVIEWS 
+Vue.component('rate-us-component', require('./components/reviews/RateUsComponent.vue').default);
+
 
 
 //LOGIN 
