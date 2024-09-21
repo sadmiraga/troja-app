@@ -34,10 +34,10 @@
       </div>
   </div>
 
-  <!-- trigger modal button-->
-  <button type="button" id="confirm-back" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#confirm-modal">
-      Open Modal
-  </button>
+    <!-- trigger modal button-->
+    <button type="button" id="confirm-back" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#confirm-modal">
+        Open Modal
+    </button>
 
 
     <div class="drinks-food-create-edit__form-container">
@@ -243,6 +243,7 @@
         {{ this.translations.Create_Product }}
       </button>
     </div>
+    
   </div>
 
   

@@ -100,7 +100,7 @@
                             
                         <div class="category__title">
 
-                            <div v-html="category.icon"></div>
+                            <div v-html="category.icon"></div> 
 
                             <!-- Ime kategorije -->
                             {{category.categoryName}}

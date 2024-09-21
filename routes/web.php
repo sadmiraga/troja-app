@@ -36,6 +36,11 @@ Route::group(['middleware' => 'locale'], function () {
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
 
             Route::get('/', [App\Http\Controllers\admin\settingsController::class, 'index'])->name('index');
+
+
+            //parent category 
+            Route::post('/parent_category/store', [App\Http\Controllers\parentCategoryController::class, 'store'])->name('parent_category.store');
+
             
             //style
             Route::get('/style', [App\Http\Controllers\admin\settingsController::class, 'style'])->name('style');

@@ -132,6 +132,7 @@ class CategoryController extends Controller
 
     public function store(Request $request){
 
+        dd($request->all());
         $new_category_name = $request->name;
 
         $drink_or_food = $request->input('drink_or_food');

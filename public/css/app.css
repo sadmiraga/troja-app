@@ -13418,6 +13418,14 @@ h3,
   min-width: -moz-max-content;
   min-width: max-content;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.categories-container .categories .category svg {
+  fill: white;
+  width: 26px;
+  height: 26px;
 }
 .categories-container .categories .--active {
   background-color: #171717;

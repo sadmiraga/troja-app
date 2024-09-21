@@ -16,6 +16,7 @@
                         <option value="choose">Izberi tip izdelka</option>
                         <option value="food">Hrana</option>
                         <option value="drink">Pijača</option>
+                        <option value="shisha">Shisha</option>
                     </select>
                     <svg
                         width="14"

@@ -80,6 +80,7 @@ return array(
     'App\\Models\\UserType' => $baseDir . '/app/Models/UserType.php',
     'App\\Models\\WeeklyCategory' => $baseDir . '/app/Models/WeeklyCategory.php',
     'App\\Models\\company' => $baseDir . '/app/Models/company.php',
+    'App\\Models\\parentCategory' => $baseDir . '/app/Models/parentCategory.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

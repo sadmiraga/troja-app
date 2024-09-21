@@ -61,6 +61,15 @@
           }">
           Hrana
         </a>
+        <a
+          href="#"
+          v-on:click="goToShisha()"
+          class="drinks-food-navbar__link"
+          :class="{
+            'drinks-food-navbar__link--active': this.page === 'shisha',
+          }">
+          Shisha
+        </a>
       </div>
     </div>
 
@@ -242,6 +251,10 @@ export default {
 
     goToDrinks() {
       this.page = "drink";
+    },
+
+    goToShisha(){
+      this.page = "shisha";
     },
 
     openModalViaButton(menu_item){

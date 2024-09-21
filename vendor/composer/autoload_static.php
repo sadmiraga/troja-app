@@ -690,6 +690,7 @@ class ComposerStaticInit467762219b681c3733456390cd4728df
         'App\\Models\\UserType' => __DIR__ . '/../..' . '/app/Models/UserType.php',
         'App\\Models\\WeeklyCategory' => __DIR__ . '/../..' . '/app/Models/WeeklyCategory.php',
         'App\\Models\\company' => __DIR__ . '/../..' . '/app/Models/company.php',
+        'App\\Models\\parentCategory' => __DIR__ . '/../..' . '/app/Models/parentCategory.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

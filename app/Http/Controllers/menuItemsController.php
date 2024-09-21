@@ -30,8 +30,10 @@ class menuItemsController extends Controller
             'categories.categoryName as category_name',
         )
         ->join('categories', 'categories.id', '=', 'menu_items.category_id')
+
         ->orderBy('menu_items.created_at', 'desc')
         ->get();
+
 
         //dd($menu_items);
         return view('admin.menu.index',compact('menu_items'));
@@ -125,6 +127,7 @@ class menuItemsController extends Controller
         $menu_item->name = $request->input('name');
         $menu_item->drink_or_food = $request->input('type');
         $menu_item->description = $request->input('description');
+        
         $menu_item->category_id = $request->input('category_id');
         $menu_item->price = $request->input('price');
 
@@ -196,15 +199,33 @@ class menuItemsController extends Controller
     public function store(Request $request)
     {
 
-
         $night_price = $request->input('night_price');
         $packing_size = $request->input('packing_size');
 
         $menu_item = new MenuItem();
         $menu_item->name = $request->input('name');
-        $menu_item->drink_or_food = $request->input('type');
-        $menu_item->description = $request->input('description');
-        $menu_item->category_id = $request->input('category_id');
+
+        //description
+        $description = $request->input('description');
+        if($description == "null"){
+            $description = null;
+        }
+        $menu_item->description = $description;
+
+        $category_id = $request->input('category_id');
+        $type = $request->input('type');
+        
+        //category null.
+        if($category_id == "null" && ($type == "food" || $type == "drink")){
+            $category_id = null;
+        }
+        
+        if($type == "shisha"){
+            $category_id = 0;
+        }
+
+        $menu_item->category_id = $category_id;
+        $menu_item->drink_or_food = $type;
         $menu_item->price = $request->input('price');
 
         if($packing_size != null && $packing_size != "null"){

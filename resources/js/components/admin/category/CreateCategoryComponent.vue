@@ -68,9 +68,10 @@
 
         <textarea class="category-create-edit__input" rows="15" v-model="icon" placeholder="Add SVG code for ICON" style="height:fit-content;">
         </textarea>
+        
 
         <!-- LOCATION -->
-        <div class="mb-5">
+        <div v-if="this.locations.length != 1" class="mb-5">
             <div class="drinks-food-create-edit__input-label">
                 <label for="category">{{ this.translations.Choose_location }}</label>
             </div>
@@ -176,7 +177,7 @@ export default {
             for(var i=0;i<this.locations.length;i++){
                 var temp_location = { value: this.locations[i].id, label: this.locations[i].name}
                 this.options.push(temp_location);
-            }            
+            }
         },
 
         create(){

@@ -50,6 +50,12 @@
                     >Pijača</a
                 >
                 <a
+                    v-on:click="changeTopCategory(4)"
+                    :class="{ '--active': top_category === 4 }"
+                    class="category-type"
+                    >Shisha</a
+                >
+                <a
                     v-on:click="changeTopCategory(3)"
                     :class="{ '--active': top_category === 3 }"
                     class="category-type d-none"
@@ -60,7 +66,8 @@
 
         <!-- bottom categories -->
         <div class="categories-container">
-            <div v-if="top_category != 3" class="categories" style="padding-bottom: 15px;">
+            <div v-if="top_category != 3 && top_category != 4" class="categories" style="padding-bottom: 15px;">
+
                 <!-- <a href="" class="category --active">Brezalkoholne pijače</a> -->
                 <a
                     v-for="category in active_categories"
@@ -68,6 +75,8 @@
                     :class="{ '--active': category.id === active_category_id }"
                     v-on:click="changeActiveCategoryID(category.id)"
                 >
+                    <div v-html="category.icon"></div> 
+
                     {{ category.categoryName }}
                 </a>
             </div>
@@ -186,7 +195,11 @@ export default {
                 this.active_category_id = this.food_categories[0]["id"];
             } else if (this.top_category == 2) {
                 this.active_category_id = this.drink_categories[0]["id"];
+            } else if(this.top_category == 4){
+                this.active_category_id = 0;
             }
+            
+            
         },
 
         changeTopCategory(value) {
@@ -207,6 +220,11 @@ export default {
 
             if (this.top_category == 3) {
                 //this.active_categories = this.food_categories;
+            }
+
+            if(this.top_category == 4){
+                this.setActiveCategoryDefault();
+                this.changeProductSource();
             }
         },
 

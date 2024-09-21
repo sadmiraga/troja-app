@@ -10,21 +10,22 @@ use Carbon\Carbon;
 
 class MenuController extends Controller
 {
-    public function tedenska(){
+    public function tedenska()
+    {
         return redirect('/meni?page=3');
     }
 
     public function index()
     {
-        
-        
-        $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position','asc')->get();
-        $food_categories = Category::where('drink_or_food', 'food')->orderBy('position','asc')->get();
+
+
+        $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
+        $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
 
         //$menu_items = MenuItem::all();
 
         //link allergens to MENU ITEMS
-        $menu_items = MenuItem::where('drink_or_food','!=', "")->get()->map(function ($menu_items) {
+        $menu_items = MenuItem::where('drink_or_food', '!=', null)->get()->map(function ($menu_items) {
 
             $allergens_value = "";
 
@@ -42,7 +43,8 @@ class MenuController extends Controller
             $menu_items->allergens = $allergens_value;
             return $menu_items;
         });
-        
+        //dd($menu_items);
+
 
         /*
         // link allergens to FOOD
@@ -134,14 +136,18 @@ class MenuController extends Controller
 
         $settings = Settings::first();
 
+
+        //dd($menu_items);
+
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
-        return view('public.menu', compact('menu_items','drink_categories', 'food_categories','allergens','settings'));
+        return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings'));
     }
 
-    public function getFood($category_id){
-        
+    public function getFood($category_id)
+    {
+
         // link allergens to FOOD
-        $food = Food::where('weekly_offer', false)->where('category_id',$category_id)->get()->map(function ($food) {
+        $food = Food::where('weekly_offer', false)->where('category_id', $category_id)->get()->map(function ($food) {
             $allergens_value = "";
 
             $food_allergens = FoodAllergen::where('food_id', $food->id)->get();
@@ -161,10 +167,11 @@ class MenuController extends Controller
         return response($food);
     }
 
-    public function getDrinks($category_id){
+    public function getDrinks($category_id)
+    {
 
         // link allergens to FOOD
-        $drinks = Drink::where('category_id',$category_id)->get()->map(function ($drinks) {
+        $drinks = Drink::where('category_id', $category_id)->get()->map(function ($drinks) {
             $allergens_value = "";
 
             $food_allergens = DrinkAllergen::where('drink_id', $drinks->id)->get();
@@ -183,7 +190,4 @@ class MenuController extends Controller
 
         return response($drinks);
     }
-
-
-
 }
