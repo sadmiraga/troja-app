@@ -42,6 +42,9 @@
 
                 .category__title {
                     text-align: center;
+                    display: flex;
+                    align-items: center;
+                    gap:10px;
                 }
             }
 

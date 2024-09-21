@@ -21,7 +21,7 @@
                 @foreach($locations as $location)
                     <a href="{{route('choose.location',$location->id)}}"
                         class="public-events-list__item location-card" 
-                        style="background-image: url({{$location->image_url}});">
+                        style="background-image: url('{{ asset('images_dynamic/settings/locations/' . $location->image) }}');">
 
                         <div class="location-footer">
                             <span class="location-name">{{$location->name}}</span>

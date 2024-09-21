@@ -34,13 +34,13 @@
             </div>
             <div class="sidebar-content">
                 <div class="sidebar-logo-container">
+                    
                     <a href="/meni" style="width:auto;text-decoration:none;">
-                    <img src="images/sidebar-logo.png" alt="logo" class="sidebar-logo">
+                    <img src="images_dynamic/settings/{{$settings->logo}}" alt="logo" class="sidebar-logo">
                     </a>
                 </div>
                 <ul class="sidebar-links">
                     <li><a href="/meni" class="sidebar-link">Meni</a></li>
-                    <li><a href="/events" class="sidebar-link d-none">Dogodki</a></li>
                 </ul>
                 <!-- <div class="sidebar-locales">
                     <a class="sidebar-locale --active">SI</a>

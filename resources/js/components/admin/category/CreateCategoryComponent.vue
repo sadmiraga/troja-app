@@ -66,8 +66,11 @@
         </svg>
         </div>
 
+        <textarea class="category-create-edit__input" rows="15" v-model="icon" placeholder="Add SVG code for ICON" style="height:fit-content;">
+        </textarea>
+
         <!-- LOCATION -->
-        <div>
+        <div class="mb-5">
             <div class="drinks-food-create-edit__input-label">
                 <label for="category">{{ this.translations.Choose_location }}</label>
             </div>
@@ -145,6 +148,7 @@ export default {
             options: [],
 
             drink_or_food: "choose",
+            icon:null,
             name: "",
             locations: null,
             location_id: 0,
@@ -201,6 +205,7 @@ export default {
                 window.axios.post(filter_url, {
                     'name': this.name,
                     'drink_or_food':this.drink_or_food,
+                    'icon':this.icon,
                     'location_id':this.location_id,
 
                     'selected_locations':this.selected_location_ids

@@ -74,12 +74,18 @@ class onboardingController extends Controller
         return view('admin.onboarding.continueStocktaking',compact('stocktaking','location'));
     }
 
-
-
     public function locations()
     {
         $locations = Location::all();
-        return view('admin.locations.index', compact('locations'));
+
+        $locations_count = Location::count();
+        
+        if($locations_count == 1){
+            $location = Location::first();
+            return redirect()->route('choose.location',$location->id);
+        } else {
+            return view('admin.locations.index', compact('locations'));
+        }        
     }
 
     //chose location 

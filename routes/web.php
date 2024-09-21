@@ -34,7 +34,26 @@ Route::group(['middleware' => 'locale'], function () {
 
         //Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+
             Route::get('/', [App\Http\Controllers\admin\settingsController::class, 'index'])->name('index');
+            
+            //style
+            Route::get('/style', [App\Http\Controllers\admin\settingsController::class, 'style'])->name('style');
+            Route::post('/style/save', [App\Http\Controllers\admin\settingsController::class, 'saveStyle'])->name('save.style');
+
+            //locations
+            Route::get('/locations', [App\Http\Controllers\admin\settingsController::class, 'locations'])->name('locations');
+            Route::get('/locations/create', [App\Http\Controllers\admin\settingsController::class, 'createLocation'])->name('locations.create');
+            Route::post('/locations/store', [App\Http\Controllers\admin\settingsController::class, 'storeLocation'])->name('locations.store');
+            Route::get('/locations/{location_id}/edit', [App\Http\Controllers\admin\settingsController::class, 'editLocation'])->name('locations.edit');
+            Route::post('/locations/update', [App\Http\Controllers\admin\settingsController::class, 'updateLocation'])->name('locations.update');
+
+            //languages
+            Route::get('/languages', [App\Http\Controllers\admin\settingsController::class, 'languages'])->name('languages');
+            Route::get('/languages/create', [App\Http\Controllers\admin\settingsController::class, 'createLanguage'])->name('languages.create');
+            Route::post('/languages/store', [App\Http\Controllers\admin\settingsController::class, 'storeLanguage'])->name('languages.store');
+
+            Route::get('/menu-settings', [App\Http\Controllers\admin\settingsController::class, 'menuSettings'])->name('menu.settings');
         });
 
     

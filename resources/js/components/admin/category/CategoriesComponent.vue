@@ -99,6 +99,9 @@
                         <!-- <div class="category__icon"></div>--> 
                             
                         <div class="category__title">
+
+                            <div v-html="category.icon"></div>
+
                             <!-- Ime kategorije -->
                             {{category.categoryName}}
                         </div>

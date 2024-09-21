@@ -5394,6 +5394,7 @@ __webpack_require__.r(__webpack_exports__);
       selected_locations: [],
       options: [],
       drink_or_food: "choose",
+      icon: null,
       name: "",
       locations: null,
       location_id: 0,
@@ -5444,6 +5445,7 @@ __webpack_require__.r(__webpack_exports__);
         window.axios.post(filter_url, {
           'name': _this2.name,
           'drink_or_food': _this2.drink_or_food,
+          'icon': _this2.icon,
           'location_id': _this2.location_id,
           'selected_locations': _this2.selected_location_ids
         }, {
@@ -10308,7 +10310,7 @@ __webpack_require__.r(__webpack_exports__);
     //console.log(this.food);
   },
 
-  props: ["drink_categories", "food_categories", "menu_items", "allergens"],
+  props: ["drink_categories", "food_categories", "menu_items", "allergens", "settings"],
   data: function data() {
     return {
       top_category: 1,
@@ -10715,7 +10717,11 @@ var render = function render() {
       staticClass: "category__title-container"
     }, [_c("div", {
       staticClass: "category__title"
-    }, [_vm._v("\n                        " + _vm._s(category.categoryName) + "\n                    ")])]), _vm._v(" "), _c("div", [_c("a", {
+    }, [_c("div", {
+      domProps: {
+        innerHTML: _vm._s(category.icon)
+      }
+    }), _vm._v(" "), _vm._v("\n                        " + _vm._s(category.categoryName) + "\n                    ")])]), _vm._v(" "), _c("div", [_c("a", {
       on: {
         click: function click($event) {
           return _vm.openModalViaButton(category);
@@ -10882,7 +10888,33 @@ var render = function render() {
       d: "M2 0L7 5L12 0L14 1L7 8L0 1L2 0Z",
       fill: "currentColor"
     }
-  })])]), _vm._v(" "), _c("div", [_c("div", {
+  })])]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.icon,
+      expression: "icon"
+    }],
+    staticClass: "category-create-edit__input",
+    staticStyle: {
+      height: "fit-content"
+    },
+    attrs: {
+      rows: "15",
+      placeholder: "Add SVG code for ICON"
+    },
+    domProps: {
+      value: _vm.icon
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.icon = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mb-5"
+  }, [_c("div", {
     staticClass: "drinks-food-create-edit__input-label"
   }, [_c("label", {
     attrs: {
@@ -22025,7 +22057,24 @@ var render = function render() {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("\n                EN\n            ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n                EN\n            ")]), _vm._v(" "), _c("a", {
+    staticStyle: {
+      width: "auto",
+      "text-decoration": "none"
+    },
+    attrs: {
+      href: "/meni"
+    }
+  }, [_c("img", {
+    staticClass: "nav__logo--menu",
+    staticStyle: {
+      width: "170px"
+    },
+    attrs: {
+      src: "images_dynamic/settings/" + this.settings.logo,
+      alt: "logo"
+    }
+  })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       onclick: "openSidebar()"
@@ -22140,28 +22189,7 @@ var render = function render() {
     }, [_vm._v("\n                                    " + _vm._s(menu_item.price) + " €\n                                ")])])])]) : _vm._e();
   }), 0)])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticStyle: {
-      width: "auto",
-      "text-decoration": "none"
-    },
-    attrs: {
-      href: "/meni"
-    }
-  }, [_c("img", {
-    staticClass: "nav__logo--menu",
-    staticStyle: {
-      width: "170px"
-    },
-    attrs: {
-      src: "/images/logo.png",
-      alt: "logo"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

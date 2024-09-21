@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedInteger('location_id')->unsigned()->nullable();;
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
-            $table->string('icon')->nullable();
+            $table->text('icon')->nullable();
 
             $table->softDeletes();
 

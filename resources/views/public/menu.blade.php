@@ -7,6 +7,7 @@
                     :food_categories="{{json_encode($food_categories)}}"
                     :menu_items="{{json_encode($menu_items)}}"
                     :allergens="{{json_encode($allergens)}}"
+                    :settings="{{$settings}}"
                     ></menu-component>
 </div>
 

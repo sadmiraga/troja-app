@@ -11,7 +11,7 @@
 
                 <a href="/meni" style="width: auto; text-decoration: none">
                     <img
-                        src="/images/logo.png"
+                        :src="'images_dynamic/settings/'+this.settings.logo"
                         alt="logo"
                         
                         class="nav__logo--menu"
@@ -156,7 +156,8 @@ export default {
         "drink_categories",
         "food_categories",
         "menu_items",
-        "allergens"
+        "allergens",
+        "settings"
     ],
 
     data() {

@@ -136,20 +136,22 @@ class CategoryController extends Controller
 
         $drink_or_food = $request->input('drink_or_food');
         $selected_locations = $request->input('selected_locations');
+        $icon = $request->input('icon');
+
 
         $category_count = Category::where('categoryName',$new_category_name)->whereIn('location_id',$selected_locations)->count();
 
         if($category_count > 0){
             return response('duplicate');
         }
-        
 
         foreach($selected_locations as $location_id){
 
             $category = new Category();
             $category->categoryName = $request->input('name');
             $category->drink_or_food = $drink_or_food;
-            $category->location_id = $location_id;        
+            $category->location_id = $location_id;
+            $category->icon = $icon;
             $category->save();
         }
         return response('success');

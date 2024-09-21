@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Allergen, Category, Food, Drink, DrinkAllergen, FoodAllergen, MenuItem, MenuItemAllergen};
+use App\Models\{Allergen, Category, Food, Drink, DrinkAllergen, FoodAllergen, MenuItem, MenuItemAllergen, Settings};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -132,8 +132,10 @@ class MenuController extends Controller
 
         $allergens = Allergen::all();
 
+        $settings = Settings::first();
+
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
-        return view('public.menu', compact('menu_items','drink_categories', 'food_categories','allergens'));
+        return view('public.menu', compact('menu_items','drink_categories', 'food_categories','allergens','settings'));
     }
 
     public function getFood($category_id){
