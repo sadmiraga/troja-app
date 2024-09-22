@@ -3,7 +3,7 @@
         <!-- TOP CATEGORIES -->
         <nav id="nav-public" style="height:fit-content;" class="nav-public--menu">
 
-            <div class="logo-button-container">
+            <div class="logo-button-container" style="margin-bottom: 40px;">
 
                 <a href="#" style="color:white;">
                     EN

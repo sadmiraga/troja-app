@@ -22337,7 +22337,10 @@ var render = function render() {
       id: "nav-public"
     }
   }, [_c("div", {
-    staticClass: "logo-button-container"
+    staticClass: "logo-button-container",
+    staticStyle: {
+      "margin-bottom": "40px"
+    }
   }, [_c("a", {
     staticStyle: {
       color: "white"
