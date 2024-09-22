@@ -26,7 +26,7 @@ class MenuController extends Controller
 
         //link allergens to MENU ITEMS
         $menu_items = MenuItem::where('drink_or_food', '!=', null)
-        ->orderBy('created_at', 'desc')
+        ->orderBy('created_at', 'asc')
         ->get()->map(function ($menu_items) {
 
             $allergens_value = "";
