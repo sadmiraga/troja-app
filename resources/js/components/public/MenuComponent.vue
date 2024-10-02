@@ -136,6 +136,18 @@
             </div>
         </main>
 
+        <foooter class="menu-footer">
+            <div class="allergens-container" style="background-color:black;">
+                <div class="row">
+                    <p>*Slike hrane in pijače so simbolične.</p>
+                </div>
+                <div class="row">
+                    <p v-for="allergen in allergens">
+                        {{ allergen.shortcode }} - {{ allergen.name }}
+                    </p>
+                </div>
+            </div>
+        </foooter>
 
     </div>
 </template>

@@ -150,7 +150,8 @@
               <li v-for="selected_allergen in selected_allergens">
                   <div class="drinks-food-allergens__allergen-container">
                       <div class="drinks-food-allergens__allergen-name">
-                          {{ selected_allergen.name }}
+                          ( {{ selected_allergen.shortcode }} ) -
+                          {{ selected_allergen.name }} 
                       </div>
                       <div class="drinks-food-allergens__allergen-switch">
                           <label class="switch">
@@ -210,16 +211,20 @@ export default {
                 id: allergen.id,
                 name: allergen.name,
                 selected: true,
+                shortcode: allergen.shortcode
             });
         } else {
             this.selected_allergens.push({
                 id: allergen.id,
                 name: allergen.name,
                 selected: false,
+                shortcode: allergen.shortcode
             });
         }
     });
     
+    console.log(this.selected_allergens);
+
   },
 
   props: ["menu_item","food_categories","drink_categories","allergens","db_selected_allergens"],

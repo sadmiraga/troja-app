@@ -7304,16 +7304,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.selected_allergens.push({
           id: allergen.id,
           name: allergen.name,
-          selected: true
+          selected: true,
+          shortcode: allergen.shortcode
         });
       } else {
         _this.selected_allergens.push({
           id: allergen.id,
           name: allergen.name,
-          selected: false
+          selected: false,
+          shortcode: allergen.shortcode
         });
       }
     });
+    console.log(this.selected_allergens);
   },
   props: ["menu_item", "food_categories", "drink_categories", "allergens", "db_selected_allergens"],
   data: function data() {
@@ -15530,7 +15533,7 @@ var render = function render() {
       staticClass: "drinks-food-allergens__allergen-container"
     }, [_c("div", {
       staticClass: "drinks-food-allergens__allergen-name"
-    }, [_vm._v("\n                        " + _vm._s(selected_allergen.name) + "\n                    ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                        ( " + _vm._s(selected_allergen.shortcode) + " ) -\n                        " + _vm._s(selected_allergen.name) + " \n                    ")]), _vm._v(" "), _c("div", {
       staticClass: "drinks-food-allergens__allergen-switch"
     }, [_c("label", {
       staticClass: "switch"
@@ -22492,7 +22495,20 @@ var render = function render() {
         color: "#B79238"
       }
     }, [_vm._v("\n                                    " + _vm._s(menu_item.price) + " €\n                                ")])])])]) : _vm._e();
-  }), 0)])])])]);
+  }), 0)])])]), _vm._v(" "), _c("foooter", {
+    staticClass: "menu-footer"
+  }, [_c("div", {
+    staticClass: "allergens-container",
+    staticStyle: {
+      "background-color": "black"
+    }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("p", [_vm._v("*Slike hrane in pijače so simbolične.")])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, _vm._l(_vm.allergens, function (allergen) {
+    return _c("p", [_vm._v("\n                    " + _vm._s(allergen.shortcode) + " - " + _vm._s(allergen.name) + "\n                ")]);
+  }), 0)])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;

@@ -74,6 +74,7 @@ class menuItemsController extends Controller
         $drink_categories = Category::where('drink_or_food', "drink")->get();
         $allergens = Allergen::all();
 
+
         $db_selected_allergens = MenuItemAllergen::where('menu_item_id', $menu_item->id)->get();
 
         return view('admin.menu.edit',compact('menu_item','food_categories','drink_categories','allergens','db_selected_allergens'));
