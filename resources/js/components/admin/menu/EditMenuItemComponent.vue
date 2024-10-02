@@ -199,31 +199,8 @@ export default {
 
 
     //links allergens. 
-    //create selected_allergens array
-    setTimeout(() => {
-      this.allergens.forEach((allergen) => {
-          var found = this.db_selected_allergens.find(
-              (item) => item.allergen_id === allergen.id
-          );
-
-          // allergen is selected
-          if (found != null) {
-              this.selected_allergens.push({
-                  id: allergen.id,
-                  name: allergen.name,
-                  selected: true,
-                  shortcode: allergen.shortcode
-              });
-          } else {
-              this.selected_allergens.push({
-                  id: allergen.id,
-                  name: allergen.name,
-                  selected: false,
-                  shortcode: allergen.shortcode
-              });
-          }
-      });
-    }, 1000); // 1000 ms = 1 second
+    this.initializeSelectedAllergens();
+  
 
     console.log(this.selected_allergens);
   },
@@ -272,6 +249,32 @@ export default {
   },
 
   methods: {
+
+    initializeSelectedAllergens(){
+      this.allergens.forEach((allergen) => {
+          var found = this.db_selected_allergens.find(
+              (item) => item.allergen_id === allergen.id
+          );
+
+          // allergen is selected
+          if (found != null) {
+              this.selected_allergens.push({
+                  id: allergen.id,
+                  name: allergen.name,
+                  selected: true,
+                  shortcode: allergen.shortcode
+              });
+          } else {
+              this.selected_allergens.push({
+                  id: allergen.id,
+                  name: allergen.name,
+                  selected: false,
+                  shortcode: allergen.shortcode
+              });
+          }
+      });
+    },
+
 
     handleFileUpload(event) {
 

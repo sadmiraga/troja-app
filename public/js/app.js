@@ -7282,7 +7282,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    var _this = this;
     this.banner_image = window.location.origin + '/images_dynamic/menu_items/' + this.menu_item.image;
     this.name = this.menu_item.name;
     this.localType = this.menu_item.drink_or_food;
@@ -7293,32 +7292,7 @@ __webpack_require__.r(__webpack_exports__);
     this.category_id = this.menu_item.category_id;
 
     //links allergens. 
-    //create selected_allergens array
-    setTimeout(function () {
-      _this.allergens.forEach(function (allergen) {
-        var found = _this.db_selected_allergens.find(function (item) {
-          return item.allergen_id === allergen.id;
-        });
-
-        // allergen is selected
-        if (found != null) {
-          _this.selected_allergens.push({
-            id: allergen.id,
-            name: allergen.name,
-            selected: true,
-            shortcode: allergen.shortcode
-          });
-        } else {
-          _this.selected_allergens.push({
-            id: allergen.id,
-            name: allergen.name,
-            selected: false,
-            shortcode: allergen.shortcode
-          });
-        }
-      });
-    }, 1000); // 1000 ms = 1 second
-
+    this.initializeSelectedAllergens();
     console.log(this.selected_allergens);
   },
   props: ["menu_item", "food_categories", "drink_categories", "allergens", "db_selected_allergens"],
@@ -7360,6 +7334,31 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   methods: {
+    initializeSelectedAllergens: function initializeSelectedAllergens() {
+      var _this = this;
+      this.allergens.forEach(function (allergen) {
+        var found = _this.db_selected_allergens.find(function (item) {
+          return item.allergen_id === allergen.id;
+        });
+
+        // allergen is selected
+        if (found != null) {
+          _this.selected_allergens.push({
+            id: allergen.id,
+            name: allergen.name,
+            selected: true,
+            shortcode: allergen.shortcode
+          });
+        } else {
+          _this.selected_allergens.push({
+            id: allergen.id,
+            name: allergen.name,
+            selected: false,
+            shortcode: allergen.shortcode
+          });
+        }
+      });
+    },
     handleFileUpload: function handleFileUpload(event) {
       this.mediaFile = event.target.files[0];
       // Get the uploaded file
