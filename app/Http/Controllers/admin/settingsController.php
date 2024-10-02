@@ -79,7 +79,7 @@ class settingsController extends Controller
     //  LANGUAGES
     public function languages(){
         $languages = Language::all();
-        return view('admin.settings.languages.index');
+        return view('admin.settings.languages.index',compact('languages'));
     }
 
     public function createLanguage(){
@@ -87,8 +87,15 @@ class settingsController extends Controller
     }
 
     public function storeLanguage(Request $request){
-        dd($request->all());
-        return view('admin.settings.languages.index');
+        
+        $language = new Language();
+        $language->name = $request->input('name');
+        $language->shortcode = $request->input('shortcode');
+        $language->icon = $request->input('icon');
+        $language->enabled = true;
+        $language->save();
+
+        return redirect()->route('settings.languages');
     }
 
     public function style(){
@@ -130,5 +137,18 @@ class settingsController extends Controller
     public function menuSettings(){
         $settings = Settings::first();
         return view('admin.settings.menuSettings',compact('settings'));
+    }
+
+
+    public function enableDisableLanguage(Request $request){
+        
+        $language_id = $request->input('language_id');
+        $value = $request->input('value');
+
+        $language = Language::find($language_id);
+        $language->enabled = $value;
+        $language->save();
+
+        return response('success');
     }
 }

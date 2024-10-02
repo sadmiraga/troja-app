@@ -67,6 +67,10 @@
             </svg>
         </div>
 
+        <textarea class="category-create-edit__input" rows="15" v-model="icon" placeholder="Add SVG code for ICON" style="height:fit-content;">
+        </textarea>
+
+
         <button class="category-create-edit__add-button" v-on:click="update">
             {{this.translations.Save}}
         </button>
@@ -85,6 +89,8 @@ export default {
     mounted() {
         this.name = this.category.categoryName;
         this.drink_or_food = this.category.drink_or_food;
+
+        this.icon = this.category.icon;
 
         console.log(this.category); 
     },
@@ -118,6 +124,8 @@ export default {
             drink_or_food: '',
             name: "",
             global_edit: true,
+
+            icon:null,
         };
     },
 
@@ -178,6 +186,7 @@ export default {
                     'category_id':this.category.id,
                     'category_count':this.category_count,
                     'global_edit':this.global_edit,
+                    'icon':this.icon,
 
                     'selected_locations':this.selected_location_ids
 

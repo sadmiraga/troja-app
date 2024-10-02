@@ -43,7 +43,7 @@ Settings / Languages
                 </div>
             </div>
 
-
+            <languages-component :languages="{{json_encode($languages)}}"></languages-component>
             
         </div>
     </div>

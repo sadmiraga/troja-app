@@ -5,9 +5,25 @@
 
             <div class="logo-button-container" style="margin-bottom: 40px;">
 
-                <a href="#" style="color:white;">
-                    EN
-                </a>
+                <!-- Dropdown for languages -->
+                <div class="dropdown" style="color:white;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span v-if="selectedLanguage == null">
+                            SL
+                        </span>
+                        <span v-if="selectedLanguage != null">{{this.active_language_shortcode}}</span>
+                    </button>
+                    <ul class="dropdown-menu menu-language-dropdown" aria-labelledby="dropdownMenuButton">
+                        <li v-for="language in languages" :key="language.shortcode">
+                            <a class="dropdown-item" href="#" @click="changeLanguage(language)">
+                                <div  v-html="language.icon"></div> 
+                                {{ language.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                
 
                 <a href="/meni" style="width: auto; text-decoration: none">
                     <img
@@ -142,6 +158,9 @@
         <foooter class="menu-footer">
             <div class="allergens-container" style="background-color:black;">
                 <div class="row">
+                    <p>*Nočna cena je veljavna v času dogodka.</p>
+                </div>
+                <div class="row">
                     <p>*Slike hrane in pijače so simbolične.</p>
                 </div>
                 <div class="row">
@@ -181,7 +200,8 @@ export default {
         "food_categories",
         "menu_items",
         "allergens",
-        "settings"
+        "settings",
+        "languages"
     ],
 
     data() {
@@ -190,6 +210,10 @@ export default {
             active_categories: null, // bottom slider for categories
             active_category_id: null, // bottom selected category
             products: null,
+            selectedLanguage: null,
+
+            active_language_shortcode:"SL",
+            active_langauge_icon:null,
         };
     },
 
@@ -202,6 +226,14 @@ export default {
     
 
     methods: {
+
+        changeLanguage(language) {
+            this.selectedLanguage = language;
+            this.active_language_shortcode = language.shortcode;
+
+            // Perform any additional logic, such as reloading content for the selected language
+            console.log(`Language changed to: ${language.name}`);
+        },
 
 
         setActiveCategoryDefault() {

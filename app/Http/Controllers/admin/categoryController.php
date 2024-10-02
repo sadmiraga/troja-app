@@ -160,11 +160,11 @@ class CategoryController extends Controller
 
     public function update(Request $request){
 
-        //dd($request->all());
         //new data
         $name = $request->input('name');
         $category_id = $request->input('category_id');
         $drink_or_food = $request->input('drink_or_food');
+        $icon = $request->input('icon');
 
         $category = Category::find($request->category_id);
         $categories = Category::where('categoryName',$category->categoryName)->get();
@@ -178,17 +178,18 @@ class CategoryController extends Controller
             foreach($selected_locations as $location){
             
                 if($category->location_id == $location){
-                    $this->updateCategory($category->id,$name,$drink_or_food);
+                    $this->updateCategory($category->id,$name,$drink_or_food,$icon);
                 }
             }
         }
         return response('success');
     }
 
-    public function updateCategory($category_id,$name,$drink_or_food){
+    public function updateCategory($category_id,$name,$drink_or_food,$icon){
         $category = Category::find($category_id);
         $category->categoryName = $name;
         $category->drink_or_food = $drink_or_food;
+        $category->icon = $icon;
         $category->save();
         return 'true';
     }

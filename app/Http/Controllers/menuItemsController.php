@@ -129,7 +129,14 @@ class menuItemsController extends Controller
         $menu_item = MenuItem::find($item_id);
         $menu_item->name = $request->input('name');
         $menu_item->drink_or_food = $request->input('type');
-        $menu_item->description = $request->input('description');
+
+        //description
+        $description = $request->input('description');
+        if($description == "null"){
+            $description = null;
+        }
+
+        $menu_item->description = $description;
 
         $menu_item->allergens = $request->input('allergens_text');
         

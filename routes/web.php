@@ -57,6 +57,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('/languages', [App\Http\Controllers\admin\settingsController::class, 'languages'])->name('languages');
             Route::get('/languages/create', [App\Http\Controllers\admin\settingsController::class, 'createLanguage'])->name('languages.create');
             Route::post('/languages/store', [App\Http\Controllers\admin\settingsController::class, 'storeLanguage'])->name('languages.store');
+            Route::post('/languages/enable-disable', [App\Http\Controllers\admin\settingsController::class, 'enableDisableLanguage'])->name('languages.enable-disable');
 
             Route::get('/menu-settings', [App\Http\Controllers\admin\settingsController::class, 'menuSettings'])->name('menu.settings');
         });

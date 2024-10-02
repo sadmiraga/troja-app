@@ -206,6 +206,7 @@
           <label for="weight">{{
             this.translations.Product_is_weightable
           }}</label>
+          
           <div class="drinks-food-allergens__allergen-switch">
             <label class="switch">
               <input

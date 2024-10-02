@@ -107,6 +107,8 @@ Vue.component('rate-us-component', require('./components/reviews/RateUsComponent
 
 Vue.component('menu-settings-component', require('./components/admin/settings/menuSettingsComponent.vue').default);
 
+Vue.component('languages-component', require('./components/admin/LanguagesComponent.vue').default);
+
 
 
 //LOGIN 

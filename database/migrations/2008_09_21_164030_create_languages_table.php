@@ -17,7 +17,9 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('shortcode');
-            $table->string('icon');
+            $table->text('icon');
+            $table->boolean('enabled')->default(false);
+            $table->boolean('main_language')->default(false);
             $table->timestamps();
         });
     }

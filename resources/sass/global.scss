@@ -1,3 +1,45 @@
+
+.category__title svg{
+    width: 30px;
+    height: 30px;
+}
+
+
+.logo-button-container{
+
+    #dropdownMenuButton{
+        border: 1px solid #B79238;
+        background: black;
+        color: #B79238;
+    }
+}
+
+
+
+
+.menu-language-dropdown {
+
+    svg{
+        width: 30px;
+        height: 30px;
+    }
+
+    .dropdown-item{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        font-family: 'Montserrat';
+    }
+
+}
+
+.language-title svg{
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+}
+
 .night-price{
     color: #FFFFFF80;
     font-size: 12px;
