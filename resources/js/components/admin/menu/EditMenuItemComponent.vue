@@ -200,7 +200,12 @@ export default {
 
     //links allergens. 
     //create selected_allergens array
+
     setTimeout(() => {
+
+      console.log("DB selected allergens");
+      console.log(this.db_selected_allergens);
+
       this.allergens.forEach((allergen) => {
           var found = this.db_selected_allergens.find(
               (item) => item.allergen_id === allergen.id
@@ -223,9 +228,13 @@ export default {
               });
           }
       });
-    }, 2500); // 1000 ms = 1 second
 
+      console.log("Populated Selected Allergens.");
     console.log(this.selected_allergens);
+
+    }, 1000); // 1000 ms = 1 second
+
+    
   },
 
   props: ["menu_item","food_categories","drink_categories","allergens","db_selected_allergens"],

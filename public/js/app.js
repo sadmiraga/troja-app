@@ -7294,7 +7294,10 @@ __webpack_require__.r(__webpack_exports__);
 
     //links allergens. 
     //create selected_allergens array
+
     setTimeout(function () {
+      console.log("DB selected allergens");
+      console.log(_this.db_selected_allergens);
       _this.allergens.forEach(function (allergen) {
         var found = _this.db_selected_allergens.find(function (item) {
           return item.allergen_id === allergen.id;
@@ -7317,10 +7320,11 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-    }, 2500); // 1000 ms = 1 second
-
-    console.log(this.selected_allergens);
+      console.log("Populated Selected Allergens.");
+      console.log(_this.selected_allergens);
+    }, 1000); // 1000 ms = 1 second
   },
+
   props: ["menu_item", "food_categories", "drink_categories", "allergens", "db_selected_allergens"],
   data: function data() {
     return {
