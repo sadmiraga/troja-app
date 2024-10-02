@@ -22538,6 +22538,9 @@ var render = function render() {
   }, _vm._l(_vm.menu_items, function (menu_item) {
     return menu_item.category_id == _vm.active_category_id ? _c("a", {
       staticClass: "item",
+      staticStyle: {
+        "border-bottom": "1px solid #B7923880"
+      },
       attrs: {
         href: "#"
       }
@@ -22547,10 +22550,7 @@ var render = function render() {
         src: "images_dynamic/menu_items/" + menu_item.image
       }
     }) : _vm._e(), _vm._v(" "), _c("div", {
-      staticClass: "item__text-container",
-      staticStyle: {
-        "border-bottom": "1px solid #B7923880"
-      }
+      staticClass: "item__text-container"
     }, [_c("h4", {
       staticClass: "item__title"
     }, [_vm._v(_vm._s(menu_item.name))]), _vm._v(" "), _c("div", {

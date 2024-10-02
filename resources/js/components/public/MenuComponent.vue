@@ -91,10 +91,11 @@
                         <a v-for="menu_item in menu_items" 
                             v-if="menu_item.category_id == active_category_id"
                             class="item" 
+                            style="border-bottom: 1px solid #B7923880;"
                             href="#">
 
                              <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
-                            <div class="item__text-container" style="border-bottom: 1px solid #B7923880;">
+                            <div class="item__text-container" >
                                 <h4 class="item__title">{{ menu_item.name }}</h4>
                                 <div class="item__description">
                                     {{ menu_item.description }}
