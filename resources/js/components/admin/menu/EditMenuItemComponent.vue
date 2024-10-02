@@ -200,31 +200,32 @@ export default {
 
     //links allergens. 
     //create selected_allergens array
-    this.allergens.forEach((allergen) => {
-        var found = this.db_selected_allergens.find(
-            (item) => item.allergen_id === allergen.id
-        );
+    setTimeout(() => {
+      this.allergens.forEach((allergen) => {
+          var found = this.db_selected_allergens.find(
+              (item) => item.allergen_id === allergen.id
+          );
 
-        //allergen is selected
-        if (found != null) {
-            this.selected_allergens.push({
-                id: allergen.id,
-                name: allergen.name,
-                selected: true,
-                shortcode: allergen.shortcode
-            });
-        } else {
-            this.selected_allergens.push({
-                id: allergen.id,
-                name: allergen.name,
-                selected: false,
-                shortcode: allergen.shortcode
-            });
-        }
-    });
-    
+          // allergen is selected
+          if (found != null) {
+              this.selected_allergens.push({
+                  id: allergen.id,
+                  name: allergen.name,
+                  selected: true,
+                  shortcode: allergen.shortcode
+              });
+          } else {
+              this.selected_allergens.push({
+                  id: allergen.id,
+                  name: allergen.name,
+                  selected: false,
+                  shortcode: allergen.shortcode
+              });
+          }
+      });
+    }, 1000); // 1000 ms = 1 second
+
     console.log(this.selected_allergens);
-
   },
 
   props: ["menu_item","food_categories","drink_categories","allergens","db_selected_allergens"],
