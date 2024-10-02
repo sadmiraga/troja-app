@@ -22547,7 +22547,10 @@ var render = function render() {
         src: "images_dynamic/menu_items/" + menu_item.image
       }
     }) : _vm._e(), _vm._v(" "), _c("div", {
-      staticClass: "item__text-container"
+      staticClass: "item__text-container",
+      staticStyle: {
+        "border-bottom": "1px solid #B7923880"
+      }
     }, [_c("h4", {
       staticClass: "item__title"
     }, [_vm._v(_vm._s(menu_item.name))]), _vm._v(" "), _c("div", {
@@ -22570,7 +22573,7 @@ var render = function render() {
       }
     }, [menu_item.night_price != null ? _c("span", {
       staticClass: "night-price"
-    }, [_vm._v("Nočna cena: " + _vm._s(menu_item.night_price) + " €  /   ")]) : _vm._e(), _c("br"), _vm._v(" "), _c("span", [_vm._v("Cena: " + _vm._s(menu_item.price) + " €")])])])])]) : _vm._e();
+    }, [_vm._v("Nočna cena: " + _vm._s(menu_item.night_price) + " € ")]) : _vm._e(), _c("br"), _vm._v(" "), _c("span", [_vm._v("Cena: " + _vm._s(menu_item.price) + " €")])])])])]) : _vm._e();
   }), 0)])])]), _vm._v(" "), _c("foooter", {
     staticClass: "menu-footer"
   }, [_c("div", {

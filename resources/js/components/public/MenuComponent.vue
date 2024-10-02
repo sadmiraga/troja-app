@@ -94,7 +94,7 @@
                             href="#">
 
                              <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
-                            <div class="item__text-container">
+                            <div class="item__text-container" style="border-bottom: 1px solid #B7923880;">
                                 <h4 class="item__title">{{ menu_item.name }}</h4>
                                 <div class="item__description">
                                     {{ menu_item.description }}
@@ -126,7 +126,7 @@
 
                                     <!-- price -->
                                     <div class="item__price" style="color: #B79238;text-align:right;">
-                                        <span v-if="menu_item.night_price != null" class="night-price">Nočna cena: {{ menu_item.night_price }} €  /   </span><br>
+                                        <span v-if="menu_item.night_price != null" class="night-price">Nočna cena: {{ menu_item.night_price }} € </span><br>
                                         <span>Cena: {{ menu_item.price }} €</span>
                                     </div>
                                 </div>

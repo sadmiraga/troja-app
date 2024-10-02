@@ -19,8 +19,8 @@ class MenuController extends Controller
     {
 
 
-        $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
-        $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
+        $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'desc')->get();
+        $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'desc')->get();
 
         //$menu_items = MenuItem::all();
 
