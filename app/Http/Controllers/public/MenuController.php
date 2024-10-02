@@ -27,72 +27,7 @@ class MenuController extends Controller
         //link allergens to MENU ITEMS
         $menu_items = MenuItem::where('drink_or_food', '!=', null)
         ->orderBy('created_at', 'asc')
-        ->get()->map(function ($menu_items) {
-
-            $allergens_value = "";
-
-            $menu_item_allergens = MenuItemAllergen::where('menu_item_id', $menu_items->id)->get(); // check here error
-
-            foreach ($menu_item_allergens as $menu_item_allergen) {
-
-                $allergen = Allergen::find($menu_item_allergen->allergen_id);
-                $allergens_value = $allergens_value . $allergen->shortcode . ", ";
-            }
-
-            //cut off last , 
-            $allergens_value = substr($allergens_value, 0, -2);
-
-            $menu_items->allergens = $allergens_value;
-            return $menu_items;
-        });
-        //dd($menu_items);
-
-
-        /*
-        // link allergens to FOOD
-        $food = Food::where('weekly_offer', false)->get()->map(function ($food) {
-            $allergens_value = "";
-
-            $food_allergens = FoodAllergen::where('food_id', $food->id)->get();
-
-            foreach ($food_allergens as $food_allergen) {
-                $allergen = Allergen::find($food_allergen->allergen_id);
-                $allergens_value = $allergens_value . $allergen->shortcode . ", ";
-            }
-
-            //cut off last , 
-            $allergens_value = substr($allergens_value, 0, -2);
-
-            $food->allergens = $allergens_value;
-            return $food;
-        });
-        */
-
-        /*
-        //link allergens to DRINK
-        $drinks = Drink::where('category_id', '!=', null)->get()->map(function ($drink) {
-            $allergens_value = "";
-
-            $drink_allergens = DrinkAllergen::where('drink_id', $drink->id)->get();
-
-            foreach ($drink_allergens as $drink_allergen) {
-                $allergen = Allergen::find($drink_allergen->allergen_id);
-                $allergens_value = $allergens_value . $allergen->shortcode . ", ";
-            }
-
-            //cut off last , 
-            $allergens_value = substr($allergens_value, 0, -2);
-
-            $drink->allergens = $allergens_value;
-            return $drink;
-        });
-
-        
-
-        $default_food = $food->groupBy('category_id');
-        $default_drinks = $drinks->groupBy('category_id');
-
-        */
+        ->get();
 
 
         //CRAFT WEEKLY OFFER
@@ -101,6 +36,7 @@ class MenuController extends Controller
         $startOfWeek = $currentDate->copy()->startOfWeek();
         $endOfWeek = $startOfWeek->copy()->addDays(6);
 
+        //weekly offer.
         /*
         $weekly_offers = DB::table('food')
             ->select(
@@ -139,7 +75,7 @@ class MenuController extends Controller
         $settings = Settings::first();
 
 
-        //dd($menu_items);
+        //dd($menu_items[4]);
 
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
         return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings'));

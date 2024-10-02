@@ -22565,9 +22565,12 @@ var render = function render() {
     }, [menu_item.packing_size != null ? _c("span", [_vm._v(_vm._s(menu_item.packing_size) + " l\n                                    ")]) : _vm._e(), _vm._v(" "), menu_item.weight != null ? _c("span", [_vm._v(_vm._s(menu_item.weight) + " g\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("div", {
       staticClass: "item__price",
       staticStyle: {
-        color: "#B79238"
+        color: "#B79238",
+        "text-align": "right"
       }
-    }, [_vm._v("\n                                    " + _vm._s(menu_item.price) + " €\n                                ")])])])]) : _vm._e();
+    }, [menu_item.night_price != null ? _c("span", {
+      staticClass: "night-price"
+    }, [_vm._v("Nočna cena: " + _vm._s(menu_item.night_price) + " €  /   ")]) : _vm._e(), _c("br"), _vm._v(" "), _c("span", [_vm._v("Cena: " + _vm._s(menu_item.price) + " €")])])])])]) : _vm._e();
   }), 0)])])]), _vm._v(" "), _c("foooter", {
     staticClass: "menu-footer"
   }, [_c("div", {

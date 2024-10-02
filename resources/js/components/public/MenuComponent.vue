@@ -125,8 +125,9 @@
                                     </div>
 
                                     <!-- price -->
-                                    <div class="item__price" style="color: #B79238;">
-                                        {{ menu_item.price }} €
+                                    <div class="item__price" style="color: #B79238;text-align:right;">
+                                        <span v-if="menu_item.night_price != null" class="night-price">Nočna cena: {{ menu_item.night_price }} €  /   </span><br>
+                                        <span>Cena: {{ menu_item.price }} €</span>
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +137,7 @@
             </div>
         </main>
 
+        <!-- footer -->
         <foooter class="menu-footer">
             <div class="allergens-container" style="background-color:black;">
                 <div class="row">
