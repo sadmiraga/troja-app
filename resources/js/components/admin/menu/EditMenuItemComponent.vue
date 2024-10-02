@@ -128,15 +128,29 @@
           </div>
         </div>
 
+        <!-- Allergens -->
+        <div class="drinks-food-create-edit__volume-container mb-5">
+          <div class="drinks-food-create-edit__input-label">
+            <label for="category">Alergeni</label>
+          </div>
+            <div class="drinks-food-create-edit__input-with-symbol-container">
+                <input
+                    type="text"
+                    class="drinks-food-create-edit__input-with-symbol"
+                    v-model="allergens_text"
+                    placeholder="Vpišite alergene"
+                />
+            </div>
+        </div>
+
       </div>
 
       <!-- Buttons -->
       <div class="drinks-food-create-edit__bottom-buttons mt-5">
-        <button v-on:click="update()">Shrani spremembe</button>
+        <button class="w-100" v-on:click="update()">Shrani spremembe</button>
         <button
             v-on:click="goToStep(2)"
-            class="drinks-food-create-edit__add-allergens-button"
-        >
+            class="drinks-food-create-edit__add-allergens-button d-none">
             Uredi alergene
         </button>
     </div>
@@ -196,6 +210,7 @@ export default {
     this.description = this.menu_item.description;
     this.packing_size = this.menu_item.packing_size;
     this.category_id = this.menu_item.category_id;
+    this.allergens_text = this.menu_item.allergens;
 
 
     //links allergens. 
@@ -247,6 +262,7 @@ export default {
       description: null,
       category_id: null,
       packing_size: null,
+      allergens_text:null,
       step: 1,
       localType: this.type, // Local copy of `type`
       mediaFile: null,
@@ -335,6 +351,7 @@ export default {
       formData.append("price", this.price);
       formData.append("night_price",this.night_price);
       formData.append("description", this.description);
+      formData.append("allergens_text", this.allergens_text);
       formData.append("category_id", this.category_id);
       formData.append("packing_size",this.packing_size);
       formData.append("selected_allergens", JSON.stringify(this.selected_allergens));

@@ -130,6 +130,8 @@ class menuItemsController extends Controller
         $menu_item->name = $request->input('name');
         $menu_item->drink_or_food = $request->input('type');
         $menu_item->description = $request->input('description');
+
+        $menu_item->allergens = $request->input('allergens_text');
         
         $menu_item->category_id = $request->input('category_id');
         $menu_item->price = $request->input('price');
@@ -201,6 +203,7 @@ class menuItemsController extends Controller
 
     public function store(Request $request)
     {
+        
 
         $night_price = $request->input('night_price');
         $packing_size = $request->input('packing_size');
@@ -260,6 +263,8 @@ class menuItemsController extends Controller
             $image->save($original_image_path);
             */
         }
+
+        $menu_item->allergens = $request->input('allergens_text');
 
         $menu_item->save();
 

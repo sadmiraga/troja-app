@@ -7181,6 +7181,7 @@ __webpack_require__.r(__webpack_exports__);
       description: null,
       category_id: null,
       packing_size: null,
+      allergens_text: null,
       step: 1,
       localType: this.type,
       // Local copy of `type`
@@ -7237,6 +7238,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("night_price", this.night_price ? this.night_price.replace(",", ".") : null);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
+      formData.append("allergens_text", this.allergens_text);
       formData.append("packing_size", this.packing_size);
       formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
 
@@ -7291,6 +7293,7 @@ __webpack_require__.r(__webpack_exports__);
     this.description = this.menu_item.description;
     this.packing_size = this.menu_item.packing_size;
     this.category_id = this.menu_item.category_id;
+    this.allergens_text = this.menu_item.allergens;
 
     //links allergens. 
     //create selected_allergens array
@@ -7334,6 +7337,7 @@ __webpack_require__.r(__webpack_exports__);
       description: null,
       category_id: null,
       packing_size: null,
+      allergens_text: null,
       step: 1,
       localType: this.type,
       // Local copy of `type`
@@ -7408,6 +7412,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("price", this.price);
       formData.append("night_price", this.night_price);
       formData.append("description", this.description);
+      formData.append("allergens_text", this.allergens_text);
       formData.append("category_id", this.category_id);
       formData.append("packing_size", this.packing_size);
       formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
@@ -15153,7 +15158,7 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "drinks-food-create-edit__input-symbol"
   }, [_vm._v("l")])])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "form-group mb-5 row"
+    staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "form-label col-3 col-form-label"
   }, [_vm._v("Product Image")]), _vm._v(" "), _c("div", {
@@ -15169,8 +15174,33 @@ var render = function render() {
     on: {
       change: _vm.handleFileUpload
     }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "drinks-food-create-edit__volume-container mb-5"
+  }, [_c("div", {
+    staticClass: "drinks-food-create-edit__input-with-symbol-container"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.allergens_text,
+      expression: "allergens_text"
+    }],
+    staticClass: "drinks-food-create-edit__input-with-symbol",
+    attrs: {
+      type: "text",
+      placeholder: "Vpišite alergene"
+    },
+    domProps: {
+      value: _vm.allergens_text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.allergens_text = $event.target.value;
+      }
+    }
   })])])]), _vm._v(" "), _c("div", {
-    staticClass: "drinks-food-create-edit__bottom-buttons"
+    staticClass: "drinks-food-create-edit__bottom-buttons w-100"
   }, [_c("button", {
     on: {
       click: function click($event) {
@@ -15178,7 +15208,7 @@ var render = function render() {
       }
     }
   }, [_vm._v("Dodaj izdelek")]), _vm._v(" "), _c("button", {
-    staticClass: "drinks-food-create-edit__add-allergens-button",
+    staticClass: "drinks-food-create-edit__add-allergens-button d-none",
     on: {
       click: function click($event) {
         return _vm.goToStep(2);
@@ -15512,16 +15542,42 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "drinks-food-create-edit__input-symbol"
-  }, [_vm._v("l")])])]) : _vm._e()]), _vm._v(" "), _c("div", {
+  }, [_vm._v("l")])])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "drinks-food-create-edit__volume-container mb-5"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "drinks-food-create-edit__input-with-symbol-container"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.allergens_text,
+      expression: "allergens_text"
+    }],
+    staticClass: "drinks-food-create-edit__input-with-symbol",
+    attrs: {
+      type: "text",
+      placeholder: "Vpišite alergene"
+    },
+    domProps: {
+      value: _vm.allergens_text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.allergens_text = $event.target.value;
+      }
+    }
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "drinks-food-create-edit__bottom-buttons mt-5"
   }, [_c("button", {
+    staticClass: "w-100",
     on: {
       click: function click($event) {
         return _vm.update();
       }
     }
   }, [_vm._v("Shrani spremembe")]), _vm._v(" "), _c("button", {
-    staticClass: "drinks-food-create-edit__add-allergens-button",
+    staticClass: "drinks-food-create-edit__add-allergens-button d-none",
     on: {
       click: function click($event) {
         return _vm.goToStep(2);
@@ -15585,6 +15641,16 @@ var staticRenderFns = [function () {
       "for": "category"
     }
   }, [_vm._v("Izberite kategorijo artikla")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "drinks-food-create-edit__input-label"
+  }, [_c("label", {
+    attrs: {
+      "for": "category"
+    }
+  }, [_vm._v("Alergeni")])]);
 }];
 render._withStripped = true;
 

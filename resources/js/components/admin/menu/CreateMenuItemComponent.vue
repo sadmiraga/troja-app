@@ -122,23 +122,37 @@
                         <div class="drinks-food-create-edit__input-symbol">l</div>
                     </div>
                 </div>
+                
 
                 <!-- FILE -->
-                <div class="form-group mb-5 row">
+                <div class="form-group row">
                     <label class="form-label col-3 col-form-label">Product Image</label>
                     <div class="col">
                         <input type="file" id="media" @change="handleFileUpload" accept="image/*, video/*" class="form-control" ref="media">
                     </div>
                 </div>
+
+                <!-- Allergens -->
+                <div class="drinks-food-create-edit__volume-container mb-5">
+                    <div class="drinks-food-create-edit__input-with-symbol-container">
+                        <input
+                            type="text"
+                            class="drinks-food-create-edit__input-with-symbol"
+                            v-model="allergens_text"
+                            placeholder="Vpišite alergene"
+                        />
+                    </div>
+                </div>
             </div>
 
+            
+
             <!-- Buttons -->
-            <div class="drinks-food-create-edit__bottom-buttons">
+            <div class="drinks-food-create-edit__bottom-buttons w-100">
                 <button v-on:click="create()">Dodaj izdelek</button>
                 <button
                     v-on:click="goToStep(2)"
-                    class="drinks-food-create-edit__add-allergens-button"
-                >
+                    class="drinks-food-create-edit__add-allergens-button d-none">
                     Dodaj alergene
                 </button>
             </div>
@@ -210,6 +224,7 @@ export default {
       description: null,
       category_id: null,
       packing_size: null,
+      allergens_text:null,
       step: 1,
       localType: this.type, // Local copy of `type`
       mediaFile: null,
@@ -271,6 +286,7 @@ export default {
       formData.append("night_price",this.night_price ? this.night_price.replace(",", ".") : null);
       formData.append("description", this.description);
       formData.append("category_id", this.category_id);
+      formData.append("allergens_text", this.allergens_text);
       formData.append("packing_size",this.packing_size);
       formData.append("selected_allergens", JSON.stringify(this.selected_allergens));
 

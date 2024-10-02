@@ -26,6 +26,8 @@ class CreateMenuItemsTable extends Migration
 
             $table->double('packing_size')->nullable();
             $table->double('weight')->nullable();
+
+            $table->text('allergens')->nullable();
             
             $table->unsignedInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
