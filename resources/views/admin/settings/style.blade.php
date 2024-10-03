@@ -21,6 +21,22 @@ Settings / Style
                 </div>
             </div>
 
+            <!-- Instagram -->
+            <div class="form-group mb-3 mt-5 row">
+                <label class="form-label col-3 col-form-label">Instagram Link</label>
+                <div class="col">
+                    <input type="text" value="<?php if($settings->instagram != null){ echo $settings->instagram; } ?>" id="dark_color" name="instagram" class="form-control" placeholder="Enter Instagram link">
+                </div>
+            </div>
+
+            <!-- Facebook -->
+            <div class="form-group mb-3 mt-5 row">
+                <label class="form-label col-3 col-form-label">Facebook Link</label>
+                <div class="col">
+                    <input type="text" value="<?php if($settings->facebook != null){ echo $settings->facebook; } ?>" id="dark_color" name="facebook" class="form-control" placeholder="Enter facebook link">
+                </div>
+            </div>
+
             <!-- Primary Color -->
             <div class="form-group mb-3 mt-5 row">
                 <label class="form-label col-3 col-form-label">Primary Color</label>
@@ -79,6 +95,8 @@ Settings / Style
                     <input type="text" value="<?php if($settings != null){ echo $settings->dark_color; } ?>" id="dark_color" name="dark_color" class="form-control" placeholder="Enter hexa value for Accent color">
                 </div>
             </div>
+
+            
 
 
             <!-- Buttons -->

@@ -120,6 +120,8 @@ class settingsController extends Controller
         $settings->accent_opacity_color = $request->input('accent_opacity_color');
         $settings->light_color = $request->input('light_color');
         $settings->dark_color = $request->input('dark_color');
+        $settings->instagram = $request->input('instagram');
+        $settings->facebook = $request->input('facebook');
 
         $image = $request->file('logo');
         if ($request->hasFile('logo')) {

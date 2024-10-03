@@ -32,6 +32,11 @@ class CreateSettingsTable extends Migration
             $table->string('light_color')->nullable();
             $table->string('dark_color')->nullable();
 
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+
+
+
             $table->timestamps();
         });
     }
