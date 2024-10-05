@@ -98,12 +98,19 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('/', [App\Http\Controllers\menuItemsController::class, 'index'])->name('index');
             Route::post('/search', [App\Http\Controllers\menuItemsController::class, 'search'])->name('search');
             
+            //create
             Route::get('/create/{type}', [App\Http\Controllers\menuItemsController::class, 'create'])->name('create');
             Route::post('/store', [App\Http\Controllers\menuItemsController::class, 'store'])->name('store');
 
+            //edit
             Route::get('/edit/{menu_item_id}', [App\Http\Controllers\menuItemsController::class, 'edit'])->name('edit');
             Route::post('/update', [App\Http\Controllers\menuItemsController::class, 'update'])->name('update');
 
+            //translations
+            Route::get('/translations/{menu_item_id}', [App\Http\Controllers\menuItemsController::class, 'translationsMenuItem'])->name('translations');
+            Route::post('/translations/save', [App\Http\Controllers\menuItemsController::class, 'saveTranslationsMenuItem'])->name('translations.save');
+
+            //delete
             Route::get('/delete/{menu_item_id}', [App\Http\Controllers\menuItemsController::class, 'delete'])->name('delete');
             
         });

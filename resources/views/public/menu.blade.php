@@ -1,5 +1,9 @@
 @extends('layouts.publicLayout')
 
+@section('title_tag')
+{{$location->name}}
+@endsection
+
 @section('content')
 
 

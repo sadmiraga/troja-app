@@ -11,7 +11,8 @@ Crete Menu Item
     :food_categories="{{json_encode($food_categories)}}" 
     :drink_categories="{{json_encode($drink_categories)}}" 
     :allergens="{{json_encode($allergens)}}"
-    type="{{ $type }}">
+    type="{{ $type }}"
+    languages_count="{{ $languages_count }}">
     </create-menu-items-component>
 </div>
 

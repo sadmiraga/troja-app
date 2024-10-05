@@ -194,6 +194,12 @@
                           Delete
                       </button>
                   </a>
+                  <!-- delete -->
+                  <a :href="'/menu_items/translations/'+menu_item.id" class="w-100">
+                      <button class="btn btn-warning w-100" style="box-sizing: border-box;">
+                          Translations
+                      </button>
+                  </a>
               </div>
 
           </a>

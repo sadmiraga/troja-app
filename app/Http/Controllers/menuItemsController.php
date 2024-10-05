@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuItemAllergen;
 use Illuminate\Http\Request;
-use App\Models\{Category, Allergen, MenuItem};
+use App\Models\{Category, Allergen, Language, MenuItem, MenuItemTranslation};
 
 //use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
@@ -67,6 +67,41 @@ class menuItemsController extends Controller
         return response($menu_items);
     }
 
+
+    public function translationsMenuItem($menu_item_id){
+
+        $languages = Language::where('enabled',true)->get();
+        $menu_item = MenuItem::find($menu_item_id);
+        $translations = MenuItemTranslation::where('menu_item_id',$menu_item_id)->get();
+
+        return view('admin.menu.translations',compact('menu_item','languages','translations'));
+    }
+
+    public function saveTranslationsMenuItem(Request $request){
+ 
+        $description = $request->input('description');
+        $language_id = $request->input('language_id');
+        $menu_item_id = $request->input('menu_item_id');
+        $name = $request->input('name');
+
+
+        $menu_item_translation = MenuItemTranslation::where('language_id',$language_id)->where('menu_item_id',$menu_item_id)->first();
+        $menu_item_translation->name= $name;
+        $menu_item_translation->description= $description;
+        $menu_item_translation->save();
+
+        if($menu_item_translation == null){
+            $menu_item_translation = new MenuItemTranslation();
+            $menu_item_translation->language_id = $language_id;
+            $menu_item_translation->menu_item_id = $menu_item_id;
+            $menu_item_translation->name= $name;
+            $menu_item_translation->description= $description;
+            $menu_item_translation->save();
+        }
+
+        return response('success');
+    }
+
     public function edit($menu_item_id){
 
         $menu_item = MenuItem::find($menu_item_id);
@@ -114,7 +149,10 @@ class menuItemsController extends Controller
 
         //$categories = Category::where('drink_or_food', $type)->get();
         $allergens = Allergen::all();
-        return view('admin.menu.create', compact('food_categories','drink_categories', 'allergens', 'type'));
+
+        $languages_count = Language::where('enabled',true)->count();
+        
+        return view('admin.menu.create', compact('food_categories','drink_categories', 'allergens', 'type','languages_count'));
     }
 
     public function update(Request $request){
@@ -210,7 +248,7 @@ class menuItemsController extends Controller
 
     public function store(Request $request)
     {
-        
+        $translations_redirect = $request->input('translations_redirect');
 
         $night_price = $request->input('night_price');
         $packing_size = $request->input('packing_size');
@@ -289,6 +327,11 @@ class menuItemsController extends Controller
             }
         }
 
-        return response('success');
+        if($translations_redirect == true){
+            return response($menu_item->id);
+        } else {
+            return response('success');
+        }
+        
     }
 }

@@ -150,10 +150,10 @@
             <!-- Buttons -->
             <div class="drinks-food-create-edit__bottom-buttons w-100">
                 <button v-on:click="create()">Dodaj izdelek</button>
-                <button
-                    v-on:click="goToStep(2)"
-                    class="drinks-food-create-edit__add-allergens-button d-none">
-                    Dodaj alergene
+                <button v-on:click="createWithTranslations()"
+                    v-if="languages_count>0"
+                    class="drinks-food-create-edit__add-allergens-button ">
+                    Dodaj izdelek in vpiši prevode
                 </button>
             </div>
         </div>
@@ -213,7 +213,7 @@ export default {
     //allergens here.
   },
 
-  props: ["food_categories", "drink_categories", "allergens", "type"],
+  props: ["food_categories", "drink_categories", "allergens", "type","languages_count"],
 
   data() {
     return {
@@ -228,6 +228,7 @@ export default {
       step: 1,
       localType: this.type, // Local copy of `type`
       mediaFile: null,
+      translationsRedirect:false,
     };
   },
 
@@ -274,6 +275,11 @@ export default {
       }
     },
 
+    createWithTranslations(){
+      this.translationsRedirect = true;
+      this.create();
+    },
+
     create() {
       const formData = new FormData();
 
@@ -281,6 +287,7 @@ export default {
 
       // Append other form data
       formData.append("name", this.name);
+      formData.append("translations_redirect", this.translationsRedirect);
       formData.append("type", this.type);
       formData.append("price", this.price.replace(",", "."));
       formData.append("night_price",this.night_price ? this.night_price.replace(",", ".") : null);
@@ -313,6 +320,13 @@ export default {
               setTimeout(() => {
                 window.location.href = "/menu_items";
               }, 1500);
+            } else{
+              
+              this.$toast.success("You successfully added new product on the Menu.");
+              setTimeout(() => {
+                window.location.href = "/menu_items/translations/"+response.data;
+              }, 1500);
+              
             }
 
             

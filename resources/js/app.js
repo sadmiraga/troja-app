@@ -72,6 +72,8 @@ Vue.component('edit-product', require('./components/admin/product/EditProductCom
 Vue.component('admin-menu-items-component', require('./components/admin/menu/MenuItemsIndexComponent.vue').default);
 Vue.component('create-menu-items-component', require('./components/admin/menu/CreateMenuItemComponent.vue').default);
 Vue.component('edit-menu-items-component', require('./components/admin/menu/EditMenuItemComponent.vue').default);
+Vue.component('edit-menu-items-component', require('./components/admin/menu/EditMenuItemComponent.vue').default);
+Vue.component('menu-item-translations-component', require('./components/admin/menu/MenuItemTranslationComponent.vue').default);
 
 //MY STOCKTAKING
 Vue.component('my-stocktakings', require('./components/admin/stocktaking/MyStocktakingsComponent.vue').default);
