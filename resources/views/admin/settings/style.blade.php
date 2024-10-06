@@ -39,7 +39,7 @@ Settings / Style
 
             <!-- Primary Color -->
             <div class="form-group mb-3 mt-5 row">
-                <label class="form-label col-3 col-form-label">Primary Color</label>
+                <label class="form-label col-3 col-form-label">Primary Color - navbar background - footer background.</label>
                 <div class="col">
                     <input type="text" value="<?php if($settings != null){ echo $settings->primary_color; } ?>" id="primary_color" name="primary_color" class="form-control" placeholder="Enter hexa value for Primary color">
                 </div>
@@ -47,25 +47,26 @@ Settings / Style
 
             <!-- Secondary Color -->
             <div class="form-group mb-3 mt-5 row">
-                <label class="form-label col-3 col-form-label">Secondary Color</label>
+                <label class="form-label col-3 col-form-label">Secondary Color - Hamburger icon, active color of the selected, border bottom color</label>
                 <div class="col">
                     <input type="text" value="<?php if($settings != null){ echo $settings->secondary_color; } ?>" id="secondary_color" name="secondary_color" class="form-control" placeholder="Enter hexa value for Secondary color">
                 </div>
             </div>
 
-            <!-- Tertiary Color -->
-            <div class="form-group mb-3 mt-5 row">
-                <label class="form-label col-3 col-form-label">Secondary Color</label>
-                <div class="col">
-                    <input type="text" value="<?php if($settings != null){ echo $settings->tertiary_color; } ?>" id="tertiary_color" name="tertiary_color" class="form-control" placeholder="Enter hexa value for Tertiary color">
-                </div>
-            </div>
 
             <!-- Accent Color -->
             <div class="form-group mb-3 mt-5 row">
-                <label class="form-label col-3 col-form-label">Accent Color</label>
+                <label class="form-label col-3 col-form-label">Accent Color - item description </label>
                 <div class="col">
                     <input type="text" value="<?php if($settings != null){ echo $settings->accent_color; } ?>" id="accent_color" name="accent_color" class="form-control" placeholder="Enter hexa value for Accent color">
+                </div>
+            </div>
+
+            <!-- Tertiary Color -->
+            <div class="form-group mb-3 mt-5 row">
+                <label class="form-label col-3 col-form-label">body background CSS (tertiary_color)</label>
+                <div class="col">
+                    <input type="text" value="<?php if($settings != null){ echo $settings->tertiary_color; } ?>" id="tertiary_color" name="tertiary_color" class="form-control" placeholder="Enter hexa value for Tertiary color">
                 </div>
             </div>
 

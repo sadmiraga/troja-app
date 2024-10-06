@@ -1,57 +1,25 @@
 <template>
   <div class="drinks-food-edit__container" style="min-height: fit-content">
-    <!-- food TOGGLE -->
-    <div class="mt-3">
-      <div
-        class="drinks-food-create-edit__weight-label events-create__entry-fee-label">
-        <label for="weight">Enable food</label>
-        <div class="drinks-food-allergens__allergen-switch">
-          <label class="switch">
-            <input
-              type="checkbox"
-              checked
-              v-on:change="toggle_food($event.target.checked)" />
-            <div class="slider round"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-    <hr />
-
-    <!-- drinks TOGGLE -->
-    <div class="mt-3">
-      <div
-        class="drinks-food-create-edit__weight-label events-create__entry-fee-label">
-        <label for="weight">Enable Drinks</label>
-        <div class="drinks-food-allergens__allergen-switch">
-          <label class="switch">
-            <input
-              type="checkbox"
-              checked
-              v-on:change="toggle_drinks($event.target.checked)" />
-            <div class="slider round"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-    <hr />
+    
 
     <!-- extra categories TOGGLE -->
     <div class="mt-3">
-      <div
-        class="drinks-food-create-edit__weight-label events-create__entry-fee-label">
+      <div class="drinks-food-create-edit__weight-label events-create__entry-fee-label">
         <label for="weight">Enable Extra Categories</label>
         <div class="drinks-food-allergens__allergen-switch">
           <label class="switch">
             <input
               type="checkbox"
-              v-on:change="toggle_extra_categories($event.target.checked)" />
+              v-model="toggle_extra_categories_value"
+              @change="toggle_extra_categories(toggle_extra_categories_value)" />
             <div class="slider round"></div>
           </label>
         </div>
       </div>
     </div>
     <hr />
+
+
 
     <div
       class="categories-create-edit-container w-100"
@@ -90,14 +58,22 @@
 export default {
   mounted() {
     this.getLocations();
+
+    // Initialize the checkbox value based on the prop from settings
+    if (this.settings && typeof this.settings.extra_categories_enabled !== 'undefined') {
+      this.toggle_extra_categories_value = this.settings.extra_categories_enabled;
+    }
+    console.log(this.settings.extra_categories_enabled);
   },
+
+  props: ["settings"],
 
   data() {
     return {
       selected_locations: [],
       food_enabled: true,
       drinks_enabled: true,
-      toggle_extra_categories: false,
+      toggle_extra_categories_value: false, // Default value that will be overridden in mounted
       icon: null,
       location_id: 0,
     };
@@ -105,8 +81,6 @@ export default {
 
   methods: {
     create() {
-
-        alert(this.location_id);
       const filter_url = `/settings/parent_category/store`;
       return new Promise((resolve) => {
         window.axios
@@ -125,21 +99,16 @@ export default {
             }
           )
           .then((response) => {
-
-            
-
             if (response.data == "success") {
-              this.$toast.success(
-                "Success"
-              );
+              this.$toast.success("Success");
               setTimeout(() => {
                 window.location.href = "/settings";
               }, 1500);
             }
-
           })
-          .then((response) => {})
-          .catch((error) => {});
+          .catch((error) => {
+            console.error(error);
+          });
       });
     },
 
@@ -152,7 +121,31 @@ export default {
     },
 
     toggle_extra_categories(value) {
-      this.toggle_extra_categories = value;
+      this.toggle_extra_categories_value = value; // Properly update the state variable
+      
+      const filter_url = `/settings/toggle-extra-categories`;
+      return new Promise((resolve) => {
+        window.axios
+          .post(
+            filter_url,
+            {
+              value: this.toggle_extra_categories_value,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "app-token": "U0xYT1VaV1RXU1ZUUkxDQjBRMzM3RDBEWUhHSVBG",
+              },
+            }
+          )
+          .then((response) => {
+            console.log("Toggle extra categories response:", response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     },
 
     getLocations() {
@@ -164,8 +157,7 @@ export default {
           this.fillLocations();
         })
         .catch((error) => {
-          console.log(error);
-          this.errored = true;
+          console.error(error);
         })
         .finally(() => (this.loading = false));
     },
@@ -184,11 +176,11 @@ export default {
           }
         })
         .catch((error) => {
-          console.log(error);
-          this.errored = true;
+          console.error(error);
         })
         .finally(() => (this.loading = false));
     },
   },
 };
+
 </script>

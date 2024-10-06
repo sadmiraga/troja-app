@@ -142,6 +142,17 @@ class settingsController extends Controller
     }
 
 
+    public function toggleExtraCategories(Request $request){
+
+        $value = $request->input('value');
+
+        $settings = Settings::first();
+        $settings->extra_categories_enabled = $value;
+        $settings->save();
+        return response('success');
+    }
+
+
     public function enableDisableLanguage(Request $request){
         
         $language_id = $request->input('language_id');

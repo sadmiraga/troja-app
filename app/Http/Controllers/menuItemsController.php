@@ -79,6 +79,7 @@ class menuItemsController extends Controller
 
     public function saveTranslationsMenuItem(Request $request){
  
+        
         $description = $request->input('description');
         $language_id = $request->input('language_id');
         $menu_item_id = $request->input('menu_item_id');
@@ -86,11 +87,14 @@ class menuItemsController extends Controller
 
 
         $menu_item_translation = MenuItemTranslation::where('language_id',$language_id)->where('menu_item_id',$menu_item_id)->first();
-        $menu_item_translation->name= $name;
-        $menu_item_translation->description= $description;
-        $menu_item_translation->save();
 
-        if($menu_item_translation == null){
+        //update
+        if($menu_item_translation != null){
+            $menu_item_translation->name= $name;
+            $menu_item_translation->description= $description;
+            $menu_item_translation->save();
+        } else {
+        //crete 
             $menu_item_translation = new MenuItemTranslation();
             $menu_item_translation->language_id = $language_id;
             $menu_item_translation->menu_item_id = $menu_item_id;

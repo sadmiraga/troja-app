@@ -22,6 +22,7 @@ class CreateSettingsTable extends Migration
             $table->boolean('weekly_menus')->default(false);
             $table->boolean('food_enabled')->default(true);
             $table->boolean('drink_enabled')->default(true);
+            $table->boolean('extra_categories_enabled')->default(false);
 
             //collors
             $table->string('primary_color')->nullable();

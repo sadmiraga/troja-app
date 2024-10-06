@@ -9,7 +9,7 @@ Menu Settings
 
 
 <div id="app">
-    <menu-settings-component></menu-settings-component>
+    <menu-settings-component :settings="{{$settings}}"></menu-settings-component>
 </div>
 
 

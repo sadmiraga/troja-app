@@ -13765,6 +13765,10 @@ h3,
   margin: 8px;
 }
 
+.bottom-row .socials {
+  margin-bottom: 60px;
+}
+
 .description-input {
   width: 100%;
   border-radius: 16px;
@@ -13900,13 +13904,19 @@ body {
   border-radius: 8px;
 }
 
-#nav-public .category-types .--active {
-  background-color: #B79238 !important;
-  border: none !important;
+/* dynamic pill navbar
+#nav-public .category-types .--active{
+    background-color: #B79238 !important; 
+    border:none !important;
 }
-
+*/
+/* categories pills. 
+.categories-container .categories .--active{
+    background-color: #B79238 !important;
+    border: none !important;
+}
+*/
 .categories-container .categories .--active {
-  background-color: #B79238 !important;
   border: none !important;
 }
 

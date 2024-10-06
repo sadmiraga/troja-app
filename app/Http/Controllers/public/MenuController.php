@@ -28,6 +28,15 @@ class MenuController extends Controller
         ->orderBy('created_at', 'asc')
         ->get();
 
+        $menu_items = MenuItem::whereNotNull('drink_or_food')
+    ->with(['translations' => function ($query) {
+        $query->select('menu_item_id', 'language_id', 'name', 'description');
+    }])
+    ->orderBy('created_at', 'asc')
+    ->get();
+
+    //dd($menu_items);
+
 
         //CRAFT WEEKLY OFFER
         $currentDate = Carbon::now();
@@ -76,6 +85,8 @@ class MenuController extends Controller
 
         $location = Location::first();
         //dd($menu_items[4]);
+
+        //dd($settings);
 
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
         return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings','languages','location'));

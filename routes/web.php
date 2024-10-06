@@ -60,6 +60,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/languages/enable-disable', [App\Http\Controllers\admin\settingsController::class, 'enableDisableLanguage'])->name('languages.enable-disable');
 
             Route::get('/menu-settings', [App\Http\Controllers\admin\settingsController::class, 'menuSettings'])->name('menu.settings');
+            Route::post('/toggle-extra-categories', [App\Http\Controllers\admin\settingsController::class, 'toggleExtraCategories'])->name('togle.extra-categories');
         });
 
     

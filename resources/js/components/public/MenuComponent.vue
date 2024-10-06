@@ -1,7 +1,12 @@
 <template>
     <div>
+        <!-- Primary color - navbar background - footer background. -->
+        <!-- secondary color  - Hamburger icon, active color of the selected, border bottom color.  -->
+        <!-- Accent Color - item description  -->
+
+
         <!-- TOP CATEGORIES -->
-        <nav id="nav-public" style="height:fit-content;" class="nav-public--menu">
+        <nav id="nav-public" :style="'height:fit-content;background-color:' + settings.primary_color + ';'" class="nav-public--menu">
 
             <div class="logo-button-container" style="margin-bottom: 40px;">
 
@@ -17,7 +22,7 @@
                         <li v-for="language in languages" :key="language.shortcode">
                             <a class="dropdown-item" href="#" @click="changeLanguage(language)">
                                 <div  v-html="language.icon"></div> 
-                                {{ language.name }}
+                                <span v-if="l">{{ language.name }}</span>
                             </a>
                         </li>
                     </ul>
@@ -34,8 +39,9 @@
                         style="width: 170px;"
                     />
                 </a>
+                
 
-                <button class="btn btn-primary" onclick="openSidebar()">
+                <button class="btn btn-primary" onclick="openSidebar()" :style="'height:fit-content;color:white;'">
                     <svg
                         width="16"
                         height="9"
@@ -56,24 +62,33 @@
                 <a
                     v-on:click="changeTopCategory(1)"
                     :class="{ '--active': top_category === 1 }"
+                    :style="{ color: settings.accent_color, backgroundColor: top_category === 1 ? settings.secondary_color : '' }"
+                    style="border:none !important;"
                     class="category-type"
                     >Hrana</a
                 >
                 <a
                     v-on:click="changeTopCategory(2)"
                     :class="{ '--active': top_category === 2 }"
+                    :style="{ color: settings.accent_color, backgroundColor: top_category === 2 ? settings.secondary_color : '' }"
+                    style="border:none !important;"
                     class="category-type"
                     >Pijača</a
                 >
                 <a
+                    v-if="settings.extra_categories_enabled == true"
                     v-on:click="changeTopCategory(4)"
                     :class="{ '--active': top_category === 4 }"
+                    :style="{ color: settings.accent_color, backgroundColor: top_category === 4 ? settings.secondary_color : '' }"
+                    style="border:none !important;"
                     class="category-type"
                     >Shisha</a
                 >
                 <a
                     v-on:click="changeTopCategory(3)"
                     :class="{ '--active': top_category === 3 }"
+                    :style="{ color: settings.accent_color, backgroundColor: top_category === 3 ? settings.secondary_color : '' }"
+                    style="border:none !important;"
                     class="category-type d-none"
                     >Tedenska ponudba</a
                 >
@@ -81,14 +96,16 @@
         </nav>
 
         <!-- bottom categories -->
-        <div class="categories-container">
-            <div v-if="top_category != 3 && top_category != 4" class="categories" style="padding-bottom: 15px;">
+        <div class="categories-container" :style="'height:fit-content;background-color:' + settings.primary_color + ';'">
+
+            <div v-if="top_category != 3 && top_category != 4" class="categories" style="padding-bottom: 15px;" :style="'height:fit-content;background-color:' + settings.primary_color + ';'">
 
                 <!-- <a href="" class="category --active">Brezalkoholne pijače</a> -->
                 <a
                     v-for="category in active_categories"
                     class="category"
                     :class="{ '--active': category.id === active_category_id }"
+                    :style="{ color: settings.accent_color, backgroundColor: category.id === active_category_id ? settings.secondary_color : '' }"
                     v-on:click="changeActiveCategoryID(category.id)"
                 >
                     <div v-html="category.icon"></div> 
@@ -99,7 +116,7 @@
         </div>
 
         <!-- REDNA PONUDBA -->
-        <main  id="main-public--menu">
+        <main  id="main-public--menu" :style="settings.tertiary_color || ''">
             <!-- ON SELECTED CATEGORY-->
             <div class="types-list">
                 <div class="type">
@@ -111,14 +128,37 @@
                             href="#">
 
                              <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
+
                             <div class="item__text-container" >
-                                <h4 class="item__title">{{ menu_item.name }}</h4>
-                                <div class="item__description">
+
+                                <!-- default name -->
+                                <h4 class="item__title" 
+                                    v-if="selectedLanguage == null"
+                                    :style="'color:' + settings.secondary_color + ';'">
+                                    {{ menu_item.name }}
+                                </h4> 
+
+                                <h4 class="item__title" v-else>{{ menu_item.translations.find(translation => translation.language_id === selectedLanguage.id)?.name || menu_item.name }}</h4>
+
+                                <!--- item description -->
+                                <div class="item__description" 
+                                    v-if="selectedLanguage == null"
+                                    :style="'color:' + settings.accent_color + ';'"
+                                    >
                                     {{ menu_item.description }}
                                 </div>
+
+                                <!-- translated description -->
+                                <div class="item__description" 
+                                :style="'color:' + settings.accent_color + ';'"
+                                v-else>
+                                    {{ menu_item.translations.find(translation => translation.language_id === selectedLanguage.id)?.description || menu_item.description }}
+                                </div>
+
                                 <div
                                     class="item__description"
                                     style="font-weight: 200; font-size: 12px"
+                                    :style="'color:' + settings.accent_color + ';'"
                                 >
                                 <span >
                                     {{menu_item.allergens}}
@@ -143,8 +183,15 @@
 
                                     <!-- price -->
                                     <div class="item__price" style="color: #B79238;text-align:right;">
+
+                                        <!-- nočna cena -->
                                         <span v-if="menu_item.night_price != null" class="night-price">Nočna cena: {{ menu_item.night_price }} € </span><br>
-                                        <span>Cena: {{ menu_item.price }} €</span>
+
+                                        <!-- cena -->
+                                        <span
+                                            :style="'color:' + settings.secondary_color + ';'">
+                                            Cena: {{ menu_item.price }} €
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +203,7 @@
 
         <!-- footer -->
         <foooter class="menu-footer">
-            <div class="allergens-container" style="background-color:black;">
+            <div class="allergens-container" style="background-color:black;" :style="'height:fit-content;background-color:' + settings.primary_color + ';'">
                 <div class="row">
                     <p>*Nočna cena je veljavna v času dogodka.</p>
                 </div>
@@ -174,10 +221,13 @@
     </div>
 </template>
 
+
+
 <script>
 export default {
     mounted() {
         console.log(this.menu_items);
+        //console.log();
         const urlParams = new URLSearchParams(window.location.search);
         const page = Number(urlParams.get("page"));
 
@@ -189,6 +239,8 @@ export default {
         }
 
         this.setActiveCategoryDefault();
+
+        //alert(this.settings.primary_color);
 
         //console.log("DRINK AND FOOD DATA");
         //console.log(this.drinks);
@@ -210,6 +262,7 @@ export default {
             active_categories: null, // bottom slider for categories
             active_category_id: null, // bottom selected category
             products: null,
+
             selectedLanguage: null,
 
             active_language_shortcode:"SL",

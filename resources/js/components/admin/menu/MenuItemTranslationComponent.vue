@@ -106,7 +106,8 @@
                         return 0;
                     }
 
-                    const filter_url = `save`;
+
+                    const filter_url = `/menu_items/translations/save`;
                     return new Promise(resolve => {
                         window.axios.post(filter_url, {
                             'name': name,
@@ -120,7 +121,6 @@
                                 'app-token': 'U0xYT1VaV1RXU1ZUUkxDQjBRMzM3RDBEWUhHSVBG',
                             }
                         }).then(response => {
-
                             if(response.data == "success"){
                                 this.$toast.success("You successfully saved translation");
                             }
@@ -130,10 +130,7 @@
                     
 
                 }
-
                 
-
-
 
             }
 

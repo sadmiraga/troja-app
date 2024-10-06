@@ -7546,7 +7546,7 @@ __webpack_require__.r(__webpack_exports__);
         alert("Vpiši ime v prevod");
         return 0;
       }
-      var filter_url = "save";
+      var filter_url = "/menu_items/translations/save";
       return new Promise(function (resolve) {
         window.axios.post(filter_url, {
           'name': name,
@@ -8842,13 +8842,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.getLocations();
+
+    // Initialize the checkbox value based on the prop from settings
+    if (this.settings && typeof this.settings.extra_categories_enabled !== 'undefined') {
+      this.toggle_extra_categories_value = this.settings.extra_categories_enabled;
+    }
+    console.log(this.settings.extra_categories_enabled);
   },
+  props: ["settings"],
   data: function data() {
     return {
       selected_locations: [],
       food_enabled: true,
       drinks_enabled: true,
-      toggle_extra_categories: false,
+      toggle_extra_categories_value: false,
+      // Default value that will be overridden in mounted
       icon: null,
       location_id: 0
     };
@@ -8856,7 +8864,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     create: function create() {
       var _this = this;
-      alert(this.location_id);
       var filter_url = "/settings/parent_category/store";
       return new Promise(function (resolve) {
         window.axios.post(filter_url, {
@@ -8875,7 +8882,9 @@ __webpack_require__.r(__webpack_exports__);
               window.location.href = "/settings";
             }, 1500);
           }
-        }).then(function (response) {})["catch"](function (error) {});
+        })["catch"](function (error) {
+          console.error(error);
+        });
       });
     },
     toggle_food: function toggle_food(value) {
@@ -8885,37 +8894,53 @@ __webpack_require__.r(__webpack_exports__);
       this.drinks_enabled = value;
     },
     toggle_extra_categories: function toggle_extra_categories(value) {
-      this.toggle_extra_categories = value;
+      var _this2 = this;
+      this.toggle_extra_categories_value = value; // Properly update the state variable
+
+      var filter_url = "/settings/toggle-extra-categories";
+      return new Promise(function (resolve) {
+        window.axios.post(filter_url, {
+          value: _this2.toggle_extra_categories_value
+        }, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "app-token": "U0xYT1VaV1RXU1ZUUkxDQjBRMzM3RDBEWUhHSVBG"
+          }
+        }).then(function (response) {
+          console.log("Toggle extra categories response:", response.data);
+        })["catch"](function (error) {
+          console.error(error);
+        });
+      });
     },
     getLocations: function getLocations() {
-      var _this2 = this;
+      var _this3 = this;
       var get_locations_url = "/api/get-locations/";
       axios.get(get_locations_url).then(function (response) {
-        _this2.locations = response.data;
-        _this2.fillLocations();
+        _this3.locations = response.data;
+        _this3.fillLocations();
       })["catch"](function (error) {
-        console.log(error);
-        _this2.errored = true;
+        console.error(error);
       })["finally"](function () {
-        return _this2.loading = false;
+        return _this3.loading = false;
       });
     },
     getCurrentLocationID: function getCurrentLocationID() {
-      var _this3 = this;
+      var _this4 = this;
       var get_location_id_url = "/get-current-location-id/";
       axios.get(get_location_id_url).then(function (response) {
-        _this3.location_id = response.data;
-        var location = _this3.options.find(function (option) {
-          return option.value === _this3.location_id;
+        _this4.location_id = response.data;
+        var location = _this4.options.find(function (option) {
+          return option.value === _this4.location_id;
         });
         if (location) {
-          _this3.selected_locations.push(location.label);
+          _this4.selected_locations.push(location.label);
         }
       })["catch"](function (error) {
-        console.log(error);
-        _this3.errored = true;
+        console.error(error);
       })["finally"](function () {
-        return _this3.loading = false;
+        return _this4.loading = false;
       });
     }
   }
@@ -10536,6 +10561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log(this.menu_items);
+    //console.log();
     var urlParams = new URLSearchParams(window.location.search);
     var page = Number(urlParams.get("page"));
 
@@ -10546,6 +10572,8 @@ __webpack_require__.r(__webpack_exports__);
       this.changeTopCategory(1);
     }
     this.setActiveCategoryDefault();
+
+    //alert(this.settings.primary_color);
 
     //console.log("DRINK AND FOOD DATA");
     //console.log(this.drinks);
@@ -18738,66 +18766,42 @@ var render = function render() {
     attrs: {
       "for": "weight"
     }
-  }, [_vm._v("Enable food")]), _vm._v(" "), _c("div", {
-    staticClass: "drinks-food-allergens__allergen-switch"
-  }, [_c("label", {
-    staticClass: "switch"
-  }, [_c("input", {
-    attrs: {
-      type: "checkbox",
-      checked: ""
-    },
-    on: {
-      change: function change($event) {
-        return _vm.toggle_food($event.target.checked);
-      }
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "slider round"
-  })])])])]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "mt-3"
-  }, [_c("div", {
-    staticClass: "drinks-food-create-edit__weight-label events-create__entry-fee-label"
-  }, [_c("label", {
-    attrs: {
-      "for": "weight"
-    }
-  }, [_vm._v("Enable Drinks")]), _vm._v(" "), _c("div", {
-    staticClass: "drinks-food-allergens__allergen-switch"
-  }, [_c("label", {
-    staticClass: "switch"
-  }, [_c("input", {
-    attrs: {
-      type: "checkbox",
-      checked: ""
-    },
-    on: {
-      change: function change($event) {
-        return _vm.toggle_drinks($event.target.checked);
-      }
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "slider round"
-  })])])])]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "mt-3"
-  }, [_c("div", {
-    staticClass: "drinks-food-create-edit__weight-label events-create__entry-fee-label"
-  }, [_c("label", {
-    attrs: {
-      "for": "weight"
-    }
   }, [_vm._v("Enable Extra Categories")]), _vm._v(" "), _c("div", {
     staticClass: "drinks-food-allergens__allergen-switch"
   }, [_c("label", {
     staticClass: "switch"
   }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.toggle_extra_categories_value,
+      expression: "toggle_extra_categories_value"
+    }],
     attrs: {
       type: "checkbox"
     },
+    domProps: {
+      checked: Array.isArray(_vm.toggle_extra_categories_value) ? _vm._i(_vm.toggle_extra_categories_value, null) > -1 : _vm.toggle_extra_categories_value
+    },
     on: {
-      change: function change($event) {
-        return _vm.toggle_extra_categories($event.target.checked);
-      }
+      change: [function ($event) {
+        var $$a = _vm.toggle_extra_categories_value,
+          $$el = $event.target,
+          $$c = $$el.checked ? true : false;
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.toggle_extra_categories_value = $$a.concat([$$v]));
+          } else {
+            $$i > -1 && (_vm.toggle_extra_categories_value = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.toggle_extra_categories_value = $$c;
+        }
+      }, function ($event) {
+        return _vm.toggle_extra_categories(_vm.toggle_extra_categories_value);
+      }]
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "slider round"
@@ -22729,9 +22733,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("nav", {
     staticClass: "nav-public--menu",
-    staticStyle: {
-      height: "fit-content"
-    },
+    style: "height:fit-content;background-color:" + _vm.settings.primary_color + ";",
     attrs: {
       id: "nav-public"
     }
@@ -22775,7 +22777,7 @@ var render = function render() {
       domProps: {
         innerHTML: _vm._s(language.icon)
       }
-    }), _vm._v(" \n                            " + _vm._s(language.name) + "\n                        ")])]);
+    }), _vm._v(" "), _vm.l ? _c("span", [_vm._v(_vm._s(language.name))]) : _vm._e()])]);
   }), 0)]), _vm._v(" "), _c("a", {
     staticStyle: {
       width: "auto",
@@ -22795,6 +22797,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
+    style: "height:fit-content;color:white;",
     attrs: {
       onclick: "openSidebar()"
     }
@@ -22819,6 +22822,13 @@ var render = function render() {
     "class": {
       "--active": _vm.top_category === 1
     },
+    staticStyle: {
+      border: "none !important"
+    },
+    style: {
+      color: _vm.settings.accent_color,
+      backgroundColor: _vm.top_category === 1 ? _vm.settings.secondary_color : ""
+    },
     on: {
       click: function click($event) {
         return _vm.changeTopCategory(1);
@@ -22829,25 +22839,46 @@ var render = function render() {
     "class": {
       "--active": _vm.top_category === 2
     },
+    staticStyle: {
+      border: "none !important"
+    },
+    style: {
+      color: _vm.settings.accent_color,
+      backgroundColor: _vm.top_category === 2 ? _vm.settings.secondary_color : ""
+    },
     on: {
       click: function click($event) {
         return _vm.changeTopCategory(2);
       }
     }
-  }, [_vm._v("Pijača")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Pijača")]), _vm._v(" "), _vm.settings.extra_categories_enabled == true ? _c("a", {
     staticClass: "category-type",
     "class": {
       "--active": _vm.top_category === 4
+    },
+    staticStyle: {
+      border: "none !important"
+    },
+    style: {
+      color: _vm.settings.accent_color,
+      backgroundColor: _vm.top_category === 4 ? _vm.settings.secondary_color : ""
     },
     on: {
       click: function click($event) {
         return _vm.changeTopCategory(4);
       }
     }
-  }, [_vm._v("Shisha")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Shisha")]) : _vm._e(), _vm._v(" "), _c("a", {
     staticClass: "category-type d-none",
     "class": {
       "--active": _vm.top_category === 3
+    },
+    staticStyle: {
+      border: "none !important"
+    },
+    style: {
+      color: _vm.settings.accent_color,
+      backgroundColor: _vm.top_category === 3 ? _vm.settings.secondary_color : ""
     },
     on: {
       click: function click($event) {
@@ -22855,17 +22886,23 @@ var render = function render() {
       }
     }
   }, [_vm._v("Tedenska ponudba")])])]), _vm._v(" "), _c("div", {
-    staticClass: "categories-container"
+    staticClass: "categories-container",
+    style: "height:fit-content;background-color:" + _vm.settings.primary_color + ";"
   }, [_vm.top_category != 3 && _vm.top_category != 4 ? _c("div", {
     staticClass: "categories",
     staticStyle: {
       "padding-bottom": "15px"
-    }
+    },
+    style: "height:fit-content;background-color:" + _vm.settings.primary_color + ";"
   }, _vm._l(_vm.active_categories, function (category) {
     return _c("a", {
       staticClass: "category",
       "class": {
         "--active": category.id === _vm.active_category_id
+      },
+      style: {
+        color: _vm.settings.accent_color,
+        backgroundColor: category.id === _vm.active_category_id ? _vm.settings.secondary_color : ""
       },
       on: {
         click: function click($event) {
@@ -22878,6 +22915,7 @@ var render = function render() {
       }
     }), _vm._v(" \n\n                " + _vm._s(category.categoryName) + "\n            ")]);
   }), 0) : _vm._e()]), _vm._v(" "), _c("main", {
+    style: _vm.settings.tertiary_color || "",
     attrs: {
       id: "main-public--menu"
     }
@@ -22888,6 +22926,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "items-list"
   }, _vm._l(_vm.menu_items, function (menu_item) {
+    var _menu_item$translatio, _menu_item$translatio2;
     return menu_item.category_id == _vm.active_category_id ? _c("a", {
       staticClass: "item",
       staticStyle: {
@@ -22903,16 +22942,28 @@ var render = function render() {
       }
     }) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "item__text-container"
-    }, [_c("h4", {
+    }, [_vm.selectedLanguage == null ? _c("h4", {
+      staticClass: "item__title",
+      style: "color:" + _vm.settings.secondary_color + ";"
+    }, [_vm._v("\n                                " + _vm._s(menu_item.name) + "\n                            ")]) : _c("h4", {
       staticClass: "item__title"
-    }, [_vm._v(_vm._s(menu_item.name))]), _vm._v(" "), _c("div", {
-      staticClass: "item__description"
-    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(((_menu_item$translatio = menu_item.translations.find(function (translation) {
+      return translation.language_id === _vm.selectedLanguage.id;
+    })) === null || _menu_item$translatio === void 0 ? void 0 : _menu_item$translatio.name) || menu_item.name))]), _vm._v(" "), _vm.selectedLanguage == null ? _c("div", {
+      staticClass: "item__description",
+      style: "color:" + _vm.settings.accent_color + ";"
+    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]) : _c("div", {
+      staticClass: "item__description",
+      style: "color:" + _vm.settings.accent_color + ";"
+    }, [_vm._v("\n                                " + _vm._s(((_menu_item$translatio2 = menu_item.translations.find(function (translation) {
+      return translation.language_id === _vm.selectedLanguage.id;
+    })) === null || _menu_item$translatio2 === void 0 ? void 0 : _menu_item$translatio2.description) || menu_item.description) + "\n                            ")]), _vm._v(" "), _c("div", {
       staticClass: "item__description",
       staticStyle: {
         "font-weight": "200",
         "font-size": "12px"
-      }
+      },
+      style: "color:" + _vm.settings.accent_color + ";"
     }, [_c("span", [_vm._v("\n                                " + _vm._s(menu_item.allergens) + "\n                            ")])]), _vm._v(" "), _c("div", {
       staticClass: "item__size-price-container"
     }, [_c("div", {
@@ -22925,14 +22976,17 @@ var render = function render() {
       }
     }, [menu_item.night_price != null ? _c("span", {
       staticClass: "night-price"
-    }, [_vm._v("Nočna cena: " + _vm._s(menu_item.night_price) + " € ")]) : _vm._e(), _c("br"), _vm._v(" "), _c("span", [_vm._v("Cena: " + _vm._s(menu_item.price) + " €")])])])])]) : _vm._e();
+    }, [_vm._v("Nočna cena: " + _vm._s(menu_item.night_price) + " € ")]) : _vm._e(), _c("br"), _vm._v(" "), _c("span", {
+      style: "color:" + _vm.settings.secondary_color + ";"
+    }, [_vm._v("\n                                        Cena: " + _vm._s(menu_item.price) + " €\n                                    ")])])])])]) : _vm._e();
   }), 0)])])]), _vm._v(" "), _c("foooter", {
     staticClass: "menu-footer"
   }, [_c("div", {
     staticClass: "allergens-container",
     staticStyle: {
       "background-color": "black"
-    }
+    },
+    style: "height:fit-content;background-color:" + _vm.settings.primary_color + ";"
   }, [_c("div", {
     staticClass: "row"
   }, [_c("p", [_vm._v("*Nočna cena je veljavna v času dogodka.")])]), _vm._v(" "), _c("div", {
