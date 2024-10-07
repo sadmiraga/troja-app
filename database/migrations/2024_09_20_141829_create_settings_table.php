@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
 
             $table->string('logo');
+            $table->string('favicon')->nullable();
 
             $table->boolean('multiple_locations')->default(false);
             $table->boolean('weekly_menus')->default(false);

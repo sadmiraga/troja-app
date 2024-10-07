@@ -22777,7 +22777,7 @@ var render = function render() {
       domProps: {
         innerHTML: _vm._s(language.icon)
       }
-    }), _vm._v(" "), _vm.l ? _c("span", [_vm._v(_vm._s(language.name))]) : _vm._e()])]);
+    }), _vm._v(" "), _c("span", [_vm._v(_vm._s(language.name))])])]);
   }), 0)]), _vm._v(" "), _c("a", {
     staticStyle: {
       width: "auto",
@@ -22931,9 +22931,6 @@ var render = function render() {
       staticClass: "item",
       staticStyle: {
         "border-bottom": "1px solid #B7923880"
-      },
-      attrs: {
-        href: "#"
       }
     }, [menu_item.image != null ? _c("img", {
       staticClass: "item__picture",
@@ -22989,13 +22986,13 @@ var render = function render() {
     style: "height:fit-content;background-color:" + _vm.settings.primary_color + ";"
   }, [_c("div", {
     staticClass: "row"
-  }, [_c("p", [_vm._v("*Nočna cena je veljavna v času dogodka.")])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("p", [_vm._v("*Slike hrane in pijače so simbolične.")])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
   }, _vm._l(_vm.allergens, function (allergen) {
     return _c("p", [_vm._v("\n                    " + _vm._s(allergen.shortcode) + " - " + _vm._s(allergen.name) + "\n                ")]);
-  }), 0)])])], 1);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("p", [_vm._v("*Nočna cena je veljavna v času dogodka.")])]), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("p", [_vm._v("*Slike hrane in pijače so simbolične.")])])])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;

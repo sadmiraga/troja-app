@@ -10,6 +10,8 @@
 
     <title>{{ App\Models\Location::first()->name }}</title>
 
+    <link rel="icon" type="image/x-icon" href="/images_dynamic/settings/favicon.png">
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

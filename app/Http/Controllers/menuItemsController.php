@@ -180,7 +180,14 @@ class menuItemsController extends Controller
 
         $menu_item->description = $description;
 
-        $menu_item->allergens = $request->input('allergens_text');
+
+        //allergens 
+        $allergens_value = $request->input('allergens_text');
+        if($allergens_value == "null"){
+            $allergens_value = null;
+        }
+        $menu_item->allergens = $allergens_value;
+        
         
         $menu_item->category_id = $request->input('category_id');
         $menu_item->price = $request->input('price');
@@ -252,10 +259,13 @@ class menuItemsController extends Controller
 
     public function store(Request $request)
     {
-        $translations_redirect = $request->input('translations_redirect');
 
+
+        $translations_redirect = $request->input('translations_redirect');
         $night_price = $request->input('night_price');
         $packing_size = $request->input('packing_size');
+
+
 
         $menu_item = new MenuItem();
         $menu_item->name = $request->input('name');
@@ -266,6 +276,13 @@ class menuItemsController extends Controller
             $description = null;
         }
         $menu_item->description = $description;
+
+        //allergens 
+        $allergens_value = $request->input('allergens_text');
+        if($allergens_value == "null"){
+            $allergens_value = null;
+        }
+        $menu_item->allergens = $allergens_value;
 
         $category_id = $request->input('category_id');
         $type = $request->input('type');
@@ -313,7 +330,19 @@ class menuItemsController extends Controller
             */
         }
 
-        $menu_item->allergens = $request->input('allergens_text');
+
+        //POSITION
+        $items_with_position = MenuItem::where('category_id',$category_id)->orderBy('position','desc')->get();
+
+        //first item in category.
+        if(count($items_with_position) == 0){
+            $new_position = 0;
+        } else {
+            $new_position = $items_with_position[0]->position + 1;
+        }
+        
+        $menu_item->position = $new_position;
+        
 
         $menu_item->save();
 

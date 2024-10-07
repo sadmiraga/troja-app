@@ -21,21 +21,15 @@ class MenuController extends Controller
         $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
         $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
 
-        //$menu_items = MenuItem::all();
-
-        //link allergens to MENU ITEMS
-        $menu_items = MenuItem::where('drink_or_food', '!=', null)
-        ->orderBy('created_at', 'asc')
-        ->get();
 
         $menu_items = MenuItem::whereNotNull('drink_or_food')
-    ->with(['translations' => function ($query) {
-        $query->select('menu_item_id', 'language_id', 'name', 'description');
-    }])
-    ->orderBy('created_at', 'asc')
-    ->get();
+        ->with(['translations' => function ($query) {
+            $query->select('menu_item_id', 'language_id', 'name', 'description');
+        }])
+        ->orderBy('position', 'asc')
+        ->get();
 
-    //dd($menu_items);
+    
 
 
         //CRAFT WEEKLY OFFER
@@ -84,9 +78,6 @@ class MenuController extends Controller
 
 
         $location = Location::first();
-        //dd($menu_items[4]);
-
-        //dd($settings);
 
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
         return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings','languages','location'));

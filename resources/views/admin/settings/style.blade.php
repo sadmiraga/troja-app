@@ -21,6 +21,14 @@ Settings / Style
                 </div>
             </div>
 
+            <!-- FavIcon -->
+            <div class="form-group mb-3 mt-5 row">
+                <label class="form-label col-3 col-form-label">Favicon</label>
+                <div class="col">
+                    <input type="file" id="favicon" name="favicon" class="form-control">
+                </div>
+            </div>
+
             <!-- Instagram -->
             <div class="form-group mb-3 mt-5 row">
                 <label class="form-label col-3 col-form-label">Instagram Link</label>

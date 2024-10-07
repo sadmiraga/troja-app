@@ -22,12 +22,11 @@
                         <li v-for="language in languages" :key="language.shortcode">
                             <a class="dropdown-item" href="#" @click="changeLanguage(language)">
                                 <div  v-html="language.icon"></div> 
-                                <span v-if="l">{{ language.name }}</span>
+                                <span>{{ language.name }}</span>
                             </a>
                         </li>
                     </ul>
                 </div>
-
                 
 
                 <a href="/meni" style="width: auto; text-decoration: none">
@@ -124,8 +123,7 @@
                         <a v-for="menu_item in menu_items" 
                             v-if="menu_item.category_id == active_category_id"
                             class="item" 
-                            style="border-bottom: 1px solid #B7923880;"
-                            href="#">
+                            style="border-bottom: 1px solid #B7923880;">
 
                              <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
 
@@ -204,16 +202,17 @@
         <!-- footer -->
         <foooter class="menu-footer">
             <div class="allergens-container" style="background-color:black;" :style="'height:fit-content;background-color:' + settings.primary_color + ';'">
-                <div class="row">
-                    <p>*Nočna cena je veljavna v času dogodka.</p>
-                </div>
-                <div class="row">
-                    <p>*Slike hrane in pijače so simbolične.</p>
-                </div>
+                
                 <div class="row">
                     <p v-for="allergen in allergens">
                         {{ allergen.shortcode }} - {{ allergen.name }}
                     </p>
+                </div>
+                <div class="row text-center">
+                    <p>*Nočna cena je veljavna v času dogodka.</p>
+                </div>
+                <div class="row text-center">
+                    <p>*Slike hrane in pijače so simbolične.</p>
                 </div>
             </div>
         </foooter>

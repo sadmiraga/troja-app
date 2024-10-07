@@ -131,6 +131,14 @@ class settingsController extends Controller
             $settings->logo = $imageName;
         }
 
+        $image = $request->file('favicon');
+        if ($request->hasFile('favicon')) {
+            $imageName = "favicon.png";
+            //upload image & save in DB
+            $image->move(public_path('images_dynamic/settings'), $imageName);
+            $settings->favicon = $imageName;
+        }
+
         $settings->save();
         return redirect()->route('settings.index');
     }
