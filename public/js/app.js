@@ -10558,12 +10558,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -10587,7 +10581,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.local_menu_items = _toConsumableArray(this.menu_items);
     this.setActiveCategoryDefault();
   },
-  props: ["drink_categories", "food_categories", "menu_items", "allergens", "settings", "languages"],
+  props: ["drink_categories", "food_categories", "menu_items", "allergens", "settings", "languages", "locale"],
   data: function data() {
     return {
       top_category: 1,
@@ -10601,32 +10595,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
 
-  watch: {
-    selectedLanguage: function selectedLanguage(newLang) {
-      console.log("Language changed to: ".concat(newLang.name));
-      this.refreshMenuItems();
-    }
-  },
   methods: {
-    refreshMenuItems: function refreshMenuItems() {
-      var _this = this;
-      // Update local menu items by mapping translations according to the selected language
-      this.local_menu_items = this.menu_items.map(function (item) {
-        var translation = item.translations.find(function (translation) {
-          var _this$selectedLanguag;
-          return translation.language_id === ((_this$selectedLanguag = _this.selectedLanguage) === null || _this$selectedLanguag === void 0 ? void 0 : _this$selectedLanguag.id);
-        });
-        return _objectSpread(_objectSpread({}, item), {}, {
-          name: (translation === null || translation === void 0 ? void 0 : translation.name) || item.name,
-          description: (translation === null || translation === void 0 ? void 0 : translation.description) || item.description
-        });
-      });
-    },
-    changeLanguage: function changeLanguage(language) {
-      this.selectedLanguage = language;
-      this.active_language_shortcode = language.shortcode;
-      console.log("Language changed to: ".concat(language.name));
-    },
     setActiveCategoryDefault: function setActiveCategoryDefault() {
       if (this.top_category == 1) {
         this.active_category_id = this.food_categories[0]["id"];
@@ -22743,6 +22712,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* binding */ render),
 /* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
 /* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -22770,7 +22743,11 @@ var render = function render() {
       "data-bs-toggle": "dropdown",
       "aria-expanded": "false"
     }
-  }, [_vm.selectedLanguage == null ? _c("span", [_vm._v("\n                        SL\n                    ")]) : _vm._e(), _vm._v(" "), _vm.selectedLanguage != null ? _c("span", [_vm._v(_vm._s(this.active_language_shortcode))]) : _vm._e()]), _vm._v(" "), _c("ul", {
+  }, [_c("span", {
+    staticStyle: {
+      "text-transform": "uppercase"
+    }
+  }, [_vm._v("\n                        " + _vm._s(this.locale) + "\n                    ")])]), _vm._v(" "), _c("ul", {
     staticClass: "dropdown-menu menu-language-dropdown",
     attrs: {
       "aria-labelledby": "dropdownMenuButton"
@@ -22780,14 +22757,9 @@ var render = function render() {
       key: language.shortcode
     }, [_c("a", {
       staticClass: "dropdown-item",
-      attrs: {
+      attrs: _defineProperty({
         href: "#"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.changeLanguage(language);
-        }
-      }
+      }, "href", "/change-lang/" + language.shortcode)
     }, [_c("div", {
       domProps: {
         innerHTML: _vm._s(language.icon)
@@ -22919,6 +22891,9 @@ var render = function render() {
         color: _vm.settings.accent_color,
         backgroundColor: category.id === _vm.active_category_id ? _vm.settings.secondary_color : ""
       },
+      attrs: {
+        href: "#"
+      },
       on: {
         click: function click($event) {
           return _vm.changeActiveCategoryID(category.id);
@@ -22941,7 +22916,6 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "items-list"
   }, _vm._l(_vm.local_menu_items, function (menu_item) {
-    var _menu_item$translatio, _menu_item$translatio2;
     return menu_item.category_id == _vm.active_category_id ? _c("a", {
       staticClass: "item",
       staticStyle: {
@@ -22957,19 +22931,10 @@ var render = function render() {
     }, [_vm.selectedLanguage == null ? _c("h4", {
       staticClass: "item__title",
       style: "color:" + _vm.settings.secondary_color + ";"
-    }, [_vm._v("\n                                " + _vm._s(menu_item.name) + "\n                            ")]) : _c("h4", {
-      staticClass: "item__title"
-    }, [_vm._v(_vm._s(((_menu_item$translatio = menu_item.translations.find(function (translation) {
-      return translation.language_id === _vm.selectedLanguage.id;
-    })) === null || _menu_item$translatio === void 0 ? void 0 : _menu_item$translatio.name) || menu_item.name))]), _vm._v(" "), _vm.selectedLanguage == null ? _c("div", {
+    }, [_vm._v("\n                                " + _vm._s(menu_item.name) + "\n                            ")]) : _vm._e(), _vm._v(" "), _vm.selectedLanguage == null ? _c("div", {
       staticClass: "item__description",
       style: "color:" + _vm.settings.accent_color + ";"
-    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]) : _c("div", {
-      staticClass: "item__description",
-      style: "color:" + _vm.settings.accent_color + ";"
-    }, [_vm._v("\n                                " + _vm._s(((_menu_item$translatio2 = menu_item.translations.find(function (translation) {
-      return translation.language_id === _vm.selectedLanguage.id;
-    })) === null || _menu_item$translatio2 === void 0 ? void 0 : _menu_item$translatio2.description) || menu_item.description) + "\n                            ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                " + _vm._s(menu_item.description) + "\n                            ")]) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "item__description",
       staticStyle: {
         "font-weight": "200",

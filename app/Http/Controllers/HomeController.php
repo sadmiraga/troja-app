@@ -39,15 +39,18 @@ class HomeController extends Controller
 
     public function changeLang($locale){
         
-        app()->setLocale($locale);
+        app()->setLocale(strtolower($locale));
         session()->put('locale', $locale);
 
-        return redirect()->back();
+        $locale = App::getLocale();
 
+        //return redirect()->route('meni');
+        return redirect()->back();
         // Store user's locale preference in a cookie
         //return redirect()->route('dashboard')->withCookie(cookie('locale', $locale, 43200)); // 43200 minutes = 30 days
-        
     }
+
+
 
     public function adminLayout(){
         return view('layouts.adminLayout');

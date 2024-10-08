@@ -1,9 +1,5 @@
 <template>
     <div>
-        <!-- Primary color - navbar background - footer background. -->
-        <!-- secondary color  - Hamburger icon, active color of the selected, border bottom color.  -->
-        <!-- Accent Color - item description  -->
-
 
         <!-- TOP CATEGORIES -->
         <nav id="nav-public" :style="'height:fit-content;background-color:' + settings.primary_color + ';'" class="nav-public--menu">
@@ -13,14 +9,13 @@
                 <!-- Dropdown for languages -->
                 <div class="dropdown" style="color:white;">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span v-if="selectedLanguage == null">
-                            SL
+                        <span style="text-transform:uppercase;">
+                            {{ this.locale }}
                         </span>
-                        <span v-if="selectedLanguage != null">{{this.active_language_shortcode}}</span>
                     </button>
                     <ul class="dropdown-menu menu-language-dropdown" aria-labelledby="dropdownMenuButton">
                         <li v-for="language in languages" :key="language.shortcode">
-                            <a class="dropdown-item" href="#" @click="changeLanguage(language)">
+                            <a class="dropdown-item" href="#" :href="'/change-lang/'+language.shortcode">
                                 <div  v-html="language.icon"></div> 
                                 <span>{{ language.name }}</span>
                             </a>
@@ -101,6 +96,7 @@
 
                 <!-- <a href="" class="category --active">Brezalkoholne pijače</a> -->
                 <a
+                    href="#"
                     v-for="category in active_categories"
                     class="category"
                     :class="{ '--active': category.id === active_category_id }"
@@ -136,21 +132,12 @@
                                     {{ menu_item.name }}
                                 </h4> 
 
-                                <h4 class="item__title" v-else>{{ menu_item.translations.find(translation => translation.language_id === selectedLanguage.id)?.name || menu_item.name }}</h4>
-
                                 <!--- item description -->
                                 <div class="item__description" 
                                     v-if="selectedLanguage == null"
                                     :style="'color:' + settings.accent_color + ';'"
                                     >
                                     {{ menu_item.description }}
-                                </div>
-
-                                <!-- translated description -->
-                                <div class="item__description" 
-                                :style="'color:' + settings.accent_color + ';'"
-                                v-else>
-                                    {{ menu_item.translations.find(translation => translation.language_id === selectedLanguage.id)?.description || menu_item.description }}
                                 </div>
 
                                 <div
@@ -248,7 +235,8 @@ export default {
         "menu_items",
         "allergens",
         "settings",
-        "languages"
+        "languages",
+        "locale",
     ],
 
     data() {
@@ -264,33 +252,8 @@ export default {
         };
     },
 
-    watch: {
-        selectedLanguage: function(newLang) {
-            console.log(`Language changed to: ${newLang.name}`);
-            this.refreshMenuItems();
-        }
-    },
 
     methods: {
-        refreshMenuItems() {
-            // Update local menu items by mapping translations according to the selected language
-            this.local_menu_items = this.menu_items.map(item => {
-                const translation = item.translations.find(
-                    translation => translation.language_id === this.selectedLanguage?.id
-                );
-                return {
-                    ...item,
-                    name: translation?.name || item.name,
-                    description: translation?.description || item.description
-                };
-            });
-        },
-
-        changeLanguage(language) {
-            this.selectedLanguage = language;
-            this.active_language_shortcode = language.shortcode;
-            console.log(`Language changed to: ${language.name}`);
-        },
 
         setActiveCategoryDefault() {
             if (this.top_category == 1) {

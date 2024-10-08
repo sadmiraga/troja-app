@@ -14,6 +14,7 @@
                     :allergens="{{json_encode($allergens)}}"
                     :settings="{{$settings}}"
                     :languages="{{$languages}}"
+                    locale="{{$locale}}"
                     ></menu-component>
 </div>
 

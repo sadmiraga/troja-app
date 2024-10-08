@@ -24,13 +24,24 @@ Route::get('/rate-us', [App\Http\Controllers\feedbackController::class, 'public'
 
 Route::get('/admin', [App\Http\Controllers\public\rootController::class, 'admin'])->name('admin');
 
+Route::get('/change-lang/{locale}', [App\Http\Controllers\HomeController::class, 'changeLang'])->name('change.language');
+
+//Public localized pages
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'localize'], function () {
+    Route::get('/meni', [App\Http\Controllers\public\MenuController::class, 'indexLocalized'])->name('meni.localized');
+});
+
+
+
 
 Route::group(['middleware' => 'locale'], function () {
+
+    Route::get('/meni', [App\Http\Controllers\public\MenuController::class, 'index'])->name('meni');
+
+
     Route::group(['middleware' => 'AdminMiddleware'], function () {
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 
         //Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
@@ -360,7 +371,7 @@ Route::get('/db-backup', [App\Http\Controllers\HomeController::class, 'backupDB'
 //Route::get('/change-lang/{lang}', [App\Http\Controllers\admin\onboardingController::class, 'changeLang'])->name('change.lang');
 
 
-Route::get('/change-lang/{locale}', [App\Http\Controllers\HomeController::class, 'changeLang'])->name('change.language');
 
 
-Route::get('/meni', [App\Http\Controllers\public\MenuController::class, 'index'])->name('meni');
+
+
