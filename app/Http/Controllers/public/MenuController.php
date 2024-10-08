@@ -62,6 +62,7 @@ class MenuController extends Controller
 
             )->join('menu_item_translations','menu_item_translations.menu_item_id','menu_items.id')
             ->where('menu_item_translations.language_id',$language->id)
+            ->orderBy('menu_items.position')
             ->get();
             
 
