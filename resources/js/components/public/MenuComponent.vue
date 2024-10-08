@@ -280,6 +280,7 @@ export default {
     watch: {
         selectedLanguage: function(newLang) {
             this.refreshMenuItems();
+            alert(this.selectedLanguage.id);
             console.log(`Language changed to: ${newLang.name}`);
         }
     },

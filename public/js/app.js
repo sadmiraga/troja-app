@@ -10612,6 +10612,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   watch: {
     selectedLanguage: function selectedLanguage(newLang) {
       this.refreshMenuItems();
+      alert(this.selectedLanguage.id);
       console.log("Language changed to: ".concat(newLang.name));
     }
   },
