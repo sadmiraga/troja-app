@@ -119,7 +119,7 @@
             <!-- ON SELECTED CATEGORY-->
             <div class="types-list">
                 <div class="type">
-                    <div class="items-list">
+                    <div class="items-list" :key="selectedLanguage">
                         <a v-for="menu_item in menu_items" 
                             v-if="menu_item.category_id == active_category_id"
                             class="item" 
@@ -277,9 +277,22 @@ export default {
     },
     */
 
+    watch: {
+        selectedLanguage: function(newLang) {
+            this.refreshMenuItems();
+            console.log(`Language changed to: ${newLang.name}`);
+        }
+    },
+
     
 
     methods: {
+
+        refreshMenuItems() {
+            // Optionally re-fetch or update menu items here if necessary.
+            // Or simply trigger a change that Vue will recognize.
+            this.menu_items = [...this.menu_items]; // Creating a new reference to force reactivity
+        },
 
         changeLanguage(language) {
             this.selectedLanguage = language;

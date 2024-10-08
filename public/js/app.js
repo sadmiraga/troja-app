@@ -10558,6 +10558,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log(this.menu_items);
@@ -10603,7 +10609,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   */
 
+  watch: {
+    selectedLanguage: function selectedLanguage(newLang) {
+      this.refreshMenuItems();
+      console.log("Language changed to: ".concat(newLang.name));
+    }
+  },
   methods: {
+    refreshMenuItems: function refreshMenuItems() {
+      // Optionally re-fetch or update menu items here if necessary.
+      // Or simply trigger a change that Vue will recognize.
+      this.menu_items = _toConsumableArray(this.menu_items); // Creating a new reference to force reactivity
+    },
     changeLanguage: function changeLanguage(language) {
       this.selectedLanguage = language;
       this.active_language_shortcode = language.shortcode;
@@ -22929,6 +22946,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "type"
   }, [_c("div", {
+    key: _vm.selectedLanguage,
     staticClass: "items-list"
   }, _vm._l(_vm.menu_items, function (menu_item) {
     var _menu_item$translatio, _menu_item$translatio2;
