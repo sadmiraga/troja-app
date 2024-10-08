@@ -10595,11 +10595,14 @@ __webpack_require__.r(__webpack_exports__);
       active_langauge_icon: null
     };
   },
+  /*
   watch: {
-    active_category_id: function active_category_id(newVal) {
-      this.changeProductSource();
-    }
+      active_category_id: function (newVal) {
+          this.changeProductSource();
+      },
   },
+  */
+
   methods: {
     changeLanguage: function changeLanguage(language) {
       this.selectedLanguage = language;
@@ -10624,19 +10627,21 @@ __webpack_require__.r(__webpack_exports__);
       if (this.top_category == 1) {
         this.active_categories = this.food_categories;
         this.setActiveCategoryDefault();
-        this.changeProductSource();
+        //this.changeProductSource();
       }
+
       if (this.top_category == 2) {
         this.active_categories = this.drink_categories;
         this.setActiveCategoryDefault();
-        this.changeProductSource();
+        //this.changeProductSource();
       }
+
       if (this.top_category == 3) {
         //this.active_categories = this.food_categories;
       }
       if (this.top_category == 4) {
         this.setActiveCategoryDefault();
-        this.changeProductSource();
+        //this.changeProductSource();
       }
     },
     //change active bottom category from loop.

@@ -187,7 +187,7 @@ class menuItemsController extends Controller
             $allergens_value = null;
         }
         $menu_item->allergens = $allergens_value;
-        
+        $menu_item->allergens = $request->input('allergens_text');
         
         $menu_item->category_id = $request->input('category_id');
         $menu_item->price = $request->input('price');

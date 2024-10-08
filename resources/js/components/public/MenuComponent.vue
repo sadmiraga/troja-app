@@ -269,11 +269,13 @@ export default {
         };
     },
 
+    /*
     watch: {
         active_category_id: function (newVal) {
             this.changeProductSource();
         },
     },
+    */
 
     
 
@@ -308,13 +310,13 @@ export default {
             if (this.top_category == 1) {
                 this.active_categories = this.food_categories;
                 this.setActiveCategoryDefault();
-                this.changeProductSource();
+                //this.changeProductSource();
             }
 
             if (this.top_category == 2) {
                 this.active_categories = this.drink_categories;
                 this.setActiveCategoryDefault();
-                this.changeProductSource();
+                //this.changeProductSource();
             }
 
             if (this.top_category == 3) {
@@ -323,7 +325,7 @@ export default {
 
             if(this.top_category == 4){
                 this.setActiveCategoryDefault();
-                this.changeProductSource();
+                //this.changeProductSource();
             }
         },
 
