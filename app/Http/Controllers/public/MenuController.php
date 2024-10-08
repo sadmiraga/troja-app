@@ -21,6 +21,11 @@ class MenuController extends Controller
 
         $locale = strtolower(session('locale'));
 
+        if($locale == null){
+            app()->setLocale(strtolower( 'si'));
+            session()->put('locale', 'si');
+        }
+
         $language = Language::where('shortcode',$locale)->first();
         
         if($language->main_language == true){
