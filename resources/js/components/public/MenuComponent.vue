@@ -119,8 +119,8 @@
             <!-- ON SELECTED CATEGORY-->
             <div class="types-list">
                 <div class="type">
-                    <div class="items-list" :key="selectedLanguage">
-                        <a v-for="menu_item in menu_items" 
+                    <div class="items-list" >
+                        <a v-for="menu_item in local_menu_items" 
                             v-if="menu_item.category_id == active_category_id"
                             class="item" 
                             style="border-bottom: 1px solid #B7923880;">
@@ -226,24 +226,20 @@
 export default {
     mounted() {
         console.log(this.menu_items);
-        //console.log();
         const urlParams = new URLSearchParams(window.location.search);
         const page = Number(urlParams.get("page"));
 
-        //set general ( TOP ) category
+        // set general (TOP) category
         if (page != 0 && page != null) {
             this.changeTopCategory(page);
         } else {
             this.changeTopCategory(1);
         }
 
+        // Initialize local copy of menu_items
+        this.local_menu_items = [...this.menu_items];
+
         this.setActiveCategoryDefault();
-
-        //alert(this.settings.primary_color);
-
-        //console.log("DRINK AND FOOD DATA");
-        //console.log(this.drinks);
-        //console.log(this.food);
     },
 
     props: [
@@ -257,64 +253,53 @@ export default {
 
     data() {
         return {
-            top_category: 1, // 1 -> drink || 2 -> food || 3 -> tedenska ponudba
-            active_categories: null, // bottom slider for categories
-            active_category_id: null, // bottom selected category
+            top_category: 1,
+            active_categories: null,
+            active_category_id: null,
             products: null,
-
             selectedLanguage: null,
-
-            active_language_shortcode:"SL",
-            active_langauge_icon:null,
+            active_language_shortcode: "SL",
+            active_langauge_icon: null,
+            local_menu_items: [] // Local copy of menu_items to avoid prop mutation
         };
     },
 
-    /*
-    watch: {
-        active_category_id: function (newVal) {
-            this.changeProductSource();
-        },
-    },
-    */
-
     watch: {
         selectedLanguage: function(newLang) {
-            this.refreshMenuItems();
-            alert(this.selectedLanguage.id);
             console.log(`Language changed to: ${newLang.name}`);
+            this.refreshMenuItems();
         }
     },
 
-    
-
     methods: {
-
         refreshMenuItems() {
-            // Optionally re-fetch or update menu items here if necessary.
-            // Or simply trigger a change that Vue will recognize.
-            this.menu_items = [...this.menu_items]; // Creating a new reference to force reactivity
+            // Update local menu items by mapping translations according to the selected language
+            this.local_menu_items = this.menu_items.map(item => {
+                const translation = item.translations.find(
+                    translation => translation.language_id === this.selectedLanguage?.id
+                );
+                return {
+                    ...item,
+                    name: translation?.name || item.name,
+                    description: translation?.description || item.description
+                };
+            });
         },
 
         changeLanguage(language) {
             this.selectedLanguage = language;
             this.active_language_shortcode = language.shortcode;
-
-            // Perform any additional logic, such as reloading content for the selected language
             console.log(`Language changed to: ${language.name}`);
         },
 
-
         setActiveCategoryDefault() {
-            //food
             if (this.top_category == 1) {
                 this.active_category_id = this.food_categories[0]["id"];
             } else if (this.top_category == 2) {
                 this.active_category_id = this.drink_categories[0]["id"];
-            } else if(this.top_category == 4){
+            } else if (this.top_category == 4) {
                 this.active_category_id = 0;
             }
-            
-            
         },
 
         changeTopCategory(value) {
@@ -324,35 +309,27 @@ export default {
             if (this.top_category == 1) {
                 this.active_categories = this.food_categories;
                 this.setActiveCategoryDefault();
-                //this.changeProductSource();
             }
 
             if (this.top_category == 2) {
                 this.active_categories = this.drink_categories;
                 this.setActiveCategoryDefault();
-                //this.changeProductSource();
             }
 
             if (this.top_category == 3) {
-                //this.active_categories = this.food_categories;
+                // Handle category 3 logic here
             }
 
-            if(this.top_category == 4){
+            if (this.top_category == 4) {
                 this.setActiveCategoryDefault();
-                //this.changeProductSource();
             }
         },
 
-        //change active bottom category from loop.
+        // Change active bottom category from loop.
         changeActiveCategoryID(category_id) {
             this.active_category_id = category_id;
         },
-
-        
-
-        
-
-        
     },
 };
+
 </script>
