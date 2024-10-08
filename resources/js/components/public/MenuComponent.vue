@@ -8,7 +8,13 @@
 
                 <!-- Dropdown for languages -->
                 <div class="dropdown" style="color:white;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+
+                        :style="'background-color:' + settings.primary_color + ';'
+                        +'border-color:' + settings.secondary_color + ';'
+                        +'color:' + settings.secondary_color + ';'"
+
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <span style="text-transform:uppercase;">
                             {{ this.locale }}
                         </span>
@@ -35,7 +41,9 @@
                 </a>
                 
 
-                <button class="btn btn-primary" onclick="openSidebar()" :style="'height:fit-content;color:white;'">
+                <button class="btn btn-primary" onclick="openSidebar()" 
+                        style="height:fit-content;color:white;"
+                        :style="'background-color:' + settings.primary_color + ';'+'border-color:' + settings.secondary_color + ';'">
                     <svg
                         width="16"
                         height="9"
@@ -43,6 +51,7 @@
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         class="open-sidebar-button"
+                        :style="'color:' + settings.secondary_color + ';'"
                     >
                         <path
                             d="M0 0H16V1.34737H0V0ZM0 3.36842H16V4.71579H0V3.36842ZM0 6.73684H16V8.08421H0V6.73684Z"
@@ -119,7 +128,10 @@
                         <a v-for="menu_item in local_menu_items" 
                             v-if="menu_item.category_id == active_category_id"
                             class="item" 
-                            style="border-bottom: 1px solid #B7923880;">
+                            :style="settings.accent_opacity_color || ''">
+
+                            <!--accent_opacity_color-->
+                            <!-- style="border-bottom: 1px solid #B7923880;" -->
 
                              <img v-if="menu_item.image != null" class="item__picture" :src="'images_dynamic/menu_items/'+menu_item.image" />
 

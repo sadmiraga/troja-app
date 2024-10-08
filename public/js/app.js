@@ -22737,6 +22737,7 @@ var render = function render() {
     }
   }, [_c("button", {
     staticClass: "btn btn-secondary dropdown-toggle",
+    style: "background-color:" + _vm.settings.primary_color + ";" + "border-color:" + _vm.settings.secondary_color + ";" + "color:" + _vm.settings.secondary_color + ";",
     attrs: {
       type: "button",
       id: "dropdownMenuButton",
@@ -22784,12 +22785,17 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
-    style: "height:fit-content;color:white;",
+    staticStyle: {
+      height: "fit-content",
+      color: "white"
+    },
+    style: "background-color:" + _vm.settings.primary_color + ";" + "border-color:" + _vm.settings.secondary_color + ";",
     attrs: {
       onclick: "openSidebar()"
     }
   }, [_c("svg", {
     staticClass: "open-sidebar-button",
+    style: "color:" + _vm.settings.secondary_color + ";",
     attrs: {
       width: "16",
       height: "9",
@@ -22918,9 +22924,7 @@ var render = function render() {
   }, _vm._l(_vm.local_menu_items, function (menu_item) {
     return menu_item.category_id == _vm.active_category_id ? _c("a", {
       staticClass: "item",
-      staticStyle: {
-        "border-bottom": "1px solid #B7923880"
-      }
+      style: _vm.settings.accent_opacity_color || ""
     }, [menu_item.image != null ? _c("img", {
       staticClass: "item__picture",
       attrs: {

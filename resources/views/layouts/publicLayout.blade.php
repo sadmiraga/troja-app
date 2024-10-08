@@ -27,8 +27,11 @@
 
         <div id="sidebar-public" style="background-color:{{$settings->primary_color}};">
             <div class="sidebar__close-button-container">
-                <button class="btn btn-primary" onclick="closeSidebar()">
-                    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="sidebar__close-button">
+                <button class="btn btn-primary" onclick="closeSidebar()" 
+                    style="background-color:{{$settings->primary_color}} !important;
+                            border-color:{{$settings->secondary_color}} !important;
+                            ">
+                    <svg style="color:{{$settings->secondary_color}};" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="sidebar__close-button">
                         <path d="M12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41L12.59 0Z" fill="currentColor" />
                     </svg>
                 </button>

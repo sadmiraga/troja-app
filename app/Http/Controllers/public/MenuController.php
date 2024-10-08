@@ -64,8 +64,6 @@ class MenuController extends Controller
             ->where('menu_item_translations.language_id',$language->id)
             ->orderBy('menu_items.position')
             ->get();
-            
-
         }
         
 

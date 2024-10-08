@@ -81,7 +81,7 @@ Settings / Style
 
             <!-- Accent Opacity Color -->
             <div class="form-group mb-3 mt-5 row">
-                <label class="form-label col-3 col-form-label">Accent Opacity Color</label>
+                <label class="form-label col-3 col-form-label">Accent Opacity Color  - Menu Item Card CSS</label>
                 <div class="col">
                     <input type="text" value="<?php if($settings != null){ echo $settings->accent_opacity_color; } ?>" id="accent_opacity_color" name="accent_opacity_color" class="form-control" placeholder="Enter hexa value for Accent color">
                 </div>
