@@ -28,11 +28,18 @@ class MenuController extends Controller
 
         $language = Language::where('shortcode',$locale)->first();
         
-        if($language->main_language == true){
+        if($language == null){
             $translated = false;
-        } else {
-            $translated = true;
+        } else{
+
+            if($language->main_language == true){
+                $translated = false;
+            } else {
+                $translated = true;
+            }
+
         }
+        
 
         $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
         $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
