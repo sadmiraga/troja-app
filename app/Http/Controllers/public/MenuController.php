@@ -39,15 +39,22 @@ class MenuController extends Controller
         }
         
 
-        $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
-        $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
+
 
         if($translated == false){
             $menu_items = MenuItem::whereNotNull('drink_or_food')
+
+            //menu items
             ->orderBy('position', 'asc')
             ->get();
+
+            //categories
+            $drink_categories = Category::where('drink_or_food', 'drink')->orderBy('position', 'asc')->get();
+            $food_categories = Category::where('drink_or_food', 'food')->orderBy('position', 'asc')->get();
+
         } else {
 
+            //translated menu items 
             $menu_items = DB::table('menu_items')
             ->select(
                 'menu_items.id as id',
@@ -69,9 +76,47 @@ class MenuController extends Controller
             ->where('menu_item_translations.language_id',$language->id)
             ->orderBy('menu_items.position')
             ->get();
-        }
-        
 
+
+            // translated categories
+
+            
+            $drink_categories = DB::table('categories')
+            ->select(
+                'categories.id as id',
+                //'categories.categoryName as categoryName',
+                'category_translations.name as categoryName',
+                'categories.drink_or_food as drink_or_food',
+                'categories.position as position',
+                'categories.location_id as location_id',
+                'categories.icon as icon',
+
+            )->join('category_translations','category_translations.category_id','categories.id')
+            ->where('category_translations.language_id',$language->id)
+            ->where('drink_or_food','drink')
+            ->orderBy('categories.position')
+            ->get();
+
+            //dd($drink_categories);
+
+            $food_categories = DB::table('categories')
+            ->select(
+                'categories.id as id',
+                //'categories.categoryName as categoryName',
+                'category_translations.name as categoryName',
+                'categories.drink_or_food as drink_or_food',
+                'categories.position as position',
+                'categories.location_id as location_id',
+                'categories.icon as icon',
+
+            )->join('category_translations','category_translations.category_id','categories.id')
+            ->where('category_translations.language_id',$language->id)
+            ->where('drink_or_food','food')
+            ->orderBy('categories.position','asc')
+            ->get();
+
+        }
+    
         //CRAFT WEEKLY OFFER
         $currentDate = Carbon::now();
 
@@ -119,8 +164,18 @@ class MenuController extends Controller
 
         $location = Location::first();
 
+
+        //translations 
+        $translations = json_encode([
+            'Food' => trans('Food'),
+        ]);
+
+
+        //dd($translations,$locale);
+
+
         //return view('public.menu', compact('drink_categories', 'food_categories', 'food', 'drinks', 'default_food', 'default_drinks','allergens'));
-        return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings','languages','location','locale'));
+        return view('public.menu', compact('menu_items', 'drink_categories', 'food_categories', 'allergens', 'settings','languages','location','locale','translations'));
     }
 
     public function getFood($category_id)

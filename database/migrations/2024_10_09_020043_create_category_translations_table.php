@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuItemTranslationsTable extends Migration
+class CreateCategoryTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,21 @@ class CreateMenuItemTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_item_translations', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('category_translations', function (Blueprint $table) {
 
+            $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
 
             // language id 
             $table->unsignedInteger('language_id')->unsigned();
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
 
             // menu item id 
-            $table->unsignedInteger('menu_item_id')->unsigned();
-            $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
-
-
+            $table->unsignedInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->timestamps();
+
         });
     }
 
@@ -40,6 +38,6 @@ class CreateMenuItemTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_item_translations');
+        Schema::dropIfExists('category_translations');
     }
 }

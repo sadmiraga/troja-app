@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Queue\Failed\PrunableFailedJobProvider;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\{ Allergen, CategoryTranslation, Language, MenuItem, MenuItemTranslation};
+
 class CategoryController extends Controller
 {
 
@@ -241,6 +243,39 @@ class CategoryController extends Controller
         
 
         return response(json_encode($locations));
+    }
+
+
+    public function translationsCategory($category_id){
+        $languages = Language::where('enabled',true)->get();
+        $category = Category::find($category_id);
+        $translations = CategoryTranslation::where('category_id',$category_id)->get();
+        return view('admin.categories.translations',compact('category','translations','languages'));
+    }
+
+    public function saveTranslationsCategory(Request $request){
+
+        $language_id = $request->input('language_id');
+        $category_id = $request->input('category_id');
+        $name = $request->input('name');
+
+
+        $category_translation = CategoryTranslation::where('language_id',$language_id)->where('category_id',$category_id)->first();
+
+        //update
+        if($category_translation != null){
+            $category_translation->name= $name;
+            $category_translation->save();
+        } else {
+        //crete 
+            $category_translation = new CategoryTranslation();
+            $category_translation->language_id = $language_id;
+            $category_translation->category_id = $category_id;
+            $category_translation->name= $name;
+            $category_translation->save();
+        }
+
+        return response('success');
 
     }
 }

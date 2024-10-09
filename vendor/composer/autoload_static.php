@@ -666,6 +666,7 @@ class ComposerStaticInit467762219b681c3733456390cd4728df
         'App\\Imports\\deliveryImport' => __DIR__ . '/../..' . '/app/Imports/deliveryImport.php',
         'App\\Models\\Allergen' => __DIR__ . '/../..' . '/app/Models/Allergen.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\CategoryTranslation' => __DIR__ . '/../..' . '/app/Models/CategoryTranslation.php',
         'App\\Models\\Delivery' => __DIR__ . '/../..' . '/app/Models/Delivery.php',
         'App\\Models\\DeliveryProduct' => __DIR__ . '/../..' . '/app/Models/DeliveryProduct.php',
         'App\\Models\\Drink' => __DIR__ . '/../..' . '/app/Models/Drink.php',

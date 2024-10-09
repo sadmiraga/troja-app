@@ -113,6 +113,9 @@
                         <a :href="'/category/edit/'+category.id" >
                             <button class="category__edit-button">{{translations.Edit}}</button>
                         </a>
+                        <a :href="'/category/translations/'+category.id" >
+                            <button class="category__edit-button">Translations</button>
+                        </a>
                     </div>
                 </div>
             </div>

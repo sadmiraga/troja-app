@@ -56,6 +56,7 @@ return array(
     'App\\Imports\\deliveryImport' => $baseDir . '/app/Imports/deliveryImport.php',
     'App\\Models\\Allergen' => $baseDir . '/app/Models/Allergen.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+    'App\\Models\\CategoryTranslation' => $baseDir . '/app/Models/CategoryTranslation.php',
     'App\\Models\\Delivery' => $baseDir . '/app/Models/Delivery.php',
     'App\\Models\\DeliveryProduct' => $baseDir . '/app/Models/DeliveryProduct.php',
     'App\\Models\\Drink' => $baseDir . '/app/Models/Drink.php',

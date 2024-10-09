@@ -29,6 +29,9 @@ Vue.component('popup-component', require('./components/PopupMessageComponent.vue
 Vue.component('categories-component', require('./components/admin/category/CategoriesComponent.vue').default);
 Vue.component('newcategory-component', require('./components/admin/category/CreateCategoryComponent.vue').default);
 Vue.component('editcategory-component', require('./components/admin/category/EditCategoryComponent.vue').default);
+Vue.component('category-translation-component', require('./components/admin/category/CategoryTranslationComponent.vue').default);
+
+
 
 //drinks
 Vue.component('drinks-component', require('./components/admin/drinks/DrinksComponent.vue').default);

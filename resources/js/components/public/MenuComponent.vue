@@ -29,7 +29,7 @@
                     </ul>
                 </div>
                 
-
+                <!-- logo -->
                 <a href="/meni" style="width: auto; text-decoration: none">
                     <img
                         :src="'images_dynamic/settings/'+this.settings.logo"
@@ -40,7 +40,7 @@
                     />
                 </a>
                 
-
+                <!-- hamburger -->
                 <button class="btn btn-primary" onclick="openSidebar()" 
                         style="height:fit-content;color:white;"
                         :style="'background-color:' + settings.primary_color + ';'+'border-color:' + settings.secondary_color + ';'">
@@ -249,6 +249,7 @@ export default {
         "settings",
         "languages",
         "locale",
+        "translations"
     ],
 
     data() {

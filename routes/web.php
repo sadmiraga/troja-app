@@ -267,6 +267,10 @@ Route::group(['middleware' => 'locale'], function () {
             Route::post('/store', [App\Http\Controllers\admin\categoryController::class, 'store'])->name('store');
             Route::post('/update', [App\Http\Controllers\admin\categoryController::class, 'update'])->name('update');
             Route::post('/search', [App\Http\Controllers\admin\categoryController::class, 'search'])->name('search');
+
+            //translations
+            Route::get('/translations/{category_id}', [App\Http\Controllers\admin\categoryController::class, 'translationsCategory'])->name('translations');
+            Route::post('/translations/save', [App\Http\Controllers\admin\categoryController::class, 'saveTranslationsCategory'])->name('translations.save');
     
             Route::post('/get-count', [App\Http\Controllers\admin\categoryController::class, 'getCount'])->name('get.count');
     
