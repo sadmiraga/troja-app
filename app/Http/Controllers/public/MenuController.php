@@ -31,13 +31,11 @@ class MenuController extends Controller
         if($language == null){
             $translated = false;
         } else{
-
             if($language->main_language == true){
                 $translated = false;
             } else {
                 $translated = true;
             }
-
         }
         
 
