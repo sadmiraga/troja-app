@@ -242,7 +242,7 @@ class stocktakingController extends Controller
                 'products.id as id',
                 'products.name as name',
                 'products.enum as enum',
-                'products.price as price',
+                //'products.price as price',
                 'products.weightable as weightable',
                 'products.packing_weight as packing_weight',
                 'products.packing_size as packing_size',
