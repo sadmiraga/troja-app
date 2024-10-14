@@ -176,7 +176,7 @@ class productController extends Controller
 
             $product = new Product();
             //data
-            $product->food_or_drink = $request->input('type');
+            //$product->food_or_drink = $request->input('type');
             $product->location_id = $location_id;
             $product->category_id = $category_localized->id;
             $product->name = $request->input('name');
