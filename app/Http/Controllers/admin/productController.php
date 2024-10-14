@@ -72,7 +72,7 @@ class productController extends Controller
             ->select(
                 'products.id as id',
                 'products.name as name',
-                'products.price as price',
+                //'products.price as price',
                 'products.description as description',
                 'products.enum as enum',
                 'products.weightable as weightable',
