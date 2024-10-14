@@ -180,7 +180,7 @@ class productController extends Controller
             $product->location_id = $location_id;
             $product->category_id = $category_localized->id;
             $product->name = $request->input('name');
-            $product->price = $request->input('price');
+            //$product->price = $request->input('price');
             $product->description = $request->input('description');
             $product->enum = $request->input('enum_type');
             $product->weightable = $request->input('weightable');
