@@ -68,11 +68,12 @@ class productController extends Controller
 
     public function index()
     {
+        
         $products = DB::table('products')
             ->select(
                 'products.id as id',
                 'products.name as name',
-                //'products.price as price',
+                'products.price as price',
                 'products.description as description',
                 'products.enum as enum',
                 'products.weightable as weightable',
@@ -176,11 +177,11 @@ class productController extends Controller
 
             $product = new Product();
             //data
-            //$product->food_or_drink = $request->input('type');
+            $product->food_or_drink = $request->input('type');
             $product->location_id = $location_id;
             $product->category_id = $category_localized->id;
             $product->name = $request->input('name');
-            //$product->price = $request->input('price');
+            $product->price = $request->input('price');
             $product->description = $request->input('description');
             $product->enum = $request->input('enum_type');
             $product->weightable = $request->input('weightable');
