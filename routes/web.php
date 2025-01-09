@@ -375,6 +375,7 @@ Route::get('/db-backup', [App\Http\Controllers\HomeController::class, 'backupDB'
 //Route::get('/change-lang/{lang}', [App\Http\Controllers\admin\onboardingController::class, 'changeLang'])->name('change.lang');
 
 
+Route::get('/calculator', [App\Http\Controllers\HomeController::class, 'bottleCalculator']);
 
 
 

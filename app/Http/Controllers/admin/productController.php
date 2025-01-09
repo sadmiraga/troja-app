@@ -181,6 +181,7 @@ class productController extends Controller
             $product->location_id = $location_id;
             $product->category_id = $category_localized->id;
             $product->name = $request->input('name');
+            $product->code = $request->input('code');
             $product->price = $request->input('price');
             $product->description = $request->input('description');
             $product->enum = $request->input('enum_type');
@@ -311,6 +312,7 @@ class productController extends Controller
             $product_update->packing_weight = $request->input('packing_weight');
             $product_update->packing_size = $request->input('packing_size');
             $product_update->storage = $request->input('storage');
+            $product_update->code = $request->input('code');
 
             $product_update->category_id = $category_localized->id;
             $product_update->save();

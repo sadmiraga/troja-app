@@ -8203,6 +8203,83 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      fullWeight: null,
+      volume: null,
+      drinkType: "water",
+      emptyWeight: null,
+      toastVisible: false,
+      // State for toast notification
+      densities: {
+        water: 1000,
+        // g/L
+        beer: 1010,
+        // g/L
+        wine: 990,
+        // g/L
+        spirits: 940,
+        // g/L
+        gin: 790,
+        // g/L
+        whiskey: 790,
+        // g/L
+        brandy: 950,
+        // g/L
+        vodka: 790,
+        // g/L
+        rum: 790 // g/L
+      }
+    };
+  },
+
+  methods: {
+    setVolume: function setVolume(value) {
+      this.volume = value;
+    },
+    calculateEmptyBottleWeight: function calculateEmptyBottleWeight() {
+      if (this.fullWeight && this.volume && this.drinkType) {
+        var drinkDensity = this.densities[this.drinkType];
+        var liquidWeight = this.volume * drinkDensity;
+        this.emptyWeight = this.fullWeight - liquidWeight;
+      } else {
+        alert("Please fill in all fields correctly.");
+      }
+    },
+    copyToClipboard: function copyToClipboard() {
+      var _this = this;
+      if (this.emptyWeight !== null) {
+        navigator.clipboard.writeText(this.emptyWeight.toString()).then(function () {
+          _this.showToast(); // Show toast notification
+        })["catch"](function (err) {
+          console.error("Failed to copy: ", err);
+        });
+      }
+    },
+    showToast: function showToast() {
+      var _this2 = this;
+      this.toastVisible = true;
+      setTimeout(function () {
+        _this2.toastVisible = false;
+      }, 2000); // Hide toast after 2 seconds
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=script&lang=js ***!
@@ -8259,6 +8336,7 @@ __webpack_require__.r(__webpack_exports__);
       packing_size: null,
       storage_value: null,
       category_id: 0,
+      code: null,
       categories: null,
       //regular data
       location_id: null,
@@ -8440,6 +8518,7 @@ __webpack_require__.r(__webpack_exports__);
           storage: _this5.storage_value,
           enum_type: _this5.enum_type,
           weightable: _this5.weightable,
+          code: _this5.code,
           //packing_weight: new_packing_weight,
           //packing_size: new_packing_size,
           packing_weight: _this5.packing_weight,
@@ -8500,6 +8579,7 @@ __webpack_require__.r(__webpack_exports__);
     this.packing_size = this.product.packing_size;
     this.packing_weight = this.product.packing_weight;
     this.weightable = this.product.weightable;
+    this.code = this.product.code;
     console.log("WEIGHTABLEEEEE");
     console.log(this.weightable);
     var weightable_toggle = document.getElementById("product-weightable");
@@ -8549,6 +8629,7 @@ __webpack_require__.r(__webpack_exports__);
       packing_size: null,
       storage_value: null,
       category_id: 0,
+      code: null,
       categories: null,
       //regular data
       errored: null,
@@ -8717,6 +8798,7 @@ __webpack_require__.r(__webpack_exports__);
           'selected_locations': _this4.selected_location_ids,
           product_id: _this4.product.id,
           name: _this4.name,
+          code: _this4.code,
           price: _this4.price,
           description: _this4.description,
           storage: _this4.storage_value,
@@ -17544,6 +17626,252 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "calculator-container"
+  }, [_c("form", {
+    staticClass: "calculator-form",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.calculateEmptyBottleWeight.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "fullWeight"
+    }
+  }, [_vm._v("Full Bottle Weight (grams):")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: _vm.fullWeight,
+      expression: "fullWeight",
+      modifiers: {
+        number: true
+      }
+    }],
+    staticClass: "form-input",
+    attrs: {
+      type: "number",
+      id: "fullWeight",
+      required: ""
+    },
+    domProps: {
+      value: _vm.fullWeight
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.fullWeight = _vm._n($event.target.value);
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "volume"
+    }
+  }, [_vm._v("Volume (liters):")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: _vm.volume,
+      expression: "volume",
+      modifiers: {
+        number: true
+      }
+    }],
+    staticClass: "form-input",
+    attrs: {
+      type: "number",
+      id: "volume",
+      step: "0.01",
+      required: ""
+    },
+    domProps: {
+      value: _vm.volume
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.volume = _vm._n($event.target.value);
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "button-group"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.setVolume(0.5);
+      }
+    }
+  }, [_vm._v("0.5 L")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.setVolume(0.7);
+      }
+    }
+  }, [_vm._v("0.7 L")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.setVolume(0.75);
+      }
+    }
+  }, [_vm._v("0.75 L")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.setVolume(1);
+      }
+    }
+  }, [_vm._v("1 L")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.setVolume(1.5);
+      }
+    }
+  }, [_vm._v("1.5 L")])])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("Drink Type:")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.drinkType,
+      expression: "drinkType"
+    }],
+    staticClass: "form-select",
+    attrs: {
+      id: "type",
+      required: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.drinkType = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "water"
+    }
+  }, [_vm._v("Water")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "beer"
+    }
+  }, [_vm._v("Beer")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "wine"
+    }
+  }, [_vm._v("Wine")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "spirits"
+    }
+  }, [_vm._v("Spirits")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "gin"
+    }
+  }, [_vm._v("Gin")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "whiskey"
+    }
+  }, [_vm._v("Whiskey")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "brandy"
+    }
+  }, [_vm._v("Brandy")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "vodka"
+    }
+  }, [_vm._v("Vodka")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "rum"
+    }
+  }, [_vm._v("Rum")])])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Calculate")])]), _vm._v(" "), _vm.emptyWeight !== null ? _c("div", {
+    staticClass: "result-container"
+  }, [_c("h2", {
+    staticClass: "result-title"
+  }, [_vm._v("Results:")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex",
+    staticStyle: {
+      "align-items": "center",
+      "justify-content": "space-between"
+    }
+  }, [_c("p", {
+    staticClass: "result-text"
+  }, [_vm._v("Empty Bottle Weight: (" + _vm._s(_vm.emptyWeight) + ") g")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-copy",
+    on: {
+      click: _vm.copyToClipboard
+    }
+  }, [_vm._v("Copy to Clipboard")])])]) : _vm._e(), _vm._v(" "), _vm.toastVisible ? _c("div", {
+    staticClass: "toast-notification"
+  }, [_vm._v("\n    Value copied to clipboard!\n  ")]) : _vm._e()]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=template&id=57611096":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=template&id=57611096 ***!
@@ -17698,7 +18026,28 @@ var render = function render() {
         _vm.name = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("input", {
+  }), _vm._v(" "), _c("div", [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.code,
+      expression: "code"
+    }],
+    staticClass: "drinks-food-create-edit__input",
+    attrs: {
+      type: "text",
+      placeholder: "ŠIFRANT"
+    },
+    domProps: {
+      value: _vm.code
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.code = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -18012,6 +18361,16 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal"
     }
   })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "drinks-food-create-edit__input-label"
+  }, [_c("label", {
+    attrs: {
+      "for": "category"
+    }
+  }, [_vm._v("ŠIFRANT")])]);
 }];
 render._withStripped = true;
 
@@ -18181,6 +18540,27 @@ var render = function render() {
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.name = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.code,
+      expression: "code"
+    }],
+    staticClass: "drinks-food-create-edit__input",
+    attrs: {
+      type: "text",
+      placeholder: "ŠIFRANT"
+    },
+    domProps: {
+      value: _vm.code
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.code = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("div", [_c("div", {
@@ -18509,6 +18889,16 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal"
     }
   })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "drinks-food-create-edit__input-label"
+  }, [_c("label", {
+    attrs: {
+      "for": "category"
+    }
+  }, [_vm._v("ŠIFRANT")])]);
 }];
 render._withStripped = true;
 
@@ -23456,6 +23846,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('edit-user', (__webpack_re
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('products-component', (__webpack_require__(/*! ./components/admin/product/ProductsComponent.vue */ "./resources/js/components/admin/product/ProductsComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('create-product', (__webpack_require__(/*! ./components/admin/product/CreateProductComponent.vue */ "./resources/js/components/admin/product/CreateProductComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('edit-product', (__webpack_require__(/*! ./components/admin/product/EditProductComponent.vue */ "./resources/js/components/admin/product/EditProductComponent.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('bottle-calculator', (__webpack_require__(/*! ./components/admin/product/BottleCalculator.vue */ "./resources/js/components/admin/product/BottleCalculator.vue")["default"]));
 
 //MENU items 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('admin-menu-items-component', (__webpack_require__(/*! ./components/admin/menu/MenuItemsIndexComponent.vue */ "./resources/js/components/admin/menu/MenuItemsIndexComponent.vue")["default"]));
@@ -28092,6 +28483,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.toast[data-v-515341b2] {\n  position: fixed;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n  background: white;\n  padding: 1em;\n  border-radius: 4px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  z-index: 1000;\n}\n.toast--success[data-v-515341b2] {\n  background: #d4edda;\n  color: #155724;\n}\n.toast--error[data-v-515341b2] {\n  background: #f8d7da;\n  color: #721c24;\n}\n.slide-fade-enter-active[data-v-515341b2] {\n  transition: all 0.3s ease;\n}\n.slide-fade-leave-active[data-v-515341b2] {\n  transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter[data-v-515341b2], .slide-fade-leave-to[data-v-515341b2] {\n  transform: translateY(30px);\n  opacity: 0;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.calculator-container[data-v-ba375b1a] {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  font-family: Arial, sans-serif;\n}\n.calculator-title[data-v-ba375b1a] {\n  font-size: 24px;\n  margin-bottom: 20px;\n  color: #333;\n}\n.calculator-form[data-v-ba375b1a] {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n.form-group[data-v-ba375b1a] {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.form-label[data-v-ba375b1a] {\n  font-weight: 500;\n  color: #4a4a4a;\n}\n.form-input[data-v-ba375b1a],\n.form-select[data-v-ba375b1a] {\n  padding: 8px 12px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.form-input[data-v-ba375b1a]:focus,\n.form-select[data-v-ba375b1a]:focus {\n  border-color: #007BFF;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);\n}\n.button-group[data-v-ba375b1a] {\n  display: flex;\n  gap: 8px;\n}\n.btn[data-v-ba375b1a] {\n  padding: 10px 16px;\n  border-radius: 4px;\n  font-weight: 500;\n  cursor: pointer;\n  border: none;\n  transition: background-color 0.2s;\n}\n.btn-primary[data-v-ba375b1a] {\n  background-color: #007BFF;\n  color: white;\n}\n.btn-primary[data-v-ba375b1a]:hover {\n  background-color: #0056b3;\n}\n.btn-secondary[data-v-ba375b1a] {\n  background-color: #6c757d;\n  color: white;\n}\n.btn-secondary[data-v-ba375b1a]:hover {\n  background-color: #5a6268;\n}\n.btn-copy[data-v-ba375b1a] {\n  background-color: #28a745;\n  color: white;\n}\n.btn-copy[data-v-ba375b1a]:hover {\n  background-color: #218838;\n}\n.result-container[data-v-ba375b1a] {\n  margin-top: 24px;\n  padding: 16px;\n  background-color: #f8f9fa;\n  border-radius: 4px;\n}\n.result-title[data-v-ba375b1a] {\n  font-size: 18px;\n  margin-bottom: 12px;\n  color: #333;\n}\n.result-text[data-v-ba375b1a] {\n  color: #4a4a4a;\n  font-size: 16px;\n}\n.toast-notification[data-v-ba375b1a] {\n  margin-top: 10px;\n  padding: 10px;\n  background-color: #28a745;\n  color: white;\n  border-radius: 4px;\n  text-align: center;\n  transition: opacity 0.5s;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45744,6 +46159,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_style_index_0_id_ba375b1a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_style_index_0_id_ba375b1a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_style_index_0_id_ba375b1a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/reviews/RateUsComponent.vue?vue&type=style&index=0&id=5c10baf0&lang=css":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/reviews/RateUsComponent.vue?vue&type=style&index=0&id=5c10baf0&lang=css ***!
@@ -47271,6 +47716,47 @@ component.options.__file = "resources/js/components/admin/needing/StartNeedingCo
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/product/BottleCalculator.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/admin/product/BottleCalculator.vue ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true */ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true");
+/* harmony import */ var _BottleCalculator_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BottleCalculator.vue?vue&type=script&lang=js */ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js");
+/* harmony import */ var _BottleCalculator_vue_vue_type_style_index_0_id_ba375b1a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css */ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _BottleCalculator_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "ba375b1a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/product/BottleCalculator.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/product/CreateProductComponent.vue":
 /*!**************************************************************************!*\
   !*** ./resources/js/components/admin/product/CreateProductComponent.vue ***!
@@ -48578,6 +49064,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BottleCalculator.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=script&lang=js":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=script&lang=js ***!
@@ -49424,6 +49926,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true ***!
+  \**************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_template_id_ba375b1a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=template&id=ba375b1a&scoped=true");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=template&id=57611096":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/components/admin/product/CreateProductComponent.vue?vue&type=template&id=57611096 ***!
@@ -49803,6 +50322,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PopupMessageComponent_vue_vue_type_style_index_0_id_515341b2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PopupMessageComponent.vue?vue&type=style&index=0&id=515341b2&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PopupMessageComponent.vue?vue&type=style&index=0&id=515341b2&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css ***!
+  \****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BottleCalculator_vue_vue_type_style_index_0_id_ba375b1a_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/product/BottleCalculator.vue?vue&type=style&index=0&id=ba375b1a&scoped=true&lang=css");
 
 
 /***/ }),

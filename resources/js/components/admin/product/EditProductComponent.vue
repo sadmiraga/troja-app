@@ -78,6 +78,14 @@
           <input type="text" v-model="name" class="drinks-food-create-edit__input" :placeholder="translations.Enter_product_name" />
         </div>
 
+        <!-- CODE -->
+        <div>
+          <div class="drinks-food-create-edit__input-label">
+            <label for="category">ŠIFRANT</label>
+          </div>
+          <input type="text" v-model="code" class="drinks-food-create-edit__input" placeholder="ŠIFRANT" />
+        </div>
+
         <!-- PRICE -->
         <div>
           <div class="drinks-food-create-edit__input-label">
@@ -270,6 +278,7 @@ import Multiselect from 'vue-multiselect';
       this.packing_size = this.product.packing_size;
       this.packing_weight = this.product.packing_weight;
       this.weightable = this.product.weightable;
+      this.code = this.product.code;
       
 
       console.log("WEIGHTABLEEEEE");
@@ -327,6 +336,7 @@ import Multiselect from 'vue-multiselect';
         packing_size: null,
         storage_value: null,
         category_id: 0,
+        code: null,
 
         categories: null,
 
@@ -521,6 +531,7 @@ import Multiselect from 'vue-multiselect';
                   'selected_locations':this.selected_location_ids,
                   product_id: this.product.id,
                   name: this.name,
+                  code: this.code,
                   price: this.price,
                   description: this.description,
                   storage: this.storage_value,

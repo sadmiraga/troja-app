@@ -69,6 +69,7 @@ Vue.component('edit-user', require('./components/admin/users/EditUserComponent.v
 Vue.component('products-component', require('./components/admin/product/ProductsComponent.vue').default);
 Vue.component('create-product', require('./components/admin/product/CreateProductComponent.vue').default);
 Vue.component('edit-product', require('./components/admin/product/EditProductComponent.vue').default);
+Vue.component('bottle-calculator', require('./components/admin/product/BottleCalculator.vue').default);
 
 
 //MENU items 

@@ -79,6 +79,14 @@
         :placeholder="translations.Enter_product_name" 
         />
 
+        <!-- CODE -->
+        <div>
+          <div class="drinks-food-create-edit__input-label">
+            <label for="category">ŠIFRANT</label>
+          </div>
+          <input type="text" v-model="code" class="drinks-food-create-edit__input" placeholder="ŠIFRANT" />
+        </div>
+
         <!-- PRICE -->
       <input
       type="number"
@@ -302,6 +310,7 @@ export default {
       packing_size: null,
       storage_value: null,
       category_id: 0,
+      code:null,
 
       categories: null,
 
@@ -515,6 +524,7 @@ export default {
               storage: this.storage_value,
               enum_type: this.enum_type,
               weightable: this.weightable,
+              code: this.code,
               //packing_weight: new_packing_weight,
               //packing_size: new_packing_size,
               packing_weight: this.packing_weight,

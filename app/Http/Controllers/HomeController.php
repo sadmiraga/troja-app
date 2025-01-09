@@ -97,6 +97,13 @@ class HomeController extends Controller
     }
 
 
+    
+    public function bottleCalculator(){
+        return view('microservices.bottle-calculator');
+    }
+    
+
+
 
     public function backupDB(){
         
