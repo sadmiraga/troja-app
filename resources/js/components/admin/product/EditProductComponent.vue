@@ -269,6 +269,8 @@ import Multiselect from 'vue-multiselect';
     },
 
     mounted() {
+      
+      //alert(this.product.food_or_drink);
       this.name = this.product.name;
       this.price = this.product.price;
       this.description = this.product.description;

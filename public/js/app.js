@@ -8570,6 +8570,7 @@ __webpack_require__.r(__webpack_exports__);
     this.type = this.product.food_or_drink;
   },
   mounted: function mounted() {
+    //alert(this.product.food_or_drink);
     this.name = this.product.name;
     this.price = this.product.price;
     this.description = this.product.description;
