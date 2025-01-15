@@ -23603,8 +23603,208 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* binding */ render),
 /* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function render() {};
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "review-container"
+  }, [_c("div", {
+    staticClass: "logo-container"
+  }, [_c("img", {
+    staticClass: "google-logo",
+    attrs: {
+      src: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      alt: "Google Logo"
+    }
+  }), _vm._v(" "), _c("img", {
+    staticClass: "business-image",
+    staticStyle: {
+      height: "50px"
+    },
+    attrs: {
+      src: "/images_dynamic/settings/".concat(_vm.settings.logo),
+      alt: "Business Logo"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "review-form"
+  }, [_c("h1", [_vm._v(_vm._s(_vm.submitted ? "Thank you" : "Leave a Review"))]), _vm._v(" "), !_vm.submitted ? _c("div", {
+    staticClass: "star-rating"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.rating,
+      expression: "rating"
+    }],
+    attrs: {
+      type: "radio",
+      id: "star5",
+      name: "rating",
+      value: "5",
+      disabled: _vm.isRatingSelected
+    },
+    domProps: {
+      checked: _vm._q(_vm.rating, "5")
+    },
+    on: {
+      change: [function ($event) {
+        _vm.rating = "5";
+      }, _vm.handleRatingChange]
+    }
+  }), _vm._v(" "), _c("label", {
+    "class": {
+      disabled: _vm.isRatingSelected
+    },
+    attrs: {
+      "for": "star5"
+    }
+  }, [_vm._v("★")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.rating,
+      expression: "rating"
+    }],
+    attrs: {
+      type: "radio",
+      id: "star4",
+      name: "rating",
+      value: "4",
+      disabled: _vm.isRatingSelected
+    },
+    domProps: {
+      checked: _vm._q(_vm.rating, "4")
+    },
+    on: {
+      change: [function ($event) {
+        _vm.rating = "4";
+      }, _vm.handleRatingChange]
+    }
+  }), _vm._v(" "), _c("label", {
+    "class": {
+      disabled: _vm.isRatingSelected
+    },
+    attrs: {
+      "for": "star4"
+    }
+  }, [_vm._v("★")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.rating,
+      expression: "rating"
+    }],
+    attrs: {
+      type: "radio",
+      id: "star3",
+      name: "rating",
+      value: "3",
+      disabled: _vm.isRatingSelected
+    },
+    domProps: {
+      checked: _vm._q(_vm.rating, "3")
+    },
+    on: {
+      change: [function ($event) {
+        _vm.rating = "3";
+      }, _vm.handleRatingChange]
+    }
+  }), _vm._v(" "), _c("label", {
+    "class": {
+      disabled: _vm.isRatingSelected
+    },
+    attrs: {
+      "for": "star3"
+    }
+  }, [_vm._v("★")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.rating,
+      expression: "rating"
+    }],
+    attrs: {
+      type: "radio",
+      id: "star2",
+      name: "rating",
+      value: "2",
+      disabled: _vm.isRatingSelected
+    },
+    domProps: {
+      checked: _vm._q(_vm.rating, "2")
+    },
+    on: {
+      change: [function ($event) {
+        _vm.rating = "2";
+      }, _vm.handleRatingChange]
+    }
+  }), _vm._v(" "), _c("label", {
+    "class": {
+      disabled: _vm.isRatingSelected
+    },
+    attrs: {
+      "for": "star2"
+    }
+  }, [_vm._v("★")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.rating,
+      expression: "rating"
+    }],
+    attrs: {
+      type: "radio",
+      id: "star1",
+      name: "rating",
+      value: "1",
+      disabled: _vm.isRatingSelected
+    },
+    domProps: {
+      checked: _vm._q(_vm.rating, "1")
+    },
+    on: {
+      change: [function ($event) {
+        _vm.rating = "1";
+      }, _vm.handleRatingChange]
+    }
+  }), _vm._v(" "), _c("label", {
+    "class": {
+      disabled: _vm.isRatingSelected
+    },
+    attrs: {
+      "for": "star1"
+    }
+  }, [_vm._v("★")])]) : _vm._e(), _vm._v(" "), _vm.showTextarea && !_vm.submitted ? _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.message,
+      expression: "message"
+    }],
+    staticClass: "w-100 w-md-auto",
+    attrs: {
+      placeholder: "Share details of your experience at this place"
+    },
+    domProps: {
+      value: _vm.message
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.message = $event.target.value;
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.showPostButton && !_vm.submitted ? _c("button", {
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: _vm.submitReview
+    }
+  }, [_vm._v("Post Review")]) : _vm._e()])]);
+};
 var staticRenderFns = [];
+render._withStripped = true;
 
 
 /***/ }),

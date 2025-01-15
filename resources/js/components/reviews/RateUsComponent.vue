@@ -14,7 +14,7 @@
           <label :class="{ disabled: isRatingSelected }" for="star4">&#9733;</label>
           <input type="radio" id="star3" name="rating" value="3" v-model="rating" @change="handleRatingChange" :disabled="isRatingSelected" />
           <label :class="{ disabled: isRatingSelected }" for="star3">&#9733;</label>
-          <input type="radio" id="star2" name="rating" value="2" v-model="rating" @change="handleRatingChange" :disabled="isRati gitngSelected" />
+          <input type="radio" id="star2" name="rating" value="2" v-model="rating" @change="handleRatingChange" :disabled="isRatingSelected" />
           <label :class="{ disabled: isRatingSelected }" for="star2">&#9733;</label>
           <input type="radio" id="star1" name="rating" value="1" v-model="rating" @change="handleRatingChange" :disabled="isRatingSelected" />
           <label :class="{ disabled: isRatingSelected }" for="star1">&#9733;</label>
