@@ -74,6 +74,7 @@ return array(
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\ProductNeedings' => $baseDir . '/app/Models/ProductNeedings.php',
     'App\\Models\\ProductStocktaking' => $baseDir . '/app/Models/ProductStocktaking.php',
+    'App\\Models\\Review' => $baseDir . '/app/Models/Review.php',
     'App\\Models\\Settings' => $baseDir . '/app/Models/Settings.php',
     'App\\Models\\Stocktaking' => $baseDir . '/app/Models/Stocktaking.php',
     'App\\Models\\Submission' => $baseDir . '/app/Models/Submission.php',

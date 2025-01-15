@@ -45,6 +45,14 @@ Settings / Style
                 </div>
             </div>
 
+            <!-- Google review link -->
+            <div class="form-group mb-3 mt-5 row">
+                <label class="form-label col-3 col-form-label">Google review Link </label>
+                <div class="col">
+                    <input type="text" value="<?php if($settings->google_review_link != null){ echo $settings->google_review_link; } ?>" id="dark_color" name="google_review_link" class="form-control" placeholder="Enter google review link">
+                </div>
+            </div>
+
             <!-- Primary Color -->
             <div class="form-group mb-3 mt-5 row">
                 <label class="form-label col-3 col-form-label">Primary Color - navbar background - footer background.</label>

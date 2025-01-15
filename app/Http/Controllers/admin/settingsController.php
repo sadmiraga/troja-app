@@ -122,6 +122,7 @@ class settingsController extends Controller
         $settings->dark_color = $request->input('dark_color');
         $settings->instagram = $request->input('instagram');
         $settings->facebook = $request->input('facebook');
+        $settings->google_review_link = $request->input('google_review_link');
 
         $image = $request->file('logo');
         if ($request->hasFile('logo')) {

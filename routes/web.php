@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/rate-us', [App\Http\Controllers\feedbackController::class, 'public'])->name('rate-us');
+Route::post('/rate-us/store', [App\Http\Controllers\feedbackController::class, 'store'])->name('rate-us.store');
 
 
 Route::get('/admin', [App\Http\Controllers\public\rootController::class, 'admin'])->name('admin');

@@ -684,6 +684,7 @@ class ComposerStaticInit467762219b681c3733456390cd4728df
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductNeedings' => __DIR__ . '/../..' . '/app/Models/ProductNeedings.php',
         'App\\Models\\ProductStocktaking' => __DIR__ . '/../..' . '/app/Models/ProductStocktaking.php',
+        'App\\Models\\Review' => __DIR__ . '/../..' . '/app/Models/Review.php',
         'App\\Models\\Settings' => __DIR__ . '/../..' . '/app/Models/Settings.php',
         'App\\Models\\Stocktaking' => __DIR__ . '/../..' . '/app/Models/Stocktaking.php',
         'App\\Models\\Submission' => __DIR__ . '/../..' . '/app/Models/Submission.php',

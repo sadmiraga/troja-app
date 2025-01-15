@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/get-categories/{location_id}', [App\Http\Controllers\api\ApiControl
 Route::group(['prefix' => 'translation', 'as' => 'translation.'], function () {
     Route::get('/create-product', [App\Http\Controllers\api\TranslationsController::class, 'createProduct']);
 });
+
+Route::post('/reviews', [ReviewController::class, 'store']);
 
 
 
