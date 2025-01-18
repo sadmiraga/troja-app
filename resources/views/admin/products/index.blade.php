@@ -9,7 +9,7 @@
 
 
 <div id="app">
-    <products-component :products="{{json_encode($products)}}" :translations="{{$translations}}"></products-component>
+    <products-component :products="{{json_encode($products)}}" :translations="{{$translations}}" :settings="{{json_encode($settings)}}"></products-component>
 </div>
 
 @endsection

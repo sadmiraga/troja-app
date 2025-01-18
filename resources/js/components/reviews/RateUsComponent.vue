@@ -67,7 +67,7 @@
             return new Promise(resolve => {
                 window.axios.post(filter_url, {
                     rating: this.rating,
-                    message: this.message
+                    comment: this.message
                 }, {
                     headers: {
                         'Content-Type': 'application/json',

@@ -54,43 +54,70 @@
                     </div>
                 </a>
 
-                <!-- Delivery  -->
-                <a class="public-events-list__item card-button" 
-                
-                    @if(getOpenedDeliveryID(auth()->user()) == null)
-                        href="{{route('delivery.create')}}" 
-                    @else 
-                        href="{{route('delivery.app',getOpenedDeliveryID(auth()->user()))}}"
-                    @endif
-                    
-                    
-                >
-                    <!-- ICON -->
-                    <div class="card-body">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
-                            <g clip-path="url(#clip0_1261_556)"> <path d="M22.412 4C22.836 4.00008 23.2538 4.10124 23.6308 4.2951C24.0079 4.48895 24.3333 4.76991 24.58 5.11467L24.6987 5.29467L27.9307 10.6813C28.2492 11.2126 28.44 11.8105 28.488 12.428L28.5 12.7387V25.3333C28.5002 26.0061 28.2461 26.6541 27.7887 27.1474C27.3312 27.6407 26.7042 27.9429 26.0333 27.9933L25.8333 28H7.16667C6.4939 28.0002 5.84591 27.7461 5.3526 27.2887C4.85929 26.8312 4.55712 26.2042 4.50667 25.5333L4.5 25.3333V12.7387C4.50004 12.1185 4.64428 11.5068 4.92133 10.952L5.07067 10.68L8.3 5.29467C8.51814 4.93086 8.81992 4.62434 9.18028 4.40057C9.54064 4.17679 9.94919 4.04221 10.372 4.008L10.588 4H22.412ZM25.8333 13.3333H7.16667V25.3333H25.8333V13.3333ZM15.1667 6.66667H10.588L8.188 10.6667H15.1667V6.66667ZM22.412 6.66667H17.8333V10.6667H24.812L22.412 6.66667Z" fill="#FDA53C"/></g><defs><clipPath id="clip0_1261_556"> <rect width="32" height="32" fill="white" transform="translate(0.5)"/></clipPath></defs>
-                        </svg>
-                        <h2 class="h3-secondary"> 
-                            @if(getOpenedDeliveryID(auth()->user()) == null)
-                                {{ __('New delivery') }} 
-                            @else 
-                                {{ __('Continue Delivery') }} 
-                            @endif
-                            
-                        </h1>
-                    </div>
-                    <!-- button icon -->
-                    <div class="card-footer">
-                        <div class="card-button-next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                fill="none">
-                                <path
-                                    d="M4.79999 12.0001L8.79999 8.0001L4.79999 4.0001L5.59999 2.4001L11.2 8.0001L5.59999 13.6001L4.79999 12.0001Z"
-                                    fill="white" />
+                <!-- Needing list -->
+                @if($settings->needing_list_enabled == true)
+                    <a class="public-events-list__item card-button" href="{{route('needing.index')}}">
+                        <!-- ICON -->
+                        <div class="card-body">
+                            <svg id='Todo_List_24' width='32' height='32' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#000000' opacity='0'/>
+                                <g transform="matrix(1.54 0 0 1.54 12 12)" >
+                                    <path fill="#FDA53C" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; fill-rule: nonzero; opacity: 1;" transform=" translate(-8.51, -7.43)" d="M 5.648438 1.648438 L 3.5 3.792969 L 2.726563 3.023438 L 2.023438 3.726563 L 3.5 5.207031 L 6.351563 2.351563 Z M 8 3 L 8 4 L 15 4 L 15 3 Z M 5.648438 5.648438 L 3.5 7.792969 L 2.726563 7.023438 L 2.023438 7.726563 L 3.5 9.207031 L 6.351563 6.351563 Z M 8 7 L 8 8 L 15 8 L 15 7 Z M 5.648438 9.648438 L 3.5 11.792969 L 2.726563 11.019531 L 2.023438 11.730469 L 3.5 13.207031 L 6.351563 10.355469 Z M 8 11 L 8 12 L 15 12 L 15 11 Z" stroke-linecap="round" />
+                                </g>
                             </svg>
+                            <h2 class="h3-secondary"> Needing list </h1>
                         </div>
-                    </div>
-                </a>
+                        <!-- button icon -->
+                        <div class="card-footer">
+                            <div class="card-button-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M4.79999 12.0001L8.79999 8.0001L4.79999 4.0001L5.59999 2.4001L11.2 8.0001L5.59999 13.6001L4.79999 12.0001Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+                
+
+                <!-- Delivery  -->
+                @if($settings->deliveries_enabled == true)
+                    <a class="public-events-list__item card-button" 
+                    
+                        @if(getOpenedDeliveryID(auth()->user()) == null)
+                            href="{{route('delivery.index')}}" 
+                        @else 
+                            href="{{route('delivery.app',getOpenedDeliveryID(auth()->user()))}}"
+                        @endif
+                    >
+                        <!-- ICON -->
+                        <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                <g clip-path="url(#clip0_1261_556)"> <path d="M22.412 4C22.836 4.00008 23.2538 4.10124 23.6308 4.2951C24.0079 4.48895 24.3333 4.76991 24.58 5.11467L24.6987 5.29467L27.9307 10.6813C28.2492 11.2126 28.44 11.8105 28.488 12.428L28.5 12.7387V25.3333C28.5002 26.0061 28.2461 26.6541 27.7887 27.1474C27.3312 27.6407 26.7042 27.9429 26.0333 27.9933L25.8333 28H7.16667C6.4939 28.0002 5.84591 27.7461 5.3526 27.2887C4.85929 26.8312 4.55712 26.2042 4.50667 25.5333L4.5 25.3333V12.7387C4.50004 12.1185 4.64428 11.5068 4.92133 10.952L5.07067 10.68L8.3 5.29467C8.51814 4.93086 8.81992 4.62434 9.18028 4.40057C9.54064 4.17679 9.94919 4.04221 10.372 4.008L10.588 4H22.412ZM25.8333 13.3333H7.16667V25.3333H25.8333V13.3333ZM15.1667 6.66667H10.588L8.188 10.6667H15.1667V6.66667ZM22.412 6.66667H17.8333V10.6667H24.812L22.412 6.66667Z" fill="#FDA53C"/></g><defs><clipPath id="clip0_1261_556"> <rect width="32" height="32" fill="white" transform="translate(0.5)"/></clipPath></defs>
+                            </svg>
+                            <h2 class="h3-secondary"> 
+                                @if(getOpenedDeliveryID(auth()->user()) == null)
+                                    {{ __('New delivery') }} 
+                                @else 
+                                    {{ __('Continue Delivery') }} 
+                                @endif
+                                
+                            </h1>
+                        </div>
+                        <!-- button icon -->
+                        <div class="card-footer">
+                            <div class="card-button-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M4.79999 12.0001L8.79999 8.0001L4.79999 4.0001L5.59999 2.4001L11.2 8.0001L5.59999 13.6001L4.79999 12.0001Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                @endif
 
                 <!-- View stocktakings -->
                 <a class="public-events-list__item card-button" href="{{route('stocktaking.index')}}">
@@ -117,29 +144,6 @@
                     </div>
                 </a>
 
-                <!-- Needing list -->
-                <a class="public-events-list__item card-button" href="{{route('needing.index')}}">
-                    <!-- ICON -->
-                    <div class="card-body">
-                        <svg id='Todo_List_24' width='32' height='32' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#000000' opacity='0'/>
-                            <g transform="matrix(1.54 0 0 1.54 12 12)" >
-                                <path fill="#FDA53C" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; fill-rule: nonzero; opacity: 1;" transform=" translate(-8.51, -7.43)" d="M 5.648438 1.648438 L 3.5 3.792969 L 2.726563 3.023438 L 2.023438 3.726563 L 3.5 5.207031 L 6.351563 2.351563 Z M 8 3 L 8 4 L 15 4 L 15 3 Z M 5.648438 5.648438 L 3.5 7.792969 L 2.726563 7.023438 L 2.023438 7.726563 L 3.5 9.207031 L 6.351563 6.351563 Z M 8 7 L 8 8 L 15 8 L 15 7 Z M 5.648438 9.648438 L 3.5 11.792969 L 2.726563 11.019531 L 2.023438 11.730469 L 3.5 13.207031 L 6.351563 10.355469 Z M 8 11 L 8 12 L 15 12 L 15 11 Z" stroke-linecap="round" />
-                            </g>
-                        </svg>
-                        <h2 class="h3-secondary"> {{ __('Needing list') }} </h1>
-                    </div>
-                    <!-- button icon -->
-                    <div class="card-footer">
-                        <div class="card-button-next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                fill="none">
-                                <path
-                                    d="M4.79999 12.0001L8.79999 8.0001L4.79999 4.0001L5.59999 2.4001L11.2 8.0001L5.59999 13.6001L4.79999 12.0001Z"
-                                    fill="white" />
-                            </svg>
-                        </div>
-                    </div>
-                </a>
 
                 <!-- Manage products -->
                 <a class="public-events-list__item card-button" href="{{route('product.index')}}">
@@ -162,16 +166,14 @@
                         </div>
                     </div>
                 </a>
-
-                <!-- Change location -->
-                <a class="public-events-list__item card-button" href="{{route('locations')}}">
+                <!-- REVIEWS -->
+                <a class="public-events-list__item card-button" href="{{route('reviews')}}">
                     <!-- ICON -->
                     <div class="card-body">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 28.2515L17.4615 27.168C18.5525 25.9185 19.5339 24.733 20.407 23.6054L21.1278 22.6545C24.1373 18.5997 25.6428 15.3814 25.6428 13.0027C25.6428 7.92538 21.5499 3.80957 16.5 3.80957C11.4501 3.80957 7.35712 7.92538 7.35712 13.0027C7.35712 15.3814 8.86264 18.5997 11.8722 22.6545L12.5929 23.6054C13.8385 25.2014 15.1418 26.7501 16.5 28.2515Z" stroke="#FDA53C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16.5 16.762C18.6039 16.762 20.3095 15.0564 20.3095 12.9524C20.3095 10.8485 18.6039 9.1429 16.5 9.1429C14.396 9.1429 12.6904 10.8485 12.6904 12.9524C12.6904 15.0564 14.396 16.762 16.5 16.762Z" stroke="#FDA53C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 2L20.2 10.6L29.6 12L22.8 18.6L24.4 28L16 23.6L7.6 28L9.2 18.6L2.4 12L11.8 10.6L16 2Z" fill="#FDA53C"/>
                         </svg>
-                        <h2 class="h3-secondary"> {{ __('Change location') }} </h1>
+                        <h2 class="h3-secondary"> Reviews </h1>
                     </div>
                     <!-- button icon -->
                     <div class="card-footer">
@@ -186,6 +188,30 @@
                     </div>
                 </a>
 
+                <!-- Change location -->
+                @if($locations_count > 1)
+                    <a class="public-events-list__item card-button" href="{{route('locations')}}">
+                        <!-- ICON -->
+                        <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 28.2515L17.4615 27.168C18.5525 25.9185 19.5339 24.733 20.407 23.6054L21.1278 22.6545C24.1373 18.5997 25.6428 15.3814 25.6428 13.0027C25.6428 7.92538 21.5499 3.80957 16.5 3.80957C11.4501 3.80957 7.35712 7.92538 7.35712 13.0027C7.35712 15.3814 8.86264 18.5997 11.8722 22.6545L12.5929 23.6054C13.8385 25.2014 15.1418 26.7501 16.5 28.2515Z" stroke="#FDA53C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16.5 16.762C18.6039 16.762 20.3095 15.0564 20.3095 12.9524C20.3095 10.8485 18.6039 9.1429 16.5 9.1429C14.396 9.1429 12.6904 10.8485 12.6904 12.9524C12.6904 15.0564 14.396 16.762 16.5 16.762Z" stroke="#FDA53C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <h2 class="h3-secondary"> {{ __('Change location') }} </h1>
+                        </div>
+                        <!-- button icon -->
+                        <div class="card-footer">
+                            <div class="card-button-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                    fill="none">
+                                    <path
+                                        d="M4.79999 12.0001L8.79999 8.0001L4.79999 4.0001L5.59999 2.4001L11.2 8.0001L5.59999 13.6001L4.79999 12.0001Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                @endif
 
             </div>
         </div>

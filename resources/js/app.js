@@ -110,7 +110,7 @@ Vue.component('import-delivery-component', require('./components/admin/delivery/
 
 //REVIEWS 
 Vue.component('rate-us-component', require('./components/reviews/RateUsComponent.vue').default);
-
+Vue.component('reviews-component', require('./components/reviews/ReviewsComponent.vue').default);
 Vue.component('menu-settings-component', require('./components/admin/settings/menuSettingsComponent.vue').default);
 
 Vue.component('languages-component', require('./components/admin/LanguagesComponent.vue').default);

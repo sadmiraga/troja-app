@@ -52,6 +52,7 @@ class stocktakingController extends Controller
     }
 
     public function compare($stocktaking_id){
+
         $stocktaking = Stocktaking::find($stocktaking_id);
 
         $translations = json_encode([
@@ -68,10 +69,111 @@ class stocktakingController extends Controller
 
     public function compareExe(Request $request){
     
-        $stocktaking_id = $request->input('stocktaking_id');
 
+        $register = $request->input('register');
+        $stocktaking_id = $request->input('stocktaking_id');
+        $file = $request->file('file');
+
+
+        //Microgram
+        if($register == "microgram"){
+            $comparasion = $this->microgram($register,$stocktaking_id,$file);
+        }
+
+        if($register == "pos-elektroncek"){
+            $comparasion = $this->posElektroncek($register,$stocktaking_id,$file);
+            //dd($comparasion);
+        }
+
+        return response(json_encode($comparasion));
+        
+    }
+
+
+    public function posElektroncek($register, $stocktaking_id, $file)
+    {
+        $excel_array = Excel::toArray(new compareImport, $file);
+        $data = $excel_array[0]; // Vzamemo prvo stran Excel datoteke
+        
+        $processed_data = [];
+        
+        // Preskočimo prvo vrstico (naslovi stolpcev)
+        for ($i = 1; $i < count($data); $i++) {
+            $row = $data[$i];
+            
+            // Preverimo, če ima vrstica vse potrebne podatke
+            if (!empty($row[3]) && !empty($row[4])) { // Šifra artikla in naziv
+                $processed_data[] = [
+                    'sifra_artikla' => $row[3],
+                    'artikel' => $row[4], 
+                    'enota' => strtolower($row[5]),
+                    'zaloga' => floatval($row[6])
+                ];
+            }
+        }
+        
+        $products = DB::table('product_stocktakings')
+            ->select(
+                'products.id as id',
+                'products.name as name',
+                'products.enum as enum',
+                'products.code as code',
+                'products.weightable as weightable',
+                'products.packing_weight as packing_weight',
+                'products.packing_size as packing_size',
+                'products.storage as storage',
+                DB::raw('SUM(product_stocktakings.weight) as weight'),
+                DB::raw('SUM(product_stocktakings.quantity) as quantity'),
+                DB::raw('SUM(product_stocktakings.liters) as liters')
+            )
+            ->join('products', 'products.id', '=', 'product_stocktakings.product_id')
+            ->where('product_stocktakings.stocktaking_id', $stocktaking_id)
+            ->groupBy('products.id','product_stocktakings.product_id', 'products.name', 'products.enum', 'products.code', 'products.weightable', 'products.packing_weight', 'products.storage','products.packing_size')
+            ->get();
+
+
+        $comparison_result = [];
+
+        //dd($processed_data);
+
+        foreach($products as $product) {
+
+            //dd($product->code);
+            // Poiščemo ujemajoči izdelek iz Excela po šifri
+            $excel_product = null;
+            foreach($processed_data as $data) {
+                if($data['sifra_artikla'] == $product->code) {
+                    $excel_product = $data;
+                    break;
+                }
+            }
+            
+            if($excel_product) {
+
+                $comparison_result[] = [
+                    'id' => $product->id,
+                    'code' => $product->code,
+                    'name' => $product->name,
+                    'enum' => $product->enum,
+                    'packing_size' => $product->packing_size,
+                    'stocktaking_quantity' => $product->quantity,
+                    'stocktaking_weight' => $product->weight,
+                    'stocktaking_liters' => $product->liters,
+                    'excel_unit' => $excel_product['enota'],
+                    'excel_stock' => $excel_product['zaloga'],
+                ];
+            }
+        }
+
+        return $comparison_result;
+    }
+
+
+    public function microgram($register,$stocktaking_id,$file){
+
+        
         //check if file exist
-        if ( !$request->hasFile('file') && !$request->file('file')->isValid()){
+        if ( !$file && !$file->file('file')->isValid()){
             return response()->json(['error' => 'No file or invalid file uploaded'], 400);
         }
 
@@ -79,7 +181,7 @@ class stocktakingController extends Controller
         $register_list = [];
         // name | enum | zaloga
 
-        $array = Excel::toArray(new compareImport, $request->file('file'));
+        $array = Excel::toArray(new compareImport, $file);
         $array = $array[0];
 
         $temp = 0;
@@ -169,9 +271,7 @@ class stocktakingController extends Controller
             $comparasion[] = $temp;
         }
 
-
-        return response(json_encode($comparasion));
-        
+        return $comparasion;
     }
 
     public function findItemByName($items, $name) {
@@ -310,7 +410,7 @@ class stocktakingController extends Controller
         $location = Location::find($stocktaking->location_id);
         $user = User::find($stocktaking->user_id);
 
-        $filename = trans("Bestandsaufnahme")."-".$location->name."-".$stocktaking->storage."-".$user->name.".xlsx";
+        $filename = trans("Inventura")."-".$location->name."-".$stocktaking->storage."-".$user->name.".xlsx";
 
         return Excel::download(new StocktakingExport($stocktaking_id), $filename);
 

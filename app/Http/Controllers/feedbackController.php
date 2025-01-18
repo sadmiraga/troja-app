@@ -15,10 +15,13 @@ class feedbackController extends Controller
         return view('reviews.public',compact('settings'));
     }
 
+    public function reviewList(){
+        $reviews = Review::all();
+        return view('reviews.reviewList',compact('reviews'));
+    }
+
     public function store(Request $request){
-        
-        
-        //dd($request->all());
+    
 
         $review = new Review();
         $review->stars = $request->rating;

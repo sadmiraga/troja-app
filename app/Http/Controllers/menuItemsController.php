@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuItemAllergen;
 use Illuminate\Http\Request;
-use App\Models\{Category, Allergen, Language, MenuItem, MenuItemTranslation};
+use App\Models\{Category, Allergen, Language, MenuItem, MenuItemTranslation, Settings};
 
 //use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
@@ -34,9 +34,11 @@ class menuItemsController extends Controller
         ->orderBy('menu_items.created_at', 'desc')
         ->get();
 
+        $settings = Settings::first();
+
 
         //dd($menu_items);
-        return view('admin.menu.index',compact('menu_items'));
+        return view('admin.menu.index',compact('menu_items','settings'));
     }
 
     public function search(Request $request){

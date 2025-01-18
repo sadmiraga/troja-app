@@ -25,7 +25,7 @@
 
 
 <div id="app">
-    <start-stocktaking :translations="{{$translations}}" ></start-stocktaking>
+    <start-stocktaking :translations="{{$translations}}" :settings="{{json_encode($settings)}}" ></start-stocktaking>
 </div>
 
 

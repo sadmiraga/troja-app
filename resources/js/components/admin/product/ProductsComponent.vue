@@ -63,7 +63,7 @@
         </button>
 
         <!-- TOP-->
-        <div class="drinks-food-navbar">
+        <div v-if="this.settings.has_restaurant == true" class="drinks-food-navbar">
             <div class="drinks-food-navbar__links">
 
                 <!-- bar -->
@@ -239,9 +239,14 @@
                 this.page = 'restaurant';
             }
 
+            if(this.settings.has_restaurant == false){
+                this.page = 'bar';
+            }
+            
+
         },
         
-        props: ["products","translations"],
+        props: ["products","translations","settings"],
 
         watch:{
             query: function(newVal){

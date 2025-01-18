@@ -8,7 +8,7 @@
       <div  class="public-events-index-container">
         <div class="public-events-list">
 
-          <!-- KG -->
+          <!-- BAR -->
           <a href="#" v-on:click="changeStorage('bar')" v-bind:class="{ 'card-button-hover': barClass }"
             class="public-events-list__item card-button">
             <!-- ICON -->
@@ -25,9 +25,9 @@
             </div>
           </a>
   
-          <!-- G -->
-          <a v-on:click="changeStorage('restaurant')" v-bind:class="{ 'card-button-hover': restaurantClass }" href="#"
-            class="public-events-list__item card-button">
+          <!-- RESTAURANT -->
+          <a v-on:click="settings.has_restaurant ? changeStorage('restaurant') : null" v-bind:class="{ 'card-button-hover': restaurantClass && settings.has_restaurant }" href="#"
+            class="public-events-list__item card-button" :style="!settings.has_restaurant ? 'opacity: 0.5; cursor: not-allowed;' : ''">
             <!-- ICON -->
             <div class="card-body">
               <h1 class="h3-secondary">{{this.translations.Restaurant}}</h1>
@@ -143,7 +143,7 @@
 
 
   
-      <button v-if="this.unit != null"  class="category-create-edit__add-button" v-on:click="create()">
+      <button v-if="this.unit != null"  class="category-create-edit__add-button" style="margin-top: 4rem;" v-on:click="create()">
         {{ this.translations.Start_stocktaking }}
       </button>
     </div>
@@ -154,9 +154,13 @@
   export default {
     mounted() {
       console.log("Component mounted.");
+
+      if(this.settings.has_restaurant == false){
+        this.changeStorage('bar');
+      }
     },
 
-    props: ["translations"],
+    props: ["translations","settings"],
   
     data() {
       return {

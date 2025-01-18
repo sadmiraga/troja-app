@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Product;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -68,7 +69,7 @@ class productController extends Controller
 
     public function index()
     {
-        
+        $settings = Settings::first();
         $products = DB::table('products')
             ->select(
                 'products.id as id',
@@ -110,7 +111,7 @@ class productController extends Controller
         ]);
 
         //dd($products);
-        return view('admin.products.index', compact('products','translations'));
+        return view('admin.products.index', compact('products','translations','settings'));
     }
 
     public function create($storage)

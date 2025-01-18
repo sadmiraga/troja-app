@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\Stocktaking;
+use App\Models\Settings;
 use App\Models\{UserType,Delivery,Needing};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,13 @@ class onboardingController extends Controller
         $user  = auth()->user();
         $user_type = UserType::find($user->user_type_id);
         $location = $this->getCurrentLocation();
-        return view('admin.dashboard',compact('location','user','user_type','location'));
+
+        $settings = Settings::first();
+
+        
+        $locations_count = Location::count();
+
+        return view('admin.dashboard',compact('location','user','user_type','location','settings','locations_count'));
     }
 
     public function changeLang($lang){

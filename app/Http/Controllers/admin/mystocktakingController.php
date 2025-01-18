@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductStocktaking;
 use App\Models\Stocktaking;
 use App\Models\Location;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +61,9 @@ class mystocktakingController extends Controller
             'Start_stocktaking' => trans('Start stocktaking'),
         ]);
 
-        return view('admin.myStocktaking.create',compact('translations'));
+        $settings = Settings::first();
+
+        return view('admin.myStocktaking.create',compact('translations','settings'));
     }
     public function store(Request $request)
     {

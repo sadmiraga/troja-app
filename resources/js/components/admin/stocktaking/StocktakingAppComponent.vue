@@ -134,7 +134,8 @@
                     </div>
 
                     <!-- insert WEIGHT |||||  condition is for food  2. condition is for drinks.  --> 
-                    <div v-if="(product.enum == 'g' && product.stocktaking_weight == null) || (product.weightable == true && product.stocktaking_weight == null && stocktaking.method == 'scale')" class="card-input-row mt-2">
+                    <div v-if="(product.enum == 'g' && product.stocktaking_weight == null) || (product.weightable == true && product.stocktaking_weight == null && stocktaking.method == 'scale')" class="card-input-row mt-2" 
+                    style="align-items: center;margin-top: 0px !important;padding-top: 0.8rem;border-top: 1px solid lightgray;">
 
                         <!-- input fields -->
                         <div class="card-input-col">
@@ -313,7 +314,8 @@
                     </div>
 
                     <!-- insert WEIGHT -->
-                    <div v-if="product.weight != null" class="card-input-row mt-2" style="align-items:center;">
+                    <div v-if="product.weight != null" class="card-input-row mt-2"
+                    style="align-items: center;margin-top: 0px !important;padding-top: 0.8rem;border-top: 1px solid lightgray;align-items:center;">
                         <!-- input fields -->
                         <div class="card-input-col">
 

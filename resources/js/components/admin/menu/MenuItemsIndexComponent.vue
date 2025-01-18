@@ -62,6 +62,7 @@
           Hrana
         </a>
         <a
+          v-if="settings.extra_categories_enabled == true"
           href="#"
           v-on:click="goToShisha()"
           class="drinks-food-navbar__link"
@@ -226,7 +227,7 @@ export default {
     }
   },
 
-  props: ["menu_items"],
+  props: ["menu_items","settings"],
 
   data() {
     return {

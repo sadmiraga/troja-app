@@ -10,8 +10,10 @@
         <select
           name="register"
           id="category"
+          v-model="register"
           class="category-create-edit__dropdown">
-          <option value="choose" selected>Micro gram</option>
+          <option value="microgram" >Micro gram</option>
+          <option value="pos-elektroncek" selected>Pos Elektroncek</option>
         </select>
         <svg
           width="14"
@@ -45,17 +47,57 @@
 
     <div class="categories-index-container w-100">
         <!-- item list -->
-      <div class="categories-list" v-if="comparassions != null" style="margin-top:6rem;">
+      <div class="categories-list" style="margin-top:6rem;">
+
+
           <!-- header -->
-          <div class="list-header mt-3 w-100 stocktaking-heading">
-              <span class="p-info info-name">{{translations.Product}}</span>
-              <span class="p-info">{{translations.Application_Stock}}</span>
-              <span class="p-info">{{translations.Cash_Register_Stock}}</span>
-              <span class="p-info">{{translations.Difference}}</span>
+          <div v-if="compared" class="list-header mt-3 w-100 stocktaking-heading">
+              <span class="p-info info-name">Izdelek</span>
+              <span class="p-info">Stanje v aplikaciji (realno)</span>
+              <span class="p-info">Stanje v blagajni</span>
+              <span class="p-info">Razlika</span>
           </div>
 
-          <!-- items -->
-          <div v-for="comparassion in comparassions" :key="comparassion.id" class="category stocktaking-row" >
+
+          <!-- POS elektroncek comparasion-->
+          <div v-if="register == 'pos-elektroncek' && compared" v-for="comparassion in comparassions" :key="comparassion.id" class="category stocktaking-row" >
+            <div class="category__title-container">
+
+                <!-- name -->
+                <div class="stocktaking-col col-name">
+                  <span>{{comparassion.name}}</span>
+                </div>
+
+                <!-- app STOCK -->
+                <div class="stocktaking-col">
+                  <span class="p-info" style="margin-left:-20px;">{{posElektroncekGetAppStock(comparassion)}}</span>
+                </div>
+
+                <!-- register STOCK -->
+                <div class="stocktaking-col">
+                  <span class="p-info" style="margin-left:-20px;">{{comparassion.excel_stock}} {{ comparassion.excel_unit }}</span>
+                </div>
+
+                <!-- difference -->
+                <div class="stocktaking-col">
+                  <span 
+                    class="p-info" 
+                    :style="{
+                      marginLeft: '-20px',
+                      color: Number(posElektroncekGetDifference(comparassion).split(' ')[0]) < 0 ? 'red' : 'green'
+                    }"
+                  >
+                    {{ posElektroncekGetDifference(comparassion) }}
+                  </span>
+                </div>
+
+
+            </div>
+          </div>
+
+
+          <!-- MICROGRAM comparasion. -->
+          <div v-if="register == 'microgram' && compared" v-for="comparassion in comparassions" :key="comparassion.id" class="category stocktaking-row" >
 
               <!-- stocktakin data-->
               <div class="category__title-container">
@@ -107,10 +149,89 @@ export default {
     return {
       file: "",
       comparassions:null,
+      register: "pos-elektroncek",
+      compared:false,
     };
   },
 
+
   methods: {
+
+
+    posElektroncekGetAppStock(comparassion){
+      if(comparassion.enum == "pcs"){
+       return comparassion.stocktaking_quantity+"  pcs";
+      }
+      
+      if(comparassion.enum == "l"){
+        let liters = 0;
+        
+        // Check quantity and multiply by packing size
+        if(comparassion.stocktaking_quantity) {
+          liters += comparassion.stocktaking_quantity * comparassion.packing_size;
+        }
+        
+        // Add weight converted to liters if exists
+        if(comparassion.stocktaking_weight) {
+          // Convert grams to liters (1000g = 1L)
+          liters += comparassion.stocktaking_weight / 1000;
+        }
+        
+        return liters.toFixed(2) + " l";
+      }
+    },
+
+    posElektroncekGetDifference(comparassion){
+      
+
+        //KOS  ---------
+        if(comparassion.enum == "pcs" && (comparassion.excel_unit == "kos" || comparassion.excel_unit == "steklenica" ) ){
+          return parseFloat(comparassion.stocktaking_quantity) - parseFloat(comparassion.excel_stock)+ " steklenica";
+        }
+
+        //STEKLENICA (liter in app)-------
+        if(comparassion.enum == "l" && comparassion.excel_unit == " steklenica") {
+          // Full bottles
+          let fullBottles = parseFloat(comparassion.stocktaking_quantity || 0);
+          
+          // Partial bottle from weight
+          let partialBottle = 0;
+          if(comparassion.stocktaking_weight) {
+            let weightInLiters = comparassion.stocktaking_weight / 1000; // Convert g to L
+            partialBottle = weightInLiters / comparassion.packing_size; // Get percentage of bottle
+          }
+
+          // Combine full bottles + partial bottle and calculate difference with excel stock
+          let totalBottles = parseFloat((fullBottles + partialBottle).toFixed(2));
+          let difference = totalBottles - parseFloat(comparassion.excel_stock);
+          return difference.toFixed(2) + " steklenica";
+        }
+
+        //LITER ---------
+        if(comparassion.enum == "l" && comparassion.excel_unit == "lit") {
+
+          let liters = 0;
+          if(comparassion.stocktaking_quantity) {
+            liters += comparassion.stocktaking_quantity * comparassion.packing_size;
+          }
+        
+          // Add weight converted to liters if exists
+          if(comparassion.stocktaking_weight) {
+            // Convert grams to liters (1000g = 1L)
+            liters += comparassion.stocktaking_weight / 1000;
+          }
+
+          let result = liters - parseFloat(comparassion.excel_stock);
+
+          return result.toFixed(2) + " l";
+          
+        }
+
+
+
+
+
+    },
 
     getDifference(comparassion){
         var stocktaking_number = parseFloat(comparassion.stocktaking_value);
@@ -123,11 +244,14 @@ export default {
         this.file = this.$refs.file.files[0];
     },
 
+
+    //POST request
     compare(){
 
         let formData = new FormData()
         formData.append('file', this.file);
         formData.append('stocktaking_id', this.stocktaking_id);
+        formData.append('register', this.register);
 
         _.each(this.formData, (value, key) => {
           formData.append(key, value)
@@ -142,8 +266,11 @@ export default {
                 }
             }
             ).then(response => {
-                console.log(response.data);
+                //console.log(response.data);
                 this.comparassions = response.data;
+                this.compared = true;
+                console.log(this.comparassions);
+                
             }).then(response => {}).catch(error => {})
         });
     },
