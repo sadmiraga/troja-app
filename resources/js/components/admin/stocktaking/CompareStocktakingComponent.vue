@@ -190,7 +190,8 @@ export default {
         }
 
         //STEKLENICA (liter in app)-------
-        if(comparassion.enum == "l" && comparassion.excel_unit == " steklenica") {
+        if(comparassion.enum == "l" && comparassion.excel_unit == "steklenica") {
+
           // Full bottles
           let fullBottles = parseFloat(comparassion.stocktaking_quantity || 0);
           

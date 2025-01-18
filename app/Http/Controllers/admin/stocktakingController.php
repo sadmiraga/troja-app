@@ -97,8 +97,8 @@ class stocktakingController extends Controller
         
         $processed_data = [];
         
-        // Preskočimo prvo vrstico (naslovi stolpcev)
-        for ($i = 1; $i < count($data); $i++) {
+        // Preskočimo prve 4 vrstice (metadata)
+        for ($i = 4; $i < count($data); $i++) {
             $row = $data[$i];
             
             // Preverimo, če ima vrstica vse potrebne podatke
