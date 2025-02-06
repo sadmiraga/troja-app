@@ -46,12 +46,12 @@
             </div>
 
             <!-- export button -->
-            <div>
-                <a :href="'/stocktaking/export/'+this.stocktaking.id">
+            <div class="search-bar">
+                <a data-bs-toggle="modal" data-bs-target="#export-modal">
                     <button class="search-bar__button">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="100" height="100" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
                             <path d="M7 11l5 5l5 -5" />
                             <path d="M12 4l0 12" />
                         </svg>
@@ -156,6 +156,46 @@
 
         </div>
 
+        <!-- Modal za izvoz -->
+        <div
+            class="modal fade"
+            id="export-modal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exportModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Glava modala -->
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exportModalLabel">{{ translations.Export }}</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zapri"></button>
+                    </div>
+                    <!-- Telo modala -->
+                    <div class="modal-body">
+                        <p>{{ translations.Choose_export_format }}</p>
+                    </div>
+                    <!-- Noga modala z gumbi za izvoz -->
+                    <div class="modal-footer">
+                        <div class="drinks-food-create-edit__bottom-buttons two-button-wrapper">
+                            <!-- Gumb za Excel izvoz -->
+                            <a :href="'/stocktaking/export/' + stocktaking.id">
+                                <button type="button" class="drinks-food-create-edit__add-allergens-button" style="border: 2px solid #1C6979;">
+                                    {{ translations.Export_excel }}
+                                </button>
+                            </a>
+                            <!-- Gumb za PDF izvoz -->
+                            <a :href="'/stocktaking/export-pdf/' + stocktaking.id">
+                                <button type="button" class="search-bar__button">
+                                    {{ translations.Export_pdf }}
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </div>
     </div>
@@ -170,6 +210,12 @@
         data() {
             return {
                 query: null,
+                translations: {
+                    Export: "Izvoz",
+                    Choose_export_format: "Izberite format izvoza",
+                    Export_excel: "Izvoz v Excel",
+                    Export_pdf: "Izvoz v PDF"
+                }
             };
         },
 
@@ -179,7 +225,7 @@
             }
         },
 
-        props: ["stocktaking","products","translations"],
+        props: ["stocktaking","products"],
 
         methods:{
 

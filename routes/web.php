@@ -208,6 +208,7 @@ Route::group(['middleware' => 'locale'], function () {
      
             Route::get('/delete/{stocktaking_id}', [App\Http\Controllers\admin\stocktakingController::class, 'delete'])->name('delete');
             Route::get('/export/{stocktaking_id}', [App\Http\Controllers\admin\stocktakingController::class, 'export'])->name('export');
+            Route::get('/export-pdf/{stocktaking_id}', [App\Http\Controllers\admin\stocktakingController::class, 'exportPDF'])->name('export.pdf');
         }); 
     
         //DELIVERIES

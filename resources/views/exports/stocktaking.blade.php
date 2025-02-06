@@ -7,8 +7,6 @@
                 <thead>
                     <tr>
                         <th style="width: 200%;">Product</th>
-                        <th style="width: 200%;">{{__('Pieces')}}</th>
-                        <th style="width: 300%;">{{__('Measured')}} / {{__('opened')}} </th>
                         <th style="width: 200%;">{{__('Stock')}}</th>
                         <th style="width: 200%;">{{__('Enum')}}</th>
                         <!-- Add other Product attributes here -->
@@ -18,27 +16,15 @@
                     @foreach($products as $product)
                     <tr>
                         <td style="width: 200%;" >{{ $product->name }}</td>
-                        <td style="width: 200%;">{{ $product->quantity }}</td>
-
-                        <!-- weighted -->
-                        <td style="width: 300%;">
-                            @if($product->weight != null)
-                                {{ $product->weight }} g
-                            @endif
-
-                            @if($product->liters != null)
-                                {{ $product->liters }} l
-                            @endif
-                        </td>
 
 
                         @php
                             if($product->enum == 'g'){
-                                $stock = $product->weight;
+                                $stock = round($product->weight, 2);
                             }
 
                             if($product->enum == 'pcs'){
-                                $stock = $product->quantity;
+                                $stock = round($product->quantity, 2);
                             }
 
                             if($product->enum == 'l'){
@@ -66,6 +52,7 @@
                                     $stock += $liters;
                                 }
 
+                                $stock = round($stock, 2);
                             }
                         @endphp
                         

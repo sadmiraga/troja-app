@@ -413,7 +413,53 @@ class stocktakingController extends Controller
         $filename = trans("Inventura")."-".$location->name."-".$stocktaking->storage."-".$user->name.".xlsx";
 
         return Excel::download(new StocktakingExport($stocktaking_id), $filename);
+    }
 
+    public function exportPDF($stocktaking_id) {
+        // Pridobitev invetnure
+        $stocktaking = Stocktaking::find($stocktaking_id);
+        
+        $products = DB::table('product_stocktakings')
+        ->select(
+            'products.id as id',
+            'products.name as name',
+            'products.enum as enum',
+            'products.weightable as weightable',
+            'products.packing_weight as packing_weight',
+            'products.packing_size as packing_size',
+            'products.storage as storage',
+            DB::raw('SUM(product_stocktakings.weight) as weight'),
+            DB::raw('SUM(product_stocktakings.quantity) as quantity'),
+            DB::raw('SUM(product_stocktakings.liters) as liters')
+        )
+        ->join('products', 'products.id', '=', 'product_stocktakings.product_id')
+        ->where('product_stocktakings.stocktaking_id', $stocktaking_id)
+        ->groupBy('products.id','product_stocktakings.product_id', 'products.name', 'products.enum', 'products.weightable', 'products.packing_weight', 'products.storage','products.packing_size')
+        ->get();
+        
+        // Pridobitev povezanih podatkov (lokacija in uporabnik)
+        $location = Location::find($stocktaking->location_id);
+        $user = User::find($stocktaking->user_id);
+
+
+
+        // Priprava imena datoteke (uporabite prevedeno besedo za 'Inventura' in druge podatke)
+        $filename = trans("Inventura") . "-" . $location->name . "-" . $stocktaking->storage . "-" . $user->name . ".pdf";
+
+        // Priprava podatkov za view datoteko
+        $data = [
+            'stocktaking'  => $stocktaking,
+            'location'     => $location,
+            'user'         => $user,
+            'products'     => $products,
+        ];
+
+        // Ustvarjanje PDF z uporabo pripravljene view datoteke
+        // Prepričajte se, da imate nameščen paket barryvdh/laravel-dompdf in njegovo konfiguracijo
+        $pdf = \PDF::loadView('exports.export_pdf', $data)
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download($filename);
     }
 
     public function delete($stocktaking_id){
